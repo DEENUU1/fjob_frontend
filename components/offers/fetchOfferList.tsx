@@ -14,6 +14,39 @@ async function getOffers() {
     return response.json();
 }
 
+type Dict = Record<number, any>;
+
+
+function getDetails(offer: any) : Array<string> {
+    const experienceList: Array<Dict> = offer.experience;
+    const workTypeList: Array<Dict> = offer.worktype;
+    const employmentTypeList: Array<Dict> = offer.experience;
+    const isRemote: boolean = offer.is_remote;
+    const isHybrid: boolean = offer.is_hybrid;
+    const data: Array<string> = []
+
+    if (isRemote) {
+        data.push('Remote')
+    }
+
+    if (isHybrid) {
+        data.push('Hybrid')
+    }
+
+    experienceList.forEach((exp) => {
+        data.push(exp.name);
+    });
+
+    workTypeList.forEach((wt) => {
+        data.push(wt.name);
+    });
+
+    employmentTypeList.forEach((et) => {
+        data.push(et.name);
+    });
+
+    return data
+}
 
 
 export default async function OfferList(){
