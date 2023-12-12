@@ -71,6 +71,12 @@ function getLocalization(offer: any): string {
 }
 
 
+function getCreatedTime(offer: any): string {
+    const createdTime = offer.created_at;
+    return createdTime.slice(0, 10);
+
+}
+
 
 export default async function OfferList(){
     const offers = await getOffers();
@@ -79,7 +85,7 @@ export default async function OfferList(){
     return (
         <>
             {offers.results.map((offer: any) => (
-                <div className="border-2 border-red-900" key={offer.id}>
+                <div className="border-2 border-3-black rounded-2xl container" key={offer.id}>
                     <div className="flex justify-between items-center border p-4">
                         <div className="flex items-start">
                             <div className="mr-4">
@@ -102,7 +108,7 @@ export default async function OfferList(){
 
                     <div className="mb-3">
                         {getDetails(offer).map((detail: string) => (
-                            <span className="border-2 border-red-900 ml-4 py-2 px-2" key={detail}>{detail}</span>
+                            <span className="bg-black text-white font-medium rounded-2xl ml-4 py-2 px-2" key={detail}>{detail}</span>
                         ))}
                     </div>
 
@@ -111,20 +117,26 @@ export default async function OfferList(){
                         <p>{offer.description}</p>
                     </div>
 
-                    <div className="p-4">
-                        <div>
-                            <span> {getLocalization(offer)} </span>
-                            <span> Created time, website</span>
+                    <div className="p-4 flex items-center justify-between">
+                        <div className="flex flex-col">
+                            <div className="mb-1">
+                                <span>{getLocalization(offer)}</span>
+                            </div>
+                            <div>
+                                <span>{getCreatedTime(offer)}</span>
+                            </div>
                         </div>
                         <div>
                             <Link
                                 href="/"
+                                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                             >
                                 Apply
                             </Link>
-
                         </div>
                     </div>
+
+
                 </div>
             ))}
         </>
