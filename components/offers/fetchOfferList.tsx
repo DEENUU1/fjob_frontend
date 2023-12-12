@@ -1,6 +1,8 @@
 import getApiUrl from "@/components/api";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import Link from "next/link";
+import { FaHeart } from "react-icons/fa";
+import { FaFlag } from "react-icons/fa";
 
 async function getOffers() {
     // imitate delay from API
@@ -85,7 +87,7 @@ export default async function OfferList(){
     return (
         <>
             {offers.results.map((offer: any) => (
-                <div className="border-2 border-3-black rounded-2xl container" key={offer.id}>
+                <div className="border-2 border-3-black rounded-2xl container mb-4 mt-4" key={offer.id}>
                     <div className="flex justify-between items-center border p-4">
                         <div className="flex items-start">
                             <div className="mr-4">
@@ -97,10 +99,15 @@ export default async function OfferList(){
                         <div className="flex items-center">
 
                             <div className="relative inline-block text-left">
-                                <button className="text-2xl py-2 px-4 rounded-full focus:outline-none">
-                                    <BiDotsVerticalRounded />
-                                </button>
-                            {/*  Save & Report job offer */}
+
+                                <div className="flex items-center space-x-4">
+                                    <Link href="/" className="text-xl transform transition-transform hover:scale-110">
+                                        <FaFlag />
+                                    </Link>
+                                    <Link href="/" className="text-xl transform transition-transform hover:scale-110">
+                                        <FaHeart />
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -131,7 +138,7 @@ export default async function OfferList(){
                                 href="/"
                                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                             >
-                                Apply
+                                Report
                             </Link>
                         </div>
                     </div>
