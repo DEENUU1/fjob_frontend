@@ -87,8 +87,8 @@ export default async function OfferList(){
     return (
         <>
             {offers.results.map((offer: any) => (
-                <div className="border-2 border-3-black rounded-2xl container mb-4 mt-4" key={offer.id}>
-                    <div className="flex justify-between items-center border p-4">
+                <div className="border-2 border-3-black hover:border-black hover:border-3 rounded-2xl container mb-4 mt-4" key={offer.id}>
+                    <div className="flex justify-between items-center p-4">
                         <div className="flex items-start">
                             <div className="mr-4">
                                 <h2 className="text-3xl font-medium">{offer.title}</h2>
