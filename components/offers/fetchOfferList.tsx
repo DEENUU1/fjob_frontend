@@ -1,5 +1,6 @@
 import getApiUrl from "@/components/api";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import Link from "next/link";
 
 async function getOffers() {
     // imitate delay from API
@@ -19,7 +20,7 @@ type Dict = Record<number, any>;
 
 function getDetails(offer: any) : Array<string> {
     const experienceList: Array<Dict> = offer.experience;
-    const workTypeList: Array<Dict> = offer.worktype;
+    const workTypeList: Array<Dict> = offer.work_type;
     const employmentTypeList: Array<Dict> = offer.experience;
     const isRemote: boolean = offer.is_remote;
     const isHybrid: boolean = offer.is_hybrid;
@@ -49,8 +50,31 @@ function getDetails(offer: any) : Array<string> {
 }
 
 
+function getLocalization(offer: any): string {
+    const localizationList: Array<Dict> = offer.addresses;
+
+    const numOfData: number = localizationList.length;
+
+    if (numOfData === 0) {
+        return '';
+    } else if (numOfData === 1) {
+        const firstLocalization = localizationList[0];
+        return `${firstLocalization.country.name}, ${firstLocalization.region.name}, ${firstLocalization.city.name}`;
+    } else {
+        const firstLocalization = localizationList[0];
+        const additionalLocalizations = numOfData - 1;
+        if (numOfData === 2) {
+            return `${firstLocalization.country.name}, ${firstLocalization.region.name}, ${firstLocalization.city.name} + ${additionalLocalizations} localization`;
+        }
+        return `${firstLocalization.country.name}, ${firstLocalization.region.name}, ${firstLocalization.city.name} + ${additionalLocalizations} localizations`;
+    }
+}
+
+
+
 export default async function OfferList(){
     const offers = await getOffers();
+
     console.log(offers)
     return (
         <>
@@ -76,23 +100,29 @@ export default async function OfferList(){
                     </div>
 
 
-                    <div>
-                        <span>XXX</span>
-                        <span>XYZ</span>
+                    <div className="mb-3">
+                        {getDetails(offer).map((detail: string) => (
+                            <span className="border-2 border-red-900 ml-4 py-2 px-2" key={detail}>{detail}</span>
+                        ))}
                     </div>
 
 
-                    <div>
+                    <div className="mb-3 p-4">
                         <p>{offer.description}</p>
                     </div>
 
-                    <div>
+                    <div className="p-4">
                         <div>
-                            <span> Localization </span>
+                            <span> {getLocalization(offer)} </span>
                             <span> Created time, website</span>
                         </div>
                         <div>
-                        {/*  Button to apply  */}
+                            <Link
+                                href="/"
+                            >
+                                Apply
+                            </Link>
+
                         </div>
                     </div>
                 </div>
