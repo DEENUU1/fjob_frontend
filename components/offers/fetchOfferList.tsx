@@ -4,11 +4,11 @@ import Link from "next/link";
 import {FaHeart} from "react-icons/fa";
 import {FaFlag} from "react-icons/fa";
 
-async function getOffers() {
+export async function getOffers(search: string | undefined) {
     // imitate delay from API
     // await new Promise(resolve => setTimeout(resolve, 3000));
 
-    const response = await fetch(`${getApiUrl()}api/offer/offer`, {
+    const response = await fetch(`${getApiUrl()}api/offer/offer?search=${search}`, {
         next: {
             revalidate: 0
         }
@@ -106,9 +106,8 @@ function getCreatedTime(offer: any): string {
 
 
 export default async function OfferList() {
-    const offers = await getOffers();
+    const offers = await getOffers("test");
 
-    console.log(offers)
     return (
         <>
             {offers.results.map((offer: any) => (
