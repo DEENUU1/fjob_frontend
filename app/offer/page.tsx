@@ -8,8 +8,7 @@ export default function Offers() {
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
         <div>
-            <h1>OfferList</h1>
-            <p>Start you work here</p>
+            <h1 className="text-center font-bold text-3xl mb-10">Job offers list</h1>
             <Suspense fallback={<Loading/>}>
                 <OfferList/>
             </Suspense>
