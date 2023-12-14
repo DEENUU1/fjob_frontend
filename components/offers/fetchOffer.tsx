@@ -12,8 +12,8 @@ async function getOffer(id: number) {
 }
 
 
-export default async function Offer(id: number){
-    const offer = await getOffer(id);
+export default async function OfferDetails({offerId}){
+    const offer = await getOffer(offerId);
 
     return (
         <>
