@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { LoginForm } from '@/components/forms';
-import { SocialButtons } from '@/components/common/SocialButtons';
+import  SocialButtons  from '@/components/common/SocialButtons';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function Page() {
 
 			<div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
 				<LoginForm />
-				{/*<SocialButtons />*/}
+				<SocialButtons />
 
 				<p className='mt-10 text-center text-sm text-gray-500'>
 					Don&apos;t have an account?{' '}

@@ -6,10 +6,11 @@ import type {
 } from '@reduxjs/toolkit/query';
 import { setAuth, logout } from '../features/authSlice';
 import { Mutex } from 'async-mutex';
+import getApiUrl from "@/components/api";
 
 const mutex = new Mutex();
 const baseQuery = fetchBaseQuery({
-	baseUrl: `${process.env.NEXT_PUBLIC_HOST}/api`,
+	baseUrl: `${getApiUrl()}api`,
 	credentials: 'include',
 });
 const baseQueryWithReauth: BaseQueryFn<

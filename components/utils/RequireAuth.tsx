@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { useAppSelector } from '@/redux/hooks';
-import { Spinner } from '@/components/common';
+import Spinner from '@/components/common/Spinner';
 
 interface Props {
 	children: React.ReactNode;

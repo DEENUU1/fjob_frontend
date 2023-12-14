@@ -1,7 +1,8 @@
 'use client';
 
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
-import { List, Spinner } from '@/components/common';
+import Spinner from '@/components/common/Spinner';
+import List from '@/components/common/List';
 
 export default function Page() {
 	const { data: user, isLoading, isFetching } = useRetrieveUserQuery();
