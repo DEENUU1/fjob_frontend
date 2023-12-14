@@ -1,14 +1,13 @@
 import getApiUrl from "@/components/api";
-import {BiDotsVerticalRounded} from "react-icons/bi";
 import Link from "next/link";
 import {FaHeart} from "react-icons/fa";
 import {FaFlag} from "react-icons/fa";
 
-export async function getOffers(search: string | undefined) {
+export async function getOffers() {
     // imitate delay from API
     // await new Promise(resolve => setTimeout(resolve, 3000));
 
-    const response = await fetch(`${getApiUrl()}api/offer/offer?search=${search}`, {
+    const response = await fetch(`${getApiUrl()}api/offer/offer`, {
         next: {
             revalidate: 0
         }
@@ -106,7 +105,7 @@ function getCreatedTime(offer: any): string {
 
 
 export default async function OfferList() {
-    const offers = await getOffers("test");
+    const offers = await getOffers();
 
     return (
         <>
