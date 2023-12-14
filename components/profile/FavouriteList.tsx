@@ -2,7 +2,8 @@
 
 import getApiUrl from "@/components/api";
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
-
+import FavouriteButtonDelete from "./favouriteDelete";
+import favouriteDelete from "./favouriteDelete";
 
 export async function getFavourites() {
     const {data: user} = useRetrieveUserQuery();
@@ -30,11 +31,11 @@ export default async function Favourites() {
             {favourites.map((favourite: any) => (
                 <div key={favourite.id}>
                     {favourite.id}
+                    <FavouriteButtonDelete offerId={favourite.id}/>
                 </div>
             ))}
         </div>
     )
-
 
 
 }
