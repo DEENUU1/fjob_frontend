@@ -7,14 +7,13 @@ import { toast } from 'react-toastify';
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 
 
-// <FaFlag/>
 
 const onSend = (description: string, offerId: number, userId: number, ) => {
     const token = "todo"
 
     const handlePostReport = async () => {
         try {
-            const response = await fetch(`${getApiUrl()}/api/report`, {
+            const response = await fetch(`${getApiUrl()}/api/support/report`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -36,7 +35,9 @@ const onSend = (description: string, offerId: number, userId: number, ) => {
     }
 }
 
-const reportModal = ({onSend, offerId}) => {
+const ReportModal = ({offerId}) => {
+    // Todo add modal here
+
     const [description, setDescription] = useState('')
     const {data: user} = useRetrieveUserQuery()
 
@@ -50,9 +51,9 @@ const reportModal = ({onSend, offerId}) => {
 
     return (
         <div>
-            Modal hee
+            <FaFlag/>
         </div>
     )
 }
 
-export default reportModal;
+export default ReportModal;

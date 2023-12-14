@@ -1,6 +1,8 @@
 import getApiUrl from "@/components/api";
 import Link from "next/link";
 import FavouriteButton from "@/components/offers/favourite";
+import ReportModal from "@/components/offers/report";
+import Report from "@/components/offers/report";
 
 export async function getOffers() {
     // imitate delay from API
@@ -126,9 +128,7 @@ export default async function OfferList() {
                             <div className="relative inline-block text-left">
 
                                 <div className="flex items-center space-x-4">
-                                    <Link href="/" className="text-xl transform transition-transform hover:scale-110">
-                                        {/*<FaFlag/>*/}
-                                    </Link>
+                                    <ReportModal offerId={offer.id}/>
                                     <FavouriteButton offerId={offer.id}/>
                                 </div>
                             </div>
