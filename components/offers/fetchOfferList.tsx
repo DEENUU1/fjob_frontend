@@ -1,3 +1,5 @@
+'use client'
+
 import getApiUrl from "@/components/api";
 import Link from "next/link";
 import FavouriteButton from "@/components/offers/favourite";

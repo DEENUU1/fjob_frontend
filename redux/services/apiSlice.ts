@@ -35,7 +35,6 @@ const baseQueryWithReauth: BaseQueryFn<
 				);
 				if (refreshResult.data) {
 					api.dispatch(setAuth());
-
 					result = await baseQuery(args, api, extraOptions);
 				} else {
 					api.dispatch(logout());

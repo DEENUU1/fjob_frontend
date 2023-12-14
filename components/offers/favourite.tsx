@@ -4,13 +4,12 @@ import getApiUrl from "@/components/api";
 import { toast } from 'react-toastify';
 import {FaHeart} from "react-icons/fa";
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
-import { useContext } from 'react';
-import {setAuth} from '@/redux/features/authSlice';
 
 // @ts-ignore
 const FavouriteButton = ({offerId}) => {
     const {data:user} = useRetrieveUserQuery()
-    const token = "todo get token"
+    const token = localStorage.getItem('access')
+
     const handlePostFavourite = async () => {
         try {
             const response = await fetch(`${getApiUrl()}api/favourite/`, {

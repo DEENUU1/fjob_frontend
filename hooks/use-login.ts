@@ -28,10 +28,15 @@ export default function useLogin() {
 
 		login({ email, password })
 			.unwrap()
-			.then(() => {
-				dispatch(setAuth());
-				toast.success('Logged in');
-				router.push('/dashboard');
+			.then((data) => {
+				if (data.access) {
+					localStorage.setItem('access', data.access);
+					dispatch(setAuth());
+					toast.success('Logged in');
+					router.push('/dashboard');
+				} else {
+					toast.error('Failed to log in');
+				}
 			})
 			.catch(() => {
 				toast.error('Failed to log in');

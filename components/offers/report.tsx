@@ -9,7 +9,7 @@ import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 
 
 const onSend = (description: string, offerId: number, userId: number, ) => {
-    const token = "todo"
+    const token = localStorage.getItem('access')
 
     const handlePostReport = async () => {
         try {
