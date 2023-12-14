@@ -11,10 +11,10 @@ export async function getFavourites() {
 
     const response = await fetch(`${getApiUrl()}api/favourite`, {
         method: 'GET',
-        body: JSON.stringify({user: user?.id}),
+        // body: JSON.stringify({user: user?.id}),
         headers: {
             'Content-Type': 'application/json',
-            Authentication: `Bearer ${token}`
+            Authorization: `Bearer ${token}`
         }
     });
 
@@ -25,23 +25,16 @@ export async function getFavourites() {
 export default async function Favourites() {
     const favourites = await getFavourites();
 
-    if (favourites) {
-        return (
-            <div>
-                {favourites.map((favourite: any) => (
-                    <div key={favourite.id}>
-                        {favourite.id}
-                    </div>
-                ))}
-            </div>
-        )
-    } else {
-        return (
-            <div>
-                <h2>You don't have any saved offers</h2>
-            </div>
-        )
-    }
+    return (
+        <div>
+            {favourites.map((favourite: any) => (
+                <div key={favourite.id}>
+                    {favourite.id}
+                </div>
+            ))}
+        </div>
+    )
+
 
 
 }
