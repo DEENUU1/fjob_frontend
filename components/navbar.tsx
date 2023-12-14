@@ -101,20 +101,25 @@ const Navbar = () => {
 
                 <div className="hidden mr-3 space-x-4 lg:flex nav__item">
                     {isAuthenticated ? (
+                        <>
                         <button onClick={handleLogout}>
                             Logout
                         </button>
-                    )
-                    : (
+
+                        <Link href="/dashboard" className="px-6 py-2 text-black">
+                            Dashboard
+                        </Link>
+                        </>
+                        )
+                        : (
                         <Link href="/auth/login" className="px-6 py-2 text-black bg-blue-400 hover:bg-blue-500 rounded-md md:ml-5">
-                            Get Started
+                        Get Started
                         </Link>
 
-                    )
+                        )
                     }
-
-
                 </div>
+
             </nav>
         </div>
     );
