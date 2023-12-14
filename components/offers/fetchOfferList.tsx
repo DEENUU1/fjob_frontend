@@ -1,7 +1,6 @@
 import getApiUrl from "@/components/api";
 import Link from "next/link";
-import {FaHeart} from "react-icons/fa";
-import {FaFlag} from "react-icons/fa";
+import FavouriteButton from "@/components/offers/favourite";
 
 export async function getOffers() {
     // imitate delay from API
@@ -128,11 +127,9 @@ export default async function OfferList() {
 
                                 <div className="flex items-center space-x-4">
                                     <Link href="/" className="text-xl transform transition-transform hover:scale-110">
-                                        <FaFlag/>
+                                        {/*<FaFlag/>*/}
                                     </Link>
-                                    <Link href="/" className="text-xl transform transition-transform hover:scale-110">
-                                        <FaHeart/>
-                                    </Link>
+                                    <FavouriteButton offerId={offer.id}/>
                                 </div>
                             </div>
                         </div>
