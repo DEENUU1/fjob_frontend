@@ -4,7 +4,30 @@ import Link from "next/link";
 import Image from "next/image"
 import { Disclosure } from "@headlessui/react";
 
+import { usePathname } from 'next/navigation';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
+import { useLogoutMutation } from '@/redux/features/authApiSlice';
+import { logout as setLogout } from '@/redux/features/authSlice';
+
+
 const Navbar = () => {
+
+    const pathname = usePathname();
+    const dispatch = useAppDispatch();
+
+    const [logout] = useLogoutMutation();
+
+    const { isAuthenticated } = useAppSelector(state => state.auth);
+
+    const handleLogout = () => {
+        logout(undefined)
+            .unwrap()
+            .then(() => {
+                dispatch(setLogout());
+            });
+    };
+
 
     // @ts-ignore
     return (
@@ -77,9 +100,19 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden mr-3 space-x-4 lg:flex nav__item">
-                    <Link href="/" className="px-6 py-2 text-black bg-blue-400 hover:bg-blue-500 rounded-md md:ml-5">
-                        Get Started
-                    </Link>
+                    {isAuthenticated ? (
+                        <button onClick={handleLogout}>
+                            Logout
+                        </button>
+                    )
+                    : (
+                        <Link href="/auth/login" className="px-6 py-2 text-black bg-blue-400 hover:bg-blue-500 rounded-md md:ml-5">
+                            Get Started
+                        </Link>
+
+                    )
+                    }
+
 
                 </div>
             </nav>
