@@ -46,16 +46,24 @@ export default function Page() {
 
 	return (
 		<>
-			<main className='mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8'>
+			<main className="mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8">
+				<div className="grid grid-cols-2 gap-6">
+					<label className="text-sm font-medium text-gray-500">First name</label>
+					<input
+						type="text"
+						className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none"
+						onChange={(e) => setFirstName(e.target.value)}
+						value={firstName}
+					/>
 
-				<div>
-					<label>First name</label>
-					<input type="text" onChange={(e) => setFirstName(e.target.value)} value={user?.first_name}  />
-
-					<label>Last name</label>
-					<input type="text" onChange={(e) => setLastName(e.target.value)} value={user?.last_name} />
+					<label className="text-sm font-medium text-gray-500">Last name</label>
+					<input
+						type="text"
+						className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none"
+						onChange={(e) => setLastName(e.target.value)}
+						value={lastName}
+					/>
 				</div>
-
 			</main>
 		</>
 	);
