@@ -2,6 +2,7 @@ import Link from "next/link";
 import FavouriteButton from "@/components/offers/favourite";
 import ReportModal from "@/components/offers/report";
 import {useAppSelector} from "@/redux/hooks";
+import getApiUrl from "@/components/api";
 
 type Dict = Record<number, any>;
 

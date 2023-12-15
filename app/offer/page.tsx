@@ -1,9 +1,8 @@
 'use client'
 
 import OfferCard from "@/components/offers/fetchOfferList";
-import {Suspense} from "react";
 import Loading from "@/components/loading";
-import React, { useContext, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import getApiUrl from "@/components/api";
 
 
@@ -16,7 +15,6 @@ export default function Offers() {
     const [ordering, setOrdering] = useState("created_at");
     const [search, setSearch] = useState("");
 
-    console.log(ordering);
 
     const orderingTypes = new Map();
     orderingTypes.set("Newest", "created_at");
@@ -38,9 +36,9 @@ export default function Offers() {
             });
     }, [isRemote, isHybrid, ordering, search]);
 
-    // if (loading) {
-    //     return <Loading/>;
-    // }
+    if (loading) {
+        return <Loading/>;
+    }
 
     if (error) {
         return <p>Error: {error.message}</p>;
@@ -73,13 +71,12 @@ export default function Offers() {
                 ))}
             </select>
 
+
             <h1 className="text-center font-bold text-3xl mb-10">Job offers list</h1>
 
-            <Suspense fallback={<Loading/>}>
-                {offers.results.map((offer: any) => (
-                    <OfferCard key={offer.id} offer={offer}/>
-                ))}
-            </Suspense>
+            {offers.results.map((offer: any) => (
+                <OfferCard key={offer.id} offer={offer}/>
+            ))}
 
         </main>
     )
