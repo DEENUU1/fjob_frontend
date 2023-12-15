@@ -12,13 +12,13 @@ export default function Offers() {
     const [error, setError] = useState(null);
     const [isRemote, setIsRemote] = useState("");
     const [isHybrid, setIsHybrid] = useState("");
-    const [ordering, setOrdering] = useState("created_at");
+    const [ordering, setOrdering] = useState("-created_at");
     const [search, setSearch] = useState("");
 
 
     const orderingTypes = new Map();
-    orderingTypes.set("Newest", "created_at");
-    orderingTypes.set("Oldest", "-created_at");
+    orderingTypes.set("Newest", "-created_at");
+    orderingTypes.set("Oldest", "created_at");
     orderingTypes.set("Lowest salary", "salary__salary_from");
     orderingTypes.set("Highest salary", "-salary__salary_from");
 
@@ -46,31 +46,32 @@ export default function Offers() {
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
+            <div className="">
+                <h1 className="text-center font-bold text-3xl mb-10">Job offers list</h1>
 
-            <label htmlFor="search"> Search</label>
-            <input type="text" id="search" value={search} onChange={(e) => setSearch(e.target.value)}/>
+                <div className="flex flex-row mt-10 gap-4">
+                    <input type="text" id="search" className="border-2 border-gray-700 bg-gray-50 rounded-2xl font-medium focus:ring-blue-400 p-2" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)}/>
 
-            <label htmlFor="is_remote" className="mr-2">Is remote:</label>
-            <input type="checkbox" id="is_remote" checked={isRemote === "true"} onChange={(e) => setIsRemote(e.target.checked ? "true" : "")}/>
+                    <label className="font-medium p-2" htmlFor="is_remote">Is remote:</label>
+                    <input className="font-medium " type="checkbox" id="is_remote" checked={isRemote === "true"} onChange={(e) => setIsRemote(e.target.checked ? "true" : "")}/>
 
-            <label htmlFor="is_hybrid" className="mr-2">Is hybrid:</label>
-            <input type="checkbox" id="is_hybrid" checked={isHybrid === "true"} onChange={(e) => setIsHybrid(e.target.checked ? "true" : "") }/>
+                    <label className="font-medium p-2" htmlFor="is_hybrid">Is hybrid:</label>
+                    <input type="checkbox" id="is_hybrid" checked={isHybrid === "true"} onChange={(e) => setIsHybrid(e.target.checked ? "true" : "") }/>
 
+                    <label className="font-medium p-2" htmlFor="ordering">Sort by:</label>
+                    <select className="bg-gray-50 font-medium p-2" id="ordering" value={ordering} onChange={(e) => setOrdering(e.target.value)}>
+                        {Array.from(orderingTypes.keys()).map((key) => (
+                            <option key={key} value={orderingTypes.get(key)}>{key}</option>
+                        ))}
+                    </select>
+                </div>
 
-            <label htmlFor="ordering">Sort by:</label>
-            <select id="ordering" value={ordering} onChange={(e) => setOrdering(e.target.value)}>
-                {Array.from(orderingTypes.keys()).map((key) => (
-                    <option key={key} value={orderingTypes.get(key)}>{key}</option>
-                ))}
-            </select>
-
-
-            <h1 className="text-center font-bold text-3xl mb-10">Job offers list</h1>
-
-            {offers.results.map((offer: any) => (
-                <OfferCard key={offer.id} offer={offer}/>
-            ))}
-
+                <div className="mt-20">
+                    {offers.results.map((offer: any) => (
+                        <OfferCard key={offer.id} offer={offer}/>
+                    ))}
+                </div>
+            </div>
         </main>
-    )
-}
+    );
+};

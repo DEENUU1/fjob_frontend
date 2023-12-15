@@ -74,12 +74,10 @@ function getSalary(offer: any): string {
 
     if (numOfData === 0) {
         return '';
-    }
-    else if (numOfData === 1) {
+    } else if (numOfData === 1) {
         const firstSalary = salaryList[0];
         return `${firstSalary.salary_from} - ${firstSalary.salary_to} ${firstSalary.currency}/${firstSalary.schedule}`;
-    }
-    else {
+    } else {
         return `${salaryList[0].salary_from} - ${salaryList[0].salary_to} ${salaryList[0].currency}/${salaryList[0].schedule} + ${numOfData - 1} salaries`;
     }
 }
@@ -93,74 +91,72 @@ function getCreatedTime(offer: any): string {
 
 
 export default function OfferCard({offer}: any) {
-    const { isLoading, isAuthenticated } = useAppSelector(state => state.auth);
+    const {isLoading, isAuthenticated} = useAppSelector(state => state.auth);
 
 
     return (
         <>
-                <div
-                    className="border-2 border-3-black hover:border-black hover:border-3 rounded-2xl container mb-4 mt-4"
-                    key={offer.id}>
-                    <div className="flex justify-between items-center p-4">
-                        <div className="flex items-start">
-                            <div className="mr-4">
-                                <Link href={`offer/${offer.id}`}>
-                                    <h2 className="text-3xl font-medium">{offer.title}</h2>
-                                </Link>
-                                <p className="text-base">{offer.company_name}</p>
-                                <h4 className="text-xl font-bold">{getSalary(offer)}</h4>
-                            </div>
+            <div
+                className="border-2 border-3-black hover:border-black hover:border-3 rounded-2xl container mb-4 mt-4"
+                key={offer.id}>
+                <div className="flex justify-between items-center p-4">
+                    <div className="flex items-start">
+                        <div className="mr-4">
+                            <Link href={`offer/${offer.id}`}>
+                                <h2 className="text-3xl font-medium">{offer.title}</h2>
+                            </Link>
+                            <p className="text-base">{offer.company_name}</p>
+                            <h4 className="text-xl font-bold">{getSalary(offer)}</h4>
                         </div>
+                    </div>
 
-                        <div className="flex items-center">
+                    <div className="flex items-center">
 
-                            <div className="relative inline-block text-left">
-                                {isAuthenticated &&
-                                    <div className="inline-block absolute top-0 right-0">
-                                        <div className="flex items-center space-x-4">
-                                            <ReportModal offerId={offer.id}/>
-                                            <FavouriteButton offerId={offer.id}/>
-                                        </div>
+                        <div className="relative inline-block text-left">
+                            {isAuthenticated &&
+                                <div className="inline-block absolute top-0 right-0">
+                                    <div className="flex items-center space-x-4">
+                                        <ReportModal offerId={offer.id}/>
+                                        <FavouriteButton offerId={offer.id}/>
                                     </div>
-                                }
-                            </div>
+                                </div>
+                            }
                         </div>
                     </div>
+                </div>
 
 
-                    <div className="mb-3">
-                        {getDetails(offer).map((detail: string) => (
-                            <span className="bg-black text-white font-medium rounded-2xl ml-4 py-2 px-2"
-                                  key={detail}>{detail}</span>
-                        ))}
-                    </div>
+                <div className="mb-3">
+                    {getDetails(offer).map((detail: string) => (
+                        <span className="bg-black text-white font-medium rounded-2xl ml-4 py-2 px-2"
+                              key={detail}>{detail}</span>
+                    ))}
+                </div>
 
 
-                    <div className="mb-3 p-4">
-                        <p>{offer.description.slice(0, 100)}...</p>
-                    </div>
+                <div className="mb-3 p-4">
+                    <p>{offer.description.slice(0, 100)}...</p>
+                </div>
 
-                    <div className="p-4 flex items-center justify-between">
-                        <div className="flex flex-col">
-                            <div className="mb-1">
-                                <span className="text-gray-700">{getLocalization(offer)}</span>
-                            </div>
-                            <div>
-                                <span className="text-gray-400">{getCreatedTime(offer)}</span>
-                            </div>
+                <div className="p-4 flex items-center justify-between">
+                    <div className="flex flex-col">
+                        <div className="mb-1">
+                            <span className="text-gray-700">{getLocalization(offer)}</span>
                         </div>
                         <div>
-                            <Link
-                                href="/"
-                                className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                            >
-                                Apply
-                            </Link>
+                            <span className="text-gray-400">{getCreatedTime(offer)}</span>
                         </div>
                     </div>
-
-
+                    <div>
+                        <Link
+                            href="/"
+                            className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                            Apply
+                        </Link>
+                    </div>
                 </div>
+            </div>
         </>
     )
 }
