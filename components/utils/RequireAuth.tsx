@@ -14,7 +14,7 @@ export default function RequireAuth({ children }: Props) {
 	if (isLoading) {
 		return (
 			<div className='flex justify-center my-8'>
-				<Spinner lg />
+				<Spinner />
 			</div>
 		);
 	}
