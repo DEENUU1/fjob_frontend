@@ -1,6 +1,7 @@
 import getApiUrl from "@/components/api";
 import Link from "next/link";
-import {addRequestMeta} from "next/dist/server/request-meta";
+import {FaHeart} from "react-icons/fa";
+import {Fa0} from "react-icons/fa6";
 
 
 async function getOffer(id: number) {
@@ -14,6 +15,12 @@ async function getOffer(id: number) {
     return response.json();
 }
 
+
+async function getOfferFavouriteCounter(id: number) {
+    const response = await fetch(`${getApiUrl()}/api/favourite/counter/${id}`)
+
+    return response.json();
+}
 
 function isScraped(offer: any) {
     return offer.is_scraped;
@@ -37,6 +44,9 @@ export default async function OfferDetails({offerId}) {
     const isScrapedOffer = isScraped(offer);
     const hasApplyForm = isApplyForm(offer)
     const skills = processSkills(offer.skills);
+    const favouriteCounter = await getOfferFavouriteCounter(offerId);
+
+
     return (
         <>
             <div className="mb-5">
@@ -55,6 +65,13 @@ export default async function OfferDetails({offerId}) {
                             Apply now
                         </Link>
                     )}
+
+                    {favouriteCounter.counter >= 1 && (
+                        <div>
+                          <span>{favouriteCounter.counter} <FaHeart/> </span>
+                        </div>
+                    )}
+
                 </div>
                 <p>{offer.description}</p>
             </div>
