@@ -1,7 +1,6 @@
 'use client'
 
 import getApiUrl from "@/components/api";
-import Link from "next/link";
 
 export async function getNumberOfCompaniesToCreate() {
     const token = localStorage.getItem('access');

@@ -102,13 +102,14 @@ const Navbar = () => {
                 <div className="hidden mr-3 space-x-4 lg:flex nav__item">
                     {isAuthenticated ? (
                         <>
+                        <Link href="/dashboard" className="px-6 py-2 text-black">
+                            Dashboard
+                        </Link>
                         <button onClick={handleLogout}>
                             Logout
                         </button>
 
-                        <Link href="/dashboard" className="px-6 py-2 text-black">
-                            Dashboard
-                        </Link>
+
                         </>
                         )
                         : (
