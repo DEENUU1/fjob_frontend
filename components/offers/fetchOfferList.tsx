@@ -1,6 +1,7 @@
 import Link from "next/link";
 import FavouriteButton from "@/components/offers/favourite";
 import ReportModal from "@/components/offers/report";
+import {useAppSelector} from "@/redux/hooks";
 
 type Dict = Record<number, any>;
 
@@ -91,6 +92,7 @@ function getCreatedTime(offer: any): string {
 
 
 export default function OfferCard({offer}: any) {
+    const { isLoading, isAuthenticated } = useAppSelector(state => state.auth);
 
 
     return (
@@ -112,11 +114,14 @@ export default function OfferCard({offer}: any) {
                         <div className="flex items-center">
 
                             <div className="relative inline-block text-left">
-
-                                <div className="flex items-center space-x-4">
-                                    <ReportModal offerId={offer.id}/>
-                                    <FavouriteButton offerId={offer.id}/>
-                                </div>
+                                {isAuthenticated &&
+                                    <div className="inline-block absolute top-0 right-0">
+                                        <div className="flex items-center space-x-4">
+                                            <ReportModal offerId={offer.id}/>
+                                            <FavouriteButton offerId={offer.id}/>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
