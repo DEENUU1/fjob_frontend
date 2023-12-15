@@ -14,6 +14,8 @@ export default function Offers() {
     const [isRemote, setIsRemote] = useState("");
     const [isHybrid, setIsHybrid] = useState("");
     const [ordering, setOrdering] = useState("created_at");
+    const [search, setSearch] = useState("");
+
     console.log(ordering);
 
     const orderingTypes = new Map();
@@ -24,7 +26,7 @@ export default function Offers() {
 
 
     useEffect(() => {
-        fetch(`${getApiUrl()}api/offer/offer?is_remote=${isRemote}&is_hybrid=${isHybrid}&ordering=${ordering}`)
+        fetch(`${getApiUrl()}api/offer/offer?is_remote=${isRemote}&is_hybrid=${isHybrid}&ordering=${ordering}&search=${search}`)
             .then(response => response.json())
             .then(data => {
                 setOffers(data);
@@ -34,7 +36,7 @@ export default function Offers() {
                 setError(error);
                 setLoading(false);
             });
-    }, [isRemote, isHybrid, ordering]);
+    }, [isRemote, isHybrid, ordering, search]);
 
     if (loading) {
         return <Loading/>;
@@ -54,6 +56,8 @@ export default function Offers() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
+            <label htmlFor="search"> Search</label>
+            <input type="text" id="search" value={search} onChange={(e) => setSearch(e.target.value)}/>
 
             <label htmlFor="is_remote" className="mr-2">Is remote:</label>
             <input type="checkbox" id="is_remote" checked={isRemote === "true"} onChange={(e) => setIsRemote(e.target.checked ? "true" : "")}/>
