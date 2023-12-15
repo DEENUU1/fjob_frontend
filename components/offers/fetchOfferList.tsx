@@ -1,23 +1,6 @@
-'use client'
-
-import getApiUrl from "@/components/api";
 import Link from "next/link";
 import FavouriteButton from "@/components/offers/favourite";
 import ReportModal from "@/components/offers/report";
-import Report from "@/components/offers/report";
-
-export async function getOffers() {
-    // imitate delay from API
-    // await new Promise(resolve => setTimeout(resolve, 3000));
-
-    const response = await fetch(`${getApiUrl()}api/offer/offer`, {
-        next: {
-            revalidate: 0
-        }
-    });
-
-    return response.json();
-}
 
 type Dict = Record<number, any>;
 
@@ -107,12 +90,11 @@ function getCreatedTime(offer: any): string {
 }
 
 
-export default async function OfferList() {
-    const offers = await getOffers();
+export default function OfferCard({offer}: any) {
+
 
     return (
         <>
-            {offers.results.map((offer: any) => (
                 <div
                     className="border-2 border-3-black hover:border-black hover:border-3 rounded-2xl container mb-4 mt-4"
                     key={offer.id}>
@@ -171,7 +153,6 @@ export default async function OfferList() {
 
 
                 </div>
-            ))}
         </>
     )
 }
