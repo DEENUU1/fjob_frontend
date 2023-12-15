@@ -38,9 +38,9 @@ export default function Offers() {
             });
     }, [isRemote, isHybrid, ordering, search]);
 
-    if (loading) {
-        return <Loading/>;
-    }
+    // if (loading) {
+    //     return <Loading/>;
+    // }
 
     if (error) {
         return <p>Error: {error.message}</p>;
@@ -74,9 +74,12 @@ export default function Offers() {
             </select>
 
             <h1 className="text-center font-bold text-3xl mb-10">Job offers list</h1>
-            {offers.results.map((offer: any) => (
-                <OfferCard key={offer.id} offer={offer}/>
-            ))}
+
+            <Suspense fallback={<Loading/>}>
+                {offers.results.map((offer: any) => (
+                    <OfferCard key={offer.id} offer={offer}/>
+                ))}
+            </Suspense>
 
         </main>
     )

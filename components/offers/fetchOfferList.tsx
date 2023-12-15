@@ -101,7 +101,9 @@ export default function OfferCard({offer}: any) {
                     <div className="flex justify-between items-center p-4">
                         <div className="flex items-start">
                             <div className="mr-4">
-                                <h2 className="text-3xl font-medium">{offer.title}</h2>
+                                <Link href={`offer/${offer.id}`}>
+                                    <h2 className="text-3xl font-medium">{offer.title}</h2>
+                                </Link>
                                 <p className="text-base">{offer.company_name}</p>
                                 <h4 className="text-xl font-bold">{getSalary(offer)}</h4>
                             </div>
