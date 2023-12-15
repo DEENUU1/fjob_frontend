@@ -1,7 +1,7 @@
 'use client'
 
 import getApiUrl from "@/components/api";
-
+import Link from "next/link";
 
 export async function getNumberOfCompaniesToCreate() {
     const token = localStorage.getItem('access');
@@ -17,14 +17,30 @@ export async function getNumberOfCompaniesToCreate() {
     return response.json()
 }
 
+async function canCreateCompany(data: any){
+    return data.num_of_available_companies !== 0;
+}
+
 
 export default async function NumberOfCompaniesToCreate() {
     const data = await getNumberOfCompaniesToCreate();
-    console.log(data)
+    const userCanCreateCompany = await canCreateCompany(data);
+
     return (
         <div>
-            {/*<span>{data.num_of_available_companies}</span>*/}
-            <h1>Dupa</h1>
+            {userCanCreateCompany ? (
+              <h3>You can create <strong>{data.num_of_available_companies}</strong> companies</h3>
+            ): (
+                <>
+                    <h3>You are not able to create new company</h3>
+                    <p>Check our
+                        <a href="/"> price-list </a>
+                        to get more information
+                    </p>
+                </>
+            )}
+
+
         </div>
 
     )
