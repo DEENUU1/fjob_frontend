@@ -4,7 +4,7 @@ import OfferCard from "@/components/offers/fetchOfferList";
 import Loading from "@/components/loading";
 import React, { useEffect, useState } from "react"
 import getApiUrl from "@/components/api";
-
+import Spinner from "@/components/common/Spinner";
 
 export default function Offers() {
     const [offers, setOffers] = useState(null);
@@ -36,20 +36,13 @@ export default function Offers() {
             });
     }, [isRemote, isHybrid, ordering, search]);
 
-    if (loading) {
-        return <Loading/>;
+    if (loading || error || !offers) {
+        return (
+            <main className="flex min-h-screen flex-col items-center justify-between p-24">
+                <Spinner/>;
+            </main>
+        )
     }
-
-    if (error) {
-        return <p>Error: {error.message}</p>;
-    }
-
-
-    if (!offers) {
-        return <p>No offers found.</p>;
-    }
-
-
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
