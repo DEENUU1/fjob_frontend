@@ -3,7 +3,7 @@ import {Suspense} from "react";
 import Loading from "@/components/loading";
 
 
-export default function Home() {
+export default async function FavouritePage() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
             <Suspense fallback={<Loading/>}>

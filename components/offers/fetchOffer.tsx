@@ -9,7 +9,8 @@ async function getOffer(id: number) {
             revalidate: 0
         }
     });
-
+    // Primitive backend delay
+    await new Promise(resolve => setTimeout(resolve, 3000));
     return response.json();
 }
 
@@ -28,6 +29,7 @@ function processSkills(skills: string | null){
     }
     return skills.split(",");
 }
+
 
 export default async function OfferDetails({offerId}){
     const offer = await getOffer(offerId);
