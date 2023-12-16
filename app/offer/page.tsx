@@ -5,6 +5,11 @@ import Loading from "@/components/loading";
 import React, { useEffect, useState } from "react"
 import getApiUrl from "@/components/api";
 import Spinner from "@/components/common/Spinner";
+import {TbUserStar} from "react-icons/tb";
+import getEmploymentTypes from "@/components/offers/employmentType";
+import getWorkType from "@/components/offers/workType";
+import getExperiences from "@/components/offers/experience";
+
 
 export default function Offers() {
     const [offers, setOffers] = useState(null);
@@ -15,18 +20,34 @@ export default function Offers() {
     const [ordering, setOrdering] = useState("-created_at");
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
+    const [experience, setExperience] = useState(null);
+    const [workType, setWorkType] = useState(null);
+    const [employmentType, setEmploymentType] = useState(null);
+
+
     const nextPage = offers?.next;
     const previousPage = offers?.previous;
-
     const orderingTypes = new Map();
     orderingTypes.set("Newest", "-created_at");
     orderingTypes.set("Oldest", "created_at");
     orderingTypes.set("Lowest salary", "salary__salary_from");
     orderingTypes.set("Highest salary", "-salary__salary_from");
 
+    const experiences = getExperiences();
+    const workTypes = getWorkType();
+    const employmentTypes = getEmploymentTypes();
 
+
+    // &experience=${experience}&work_type=${workType}&employment_type=${employmentType}
     useEffect(() => {
-        fetch(`${getApiUrl()}api/offer/offer?is_remote=${isRemote}&is_hybrid=${isHybrid}&ordering=${ordering}&search=${search}&p=${page}`)
+        let url = `api/offer/offer?is_remote=${isRemote}&is_hybrid=${isHybrid}&ordering=${ordering}&search=${search}&p=${page}`
+
+
+        if (experience !== null && experience !== "All") {
+            url += `&experience=${experience}`;
+        }
+
+        fetch(`${getApiUrl()}${url}`)
             .then(response => response.json())
             .then(data => {
                 setOffers(data);
@@ -36,7 +57,7 @@ export default function Offers() {
                 setError(error);
                 setLoading(false);
             });
-    }, [isRemote, isHybrid, ordering, search, page]);
+    }, [isRemote, isHybrid, ordering, search, page, experience]);
 
     if (loading || error || !offers) {
         return (
@@ -45,8 +66,6 @@ export default function Offers() {
             </main>
         )
     }
-
-
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -66,6 +85,33 @@ export default function Offers() {
                     <select className="bg-gray-50 font-medium p-2" id="ordering" value={ordering} onChange={(e) => setOrdering(e.target.value)}>
                         {Array.from(orderingTypes.keys()).map((key) => (
                             <option key={key} value={orderingTypes.get(key)}>{key}</option>
+                        ))}
+                    </select>
+                </div>
+
+
+                <div className="flex flex-row mt-10 gap-4">
+                    <label className="font-medium p-2" htmlFor="is_hybrid">Experience</label>
+                    <select className="bg-gray-50 font-medium p-2" id="experience" value={experience} onChange={(e) => setExperience(e.target.value)}>
+                        <option value="All">All</option>
+                        {experiences.map((experience: any) => (
+                            <option key={experience.id} value={experience.id}>{experience.name}</option>
+                        ))}
+                    </select>
+
+                    <label className="font-medium p-2" htmlFor="is_hybrid">Work type</label>
+                    <select className="bg-gray-50 font-medium p-2" id="work_type" value={workType} onChange={(e) => setWorkType(e.target.value)}>
+                        <option value="">All</option>
+                        {workTypes.map((workType: any) => (
+                            <option key={workType.id} value={workType.id}>{workType.name}</option>
+                        ))}
+                    </select>
+
+                    <label className="font-medium p-2" htmlFor="is_hybrid">Employment type</label>
+                    <select className="bg-gray-50 font-medium p-2" id="employment_type" value={employmentType} onChange={(e) => setEmploymentType(e.target.value)}>
+                        <option value="">All</option>
+                        {employmentTypes.map((employmentType: any) => (
+                            <option key={employmentType.id} value={employmentType.id}>{employmentType.name}</option>
                         ))}
                     </select>
                 </div>
