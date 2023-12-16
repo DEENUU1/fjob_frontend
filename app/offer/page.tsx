@@ -37,14 +37,20 @@ export default function Offers() {
     const workTypes = getWorkType();
     const employmentTypes = getEmploymentTypes();
 
-
-    // &experience=${experience}&work_type=${workType}&employment_type=${employmentType}
     useEffect(() => {
         let url = `api/offer/offer?is_remote=${isRemote}&is_hybrid=${isHybrid}&ordering=${ordering}&search=${search}&p=${page}`
 
 
         if (experience !== null && experience !== "All") {
             url += `&experience=${experience}`;
+        }
+
+        if (workType !== null && workType !== "All") {
+            url += `&work_type=${workType}`;
+        }
+
+        if (employmentType !== null && employmentType !== "All") {
+            url += `&employment_type=${employmentType}`;
         }
 
         fetch(`${getApiUrl()}${url}`)
@@ -57,7 +63,7 @@ export default function Offers() {
                 setError(error);
                 setLoading(false);
             });
-    }, [isRemote, isHybrid, ordering, search, page, experience]);
+    }, [isRemote, isHybrid, ordering, search, page, experience, workType, employmentType]);
 
     if (loading || error || !offers) {
         return (
@@ -101,7 +107,7 @@ export default function Offers() {
 
                     <label className="font-medium p-2" htmlFor="is_hybrid">Work type</label>
                     <select className="bg-gray-50 font-medium p-2" id="work_type" value={workType} onChange={(e) => setWorkType(e.target.value)}>
-                        <option value="">All</option>
+                        <option value="All">All</option>
                         {workTypes.map((workType: any) => (
                             <option key={workType.id} value={workType.id}>{workType.name}</option>
                         ))}
@@ -109,7 +115,7 @@ export default function Offers() {
 
                     <label className="font-medium p-2" htmlFor="is_hybrid">Employment type</label>
                     <select className="bg-gray-50 font-medium p-2" id="employment_type" value={employmentType} onChange={(e) => setEmploymentType(e.target.value)}>
-                        <option value="">All</option>
+                        <option value="All">All</option>
                         {employmentTypes.map((employmentType: any) => (
                             <option key={employmentType.id} value={employmentType.id}>{employmentType.name}</option>
                         ))}
