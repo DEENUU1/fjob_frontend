@@ -92,7 +92,7 @@ function getCreatedTime(offer: any): string {
 
 export default function OfferCard({offer}: any) {
     const {isLoading, isAuthenticated} = useAppSelector(state => state.auth);
-
+    const isNew = offer.is_new;
 
     return (
         <>
@@ -104,6 +104,7 @@ export default function OfferCard({offer}: any) {
                         <div className="mr-4">
                             <Link href={`offer/${offer.id}`}>
                                 <h2 className="text-3xl font-medium">{offer.title}</h2>
+
                             </Link>
                             <p className="text-base">{offer.company_name}</p>
                             <h4 className="text-xl font-bold">{getSalary(offer)}</h4>
@@ -118,6 +119,7 @@ export default function OfferCard({offer}: any) {
                                     <div className="flex items-center space-x-4">
                                         <ReportModal offerId={offer.id}/>
                                         <FavouriteButton offerId={offer.id}/>
+
                                     </div>
                                 </div>
                             }
@@ -144,7 +146,8 @@ export default function OfferCard({offer}: any) {
                             <span className="text-gray-700">{getLocalization(offer)}</span>
                         </div>
                         <div>
-                            <span className="text-gray-400">{getCreatedTime(offer)}</span>
+                            <span className="text-gray-400 mr-2">{getCreatedTime(offer)}</span>
+                            {isNew && <span className="bg-green-600 text-white font-bold rounded-xl py-1 px-1">New</span>}
                         </div>
                     </div>
                     <div>
