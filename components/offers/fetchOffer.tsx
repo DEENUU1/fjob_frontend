@@ -1,7 +1,7 @@
 import getApiUrl from "@/components/api";
 import Link from "next/link";
 import {FaHeart} from "react-icons/fa";
-import {Fa0} from "react-icons/fa6";
+import Image from "next/image";
 
 
 async function getOffer(id: number) {
@@ -94,7 +94,13 @@ export default async function OfferDetails({offerId}) {
                         <Link href="/">
                             <h2>{offer.company.name}</h2>
                         </Link>
-                        <img src={offer.company.logo} alt={offer.company.name}/>
+                        {offer.company.logo === null ? (
+                            <Image src="https://www.eclosio.ong/wp-content/uploads/2018/08/default.png" alt="default" width={500} height={500}/>
+                        ): (
+                            <Image src={offer.company.logo} alt={offer.company.name} width={500} height={500}/>
+
+                        )}
+
                         <p>{offer.company.description}</p>
 
                         {skills.map((skill: any) => (
@@ -105,7 +111,13 @@ export default async function OfferDetails({offerId}) {
                 ) : (
                     <div>
                         <h2>{offer.company_name}</h2>
-                        <img src={offer.company_logo}/>
+                        {offer.company_logo === null ? (
+                            <Image src="https://www.eclosio.ong/wp-content/uploads/2018/08/default.png" alt="default" width={500} height={500}/>
+
+                        ): (
+                            <Image src={offer.company_logo} alt={offer.company_name} width={500} height={500}/>
+
+                        )}
                         <span>Source: {offer.url}</span>
                     </div>
                 )}
