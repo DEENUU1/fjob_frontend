@@ -188,7 +188,6 @@ export default function OfferCard({offer}: any) {
                             Apply
                         </Link>)}
 
-                    {/*    Tutaj to zmienić jezeli jest zescrapowana to zostaje tak samo, jezeli nie jest to trzeba sprawdzic czy ma apply form url */}
                     </div>
                 </div>
             </div>

@@ -26,10 +26,6 @@ function isScraped(offer: any) {
     return offer.is_scraped;
 }
 
-function isApplyForm(offer: any) {
-    return (!offer.apply_form === null)
-}
-
 function processSkills(skills: string | null) {
     if (skills === null) {
         return [];
@@ -37,14 +33,17 @@ function processSkills(skills: string | null) {
     return skills.split(",");
 }
 
+function hasCustomForm(offer: any): boolean {
+    return offer.apply_form === null;
+}
 
 
 export default async function OfferDetails({offerId}) {
     const offer = await getOffer(offerId);
     const isScrapedOffer = isScraped(offer);
-    const hasApplyForm = isApplyForm(offer)
     const skills = processSkills(offer.skills);
     const favouriteCounter = await getOfferFavouriteCounter(offerId);
+    const hasForm = hasCustomForm(offer);
 
 
     return (
@@ -54,17 +53,29 @@ export default async function OfferDetails({offerId}) {
                     <h2 className="text-black text-3xl font-bold">{offer.title}</h2>
                     <span className="text-gray-500 text-sm mb-5">{offer.created_at}</span>
 
-                    {!hasApplyForm ? (
-                        <Link href={offer.apply_form}
-                           className="border-4 border-purple-800 w-full rounded-xl bg-purple-300 font-bold hover:bg-purple-500">
-                            Apply now
-                        </Link>
-                    ) : (
-                        <Link href="/"
-                           className="border-4 border-purple-800 w-full rounded-xl bg-purple-300 font-bold hover:bg-purple-500">
-                            Apply now
+                    {isScrapedOffer && (
+                        <Link
+                            href={offer.url}
+                            className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                            Apply
                         </Link>
                     )}
+                    {isScrapedOffer === false && hasForm ? (
+                        <Link
+                            href={offer.apply_form}
+                            className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                            Apply
+                        </Link>
+                    ) : (isScrapedOffer === false && !hasForm &&
+                        <Link
+                            href="/"
+                            className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                            Apply
+                        </Link>)}
+
 
                     {favouriteCounter.counter >= 1 && (
                         <div>
