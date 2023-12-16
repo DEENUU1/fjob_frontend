@@ -93,6 +93,7 @@ function getCreatedTime(offer: any): string {
 export default function OfferCard({offer}: any) {
     const {isLoading, isAuthenticated} = useAppSelector(state => state.auth);
     const isNew = offer.is_new;
+    const isScraped = offer.is_scraped;
 
     return (
         <>
@@ -106,7 +107,15 @@ export default function OfferCard({offer}: any) {
                                 <h2 className="text-3xl font-medium">{offer.title}</h2>
 
                             </Link>
-                            <p className="text-base">{offer.company_name}</p>
+                            {isScraped ? (
+                                <div>
+                                    <span className="text-lg text-gray-700">{offer.company_name}</span>
+                                </div>
+                            ): (
+                                <div>
+                                    <Link className="text-lg text-gray-700" href="/">{offer.company.name}</Link>
+                                </div>
+                            )}
                             <h4 className="text-xl font-bold">{getSalary(offer)}</h4>
                         </div>
                     </div>
