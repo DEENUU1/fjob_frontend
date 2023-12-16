@@ -15,7 +15,8 @@ export default function Offers() {
     const [ordering, setOrdering] = useState("-created_at");
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
-
+    const nextPage = offers?.next;
+    const previousPage = offers?.previous;
 
     const orderingTypes = new Map();
     orderingTypes.set("Newest", "-created_at");
@@ -45,9 +46,7 @@ export default function Offers() {
         )
     }
 
-    const count = offers.count;
-    const nextPage = offers.next;
-    const previousPage = offers.previous;
+
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -80,13 +79,15 @@ export default function Offers() {
                 <div>
                     {offers.count > 1 && page > 1 ? (
                         <div className="flex justify-center mt-10 gap-2">
-                            <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                onClick={() => setPage(page - 1)}
-                            >
-                                Previous
-                            </button>
-                            {offers.count !== page && (
+                            {previousPage && (
+                                <button
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    onClick={() => setPage(page - 1)}
+                                >
+                                    Previous
+                                </button>
+                            )}
+                            {nextPage && (
                                 <button
                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                     onClick={() => setPage(page + 1)}
@@ -96,20 +97,20 @@ export default function Offers() {
                             )}
                         </div>
                     ) : (
-                        // Display only the "Next" button if the page is 1
-                        <div className="flex justify-center mt-10">
-                            <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                onClick={() => setPage(page + 1)}
-                            >
-                                Next
-                            </button>
-                        </div>
+                        // Display only the 'Next' button if the page is 1 and there is a next page
+                        nextPage && (
+                            <div className="flex justify-center mt-10">
+                                <button
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    onClick={() => setPage(page + 1)}
+                                >
+                                    Next
+                                </button>
+                            </div>
+                        )
                     )}
-
-
-
                 </div>
+
             </div>
         </main>
     );
