@@ -68,7 +68,7 @@ export default function Offers() {
 
                 <div className="mt-20">
                     {offers.results.map((offer: any) => (
-                        <OfferCard key={offer.id} offer={offer}/>
+                        <OfferCard key={offer.title} offer={offer}/>
                     ))}
                 </div>
             </div>

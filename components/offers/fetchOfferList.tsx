@@ -98,7 +98,7 @@ export default function OfferCard({offer}: any) {
         <>
             <div
                 className="border-2 border-3-black hover:border-black hover:border-3 rounded-2xl container mb-4 mt-4"
-                key={offer.id}>
+                key={offer.title}>
                 <div className="flex justify-between items-center p-4">
                     <div className="flex items-start">
                         <div className="mr-4">
@@ -129,7 +129,7 @@ export default function OfferCard({offer}: any) {
                 <div className="mb-3">
                     {getDetails(offer).map((detail: string) => (
                         <span className="bg-black text-white font-medium rounded-2xl ml-4 py-2 px-2"
-                              key={detail}>{detail}</span>
+                              >{detail}</span>
                     ))}
                 </div>
 
