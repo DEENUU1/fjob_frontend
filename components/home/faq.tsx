@@ -37,23 +37,23 @@ const Faq = () => {
 
 const faqdata = [
   {
-    question: "Change this",
-    answer: "Change this",
+    question: "Is it free?",
+    answer: "Yes, if you are looking for a job FJob is totally free for you. For companies, we offer setting up the first company for free as well as one free advertisement.",
   },
-  {
-    question: "Change this",
-    answer: "Change this",
-  },
-  {
-    question: "Change this",
-    answer:
-      "Change this",
-  },
-  {
-    question: "Change this",
-    answer:
-      "Change this",
-  },
+  // {
+  //   question: "Change this",
+  //   answer: "Change this",
+  // },
+  // {
+  //   question: "Change this",
+  //   answer:
+  //     "Change this",
+  // },
+  // {
+  //   question: "Change this",
+  //   answer:
+  //     "Change this",
+  // },
 ];
 
 export default Faq;
