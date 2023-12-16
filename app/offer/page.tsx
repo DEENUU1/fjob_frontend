@@ -14,6 +14,7 @@ export default function Offers() {
     const [isHybrid, setIsHybrid] = useState("");
     const [ordering, setOrdering] = useState("-created_at");
     const [search, setSearch] = useState("");
+    const [page, setPage] = useState(1);
 
 
     const orderingTypes = new Map();
@@ -24,7 +25,7 @@ export default function Offers() {
 
 
     useEffect(() => {
-        fetch(`${getApiUrl()}api/offer/offer?is_remote=${isRemote}&is_hybrid=${isHybrid}&ordering=${ordering}&search=${search}`)
+        fetch(`${getApiUrl()}api/offer/offer?is_remote=${isRemote}&is_hybrid=${isHybrid}&ordering=${ordering}&search=${search}&p=${page}`)
             .then(response => response.json())
             .then(data => {
                 setOffers(data);
@@ -34,7 +35,7 @@ export default function Offers() {
                 setError(error);
                 setLoading(false);
             });
-    }, [isRemote, isHybrid, ordering, search]);
+    }, [isRemote, isHybrid, ordering, search, page]);
 
     if (loading || error || !offers) {
         return (
@@ -43,6 +44,10 @@ export default function Offers() {
             </main>
         )
     }
+
+    const count = offers.count;
+    const nextPage = offers.next;
+    const previousPage = offers.previous;
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -70,6 +75,40 @@ export default function Offers() {
                     {offers.results.map((offer: any) => (
                         <OfferCard key={offer.title} offer={offer}/>
                     ))}
+                </div>
+
+                <div>
+                    {offers.count > 1 && page > 1 ? (
+                        <div className="flex justify-center mt-10 gap-2">
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                onClick={() => setPage(page - 1)}
+                            >
+                                Previous
+                            </button>
+                            {offers.count !== page && (
+                                <button
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    onClick={() => setPage(page + 1)}
+                                >
+                                    Next
+                                </button>
+                            )}
+                        </div>
+                    ) : (
+                        // Display only the "Next" button if the page is 1
+                        <div className="flex justify-center mt-10">
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                onClick={() => setPage(page + 1)}
+                            >
+                                Next
+                            </button>
+                        </div>
+                    )}
+
+
+
                 </div>
             </div>
         </main>

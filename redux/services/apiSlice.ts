@@ -34,7 +34,7 @@ const baseQueryWithReauth: BaseQueryFn<
 					extraOptions
 				);
 				if (refreshResult.data) {
-					// console.log("refresh");
+					console.log("refresh");
 					// console.log(refreshResult.data);
 					api.dispatch(setAuth());
 					localStorage.setItem("access", refreshResult.data.access);
