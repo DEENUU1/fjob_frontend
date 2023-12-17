@@ -1,11 +1,9 @@
 'use client'
 
 import OfferCard from "@/components/offers/fetchOfferList";
-import Loading from "@/components/loading";
 import React, { useEffect, useState } from "react"
 import getApiUrl from "@/components/api";
 import Spinner from "@/components/common/Spinner";
-import {TbUserStar} from "react-icons/tb";
 import getEmploymentTypes from "@/components/offers/employmentType";
 import getWorkType from "@/components/offers/workType";
 import getExperiences from "@/components/offers/experience";
@@ -23,7 +21,6 @@ export default function Offers() {
     const [experience, setExperience] = useState(null);
     const [workType, setWorkType] = useState(null);
     const [employmentType, setEmploymentType] = useState(null);
-
 
     const nextPage = offers?.next;
     const previousPage = offers?.previous;

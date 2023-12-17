@@ -113,10 +113,14 @@ const Navbar = () => {
                         </>
                         )
                         : (
+                            <>
                         <Link href="/auth/login" className="px-6 py-2 text-black bg-blue-400 hover:bg-blue-500 rounded-md md:ml-5">
                         Get Started
                         </Link>
-
+                        <Link href="/auth/register/company" className="px-6 py-2 text-black bg-purple-400 hover:bg-purple-500 rounded-md md:ml-5">
+                        Post offer
+                        </Link>
+                        </>
                         )
                     }
                 </div>

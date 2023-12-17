@@ -17,7 +17,7 @@ export default function Page() {
                     alt='Full Auth'
                 />
                 <h2 className='mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>
-                    Sign up for your account
+                    Create company account
                 </h2>
             </div>
 
