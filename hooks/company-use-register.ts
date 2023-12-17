@@ -13,10 +13,10 @@ export default function useCompanyRegister() {
         email: '',
         password: '',
         re_password: '',
-        account_type: 2
+        account_type: "COMPANY"
     });
 
-    const { first_name, last_name, email, password, re_password , account_type = 2} = formData;
+    const { first_name, last_name, email, password, re_password , account_type = "COMPANY"} = formData;
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
 

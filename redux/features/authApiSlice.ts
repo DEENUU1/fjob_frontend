@@ -5,6 +5,7 @@ interface User {
 	last_name: string;
 	email: string;
 	id: number;
+	account_type: number;
 }
 
 interface SocialAuthArgs {

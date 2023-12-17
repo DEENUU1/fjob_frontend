@@ -21,7 +21,6 @@ export default function Layout({ children }: Props) {
 					</div>
 				</div>
 			</header>
-
 			{children}
 		</RequireAuth>
 	)
