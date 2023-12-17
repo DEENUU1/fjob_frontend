@@ -9,7 +9,7 @@ export async function getNumberOfCompaniesToCreate() {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`,
         }
     })
 

@@ -4,14 +4,22 @@ import getApiUrl from "@/components/api";
 import { toast } from 'react-toastify';
 import {FaHeart} from "react-icons/fa";
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
+import {useAppSelector} from "@/redux/hooks";
 
-// @ts-ignore
+
 const FavouriteButton = ({offerId}) => {
+    const {isLoading, isAuthenticated} = useAppSelector(state => state.auth);
     const {data:user} = useRetrieveUserQuery()
     const token = localStorage.getItem('access')
 
     const handlePostFavourite = async () => {
         try {
+
+            if (!isAuthenticated) {
+                toast.info('You need to be logged in to add offer to favourites')
+                return
+            }
+
             const response = await fetch(`${getApiUrl()}api/favourite/`, {
                 method: 'POST',
                 headers: {

@@ -95,7 +95,6 @@ function hasCustomForm(offer: any): boolean {
 
 
 export default function OfferCard({offer}: any) {
-    const {isLoading, isAuthenticated} = useAppSelector(state => state.auth);
     const isNew = offer.is_new;
     const isScraped = offer.is_scraped;
     const hasForm = hasCustomForm(offer);
@@ -116,7 +115,7 @@ export default function OfferCard({offer}: any) {
                                 <div>
                                     <span className="text-lg text-gray-700">{offer.company_name}</span>
                                 </div>
-                            ): (
+                            ) : (
                                 <div>
                                     <Link className="text-lg text-gray-700" href="/">{offer.company.name}</Link>
                                 </div>
@@ -128,15 +127,13 @@ export default function OfferCard({offer}: any) {
                     <div className="flex items-center">
 
                         <div className="relative inline-block text-left">
-                            {isAuthenticated &&
-                                <div className="inline-block absolute top-0 right-0">
-                                    <div className="flex items-center space-x-4">
-                                        <ReportModal offerId={offer.id}/>
-                                        <FavouriteButton offerId={offer.id}/>
+                            <div className="inline-block absolute top-0 right-0">
+                                <div className="flex items-center space-x-4">
+                                    <ReportModal offerId={offer.id}/>
+                                    <FavouriteButton offerId={offer.id}/>
 
-                                    </div>
                                 </div>
-                            }
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -145,7 +142,7 @@ export default function OfferCard({offer}: any) {
                 <div className="mb-3">
                     {getDetails(offer).map((detail: string) => (
                         <span className="bg-black text-white font-medium rounded-2xl ml-4 py-2 px-2"
-                              >{detail}</span>
+                        >{detail}</span>
                     ))}
                 </div>
 
@@ -161,17 +158,18 @@ export default function OfferCard({offer}: any) {
                         </div>
                         <div>
                             <span className="text-gray-400 mr-2">{getCreatedTime(offer)}</span>
-                            {isNew && <span className="bg-green-600 text-white font-bold rounded-xl py-1 px-1">New</span>}
+                            {isNew &&
+                                <span className="bg-green-600 text-white font-bold rounded-xl py-1 px-1">New</span>}
                         </div>
                     </div>
                     <div>
                         {isScraped && (
-                        <Link
-                            href={offer.url}
-                            className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        >
-                            Apply
-                        </Link>
+                            <Link
+                                href={offer.url}
+                                className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            >
+                                Apply
+                            </Link>
                         )}
                         {isScraped === false && hasForm ? (
                             <Link
@@ -182,11 +180,11 @@ export default function OfferCard({offer}: any) {
                             </Link>
                         ) : (isScraped === false && !hasForm &&
                             <Link
-                            href="/"
-                            className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        >
-                            Apply
-                        </Link>)}
+                                href="/"
+                                className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            >
+                                Apply
+                            </Link>)}
 
                     </div>
                 </div>

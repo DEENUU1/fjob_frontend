@@ -6,9 +6,11 @@ import getApiUrl from "@/components/api";
 import { toast } from 'react-toastify';
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 import {Fa0} from "react-icons/fa6";
+import {useAppSelector} from "@/redux/hooks";
 
 
 const ReportModal = ({offerId}) => {
+    const {isLoading, isAuthenticated} = useAppSelector(state => state.auth);
     const [description, setDescription] = useState('')
     const {data: user} = useRetrieveUserQuery()
     const [showModal , setShowModal] = useState(false);
@@ -24,6 +26,12 @@ const ReportModal = ({offerId}) => {
         // formData.append('user', user.id);
 
         try {
+
+            if (!isAuthenticated) {
+                toast.info("You need to be logged in to report an offer")
+                return
+            }
+
             const response = await fetch(`${getApiUrl()}/api/support/report/`, {
                 method: 'POST',
                 headers: {
