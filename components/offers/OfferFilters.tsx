@@ -60,7 +60,7 @@ function OfferFilters({
                         onChange={(e) => setExperience(e.target.value)}>
                     <option value="All">All</option>
                     {experiences && experiences.length > 0 && experiences.map((experience: any) => (
-                        <option key={experience.id} value={experience.id}>{experience.name}</option>
+                        <option key={experience.name} value={experience.id}>{experience.name}</option>
                     ))}
                 </select>
 
@@ -69,7 +69,7 @@ function OfferFilters({
                         onChange={(e) => setWorkType(e.target.value)}>
                     <option value="All">All</option>
                     {workTypes && workTypes.length > 0 && workTypes.map((workType: any) => (
-                        <option key={workType.id} value={workType.id}>{workType.name}</option>
+                        <option key={workType.name} value={workType.id}>{workType.name}</option>
                     ))}
                 </select>
 
@@ -78,7 +78,7 @@ function OfferFilters({
                         onChange={(e) => setEmploymentType(e.target.value)}>
                     <option value="All">All</option>
                     {employmentTypes && employmentTypes.length > 0 && employmentTypes.map((employmentType: any) => (
-                        <option key={employmentType.id} value={employmentType.id}>{employmentType.name}</option>
+                        <option key={employmentType.name} value={employmentType.id}>{employmentType.name}</option>
                     ))}
                 </select>
             </div>

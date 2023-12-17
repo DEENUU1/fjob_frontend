@@ -12,9 +12,9 @@ function Offers() {
     const [ordering, setOrdering] = useState("-created_at");
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
-    const [experience, setExperience] = useState(null);
-    const [workType, setWorkType] = useState(null);
-    const [employmentType, setEmploymentType] = useState(null);
+    const [experience, setExperience] = useState("All");
+    const [workType, setWorkType] = useState("All");
+    const [employmentType, setEmploymentType] = useState("All");
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
