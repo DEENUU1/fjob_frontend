@@ -27,7 +27,6 @@ const FavouriteButton = ({offerId}) => {
                 toast.info('Offer already added to favourite')
             }
         } catch (error) {
-            console.log(error)
             toast.error('Something went wrong')
         }
 
