@@ -7,6 +7,7 @@ import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import {useAppSelector} from "@/redux/hooks";
 
 
+// @ts-ignore
 const FavouriteButton = ({offerId}) => {
     const {isLoading, isAuthenticated} = useAppSelector(state => state.auth);
     const {data:user} = useRetrieveUserQuery()
@@ -26,7 +27,7 @@ const FavouriteButton = ({offerId}) => {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify({offer: offerId, user: user.id})
+                body: JSON.stringify({offer: offerId, user: user?.id})
             })
 
             if (response.status == 201) {

@@ -13,11 +13,13 @@ function OfferList({
                        workType,
                        employmentType,
                    }) {
-    const [offers, setOffers] = useState(null);
+    const [offers, setOffers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // @ts-ignore
     const nextPage = offers?.next;
+    // @ts-ignore
     const previousPage = offers?.previous;
 
     useEffect(() => {
@@ -58,6 +60,7 @@ function OfferList({
     return (
         <div>
             <div className="mt-20">
+
                 {offers.results.map((offer: any) => (
                     <OfferCard key={offer.title} offer={offer}/>
                 ))}
