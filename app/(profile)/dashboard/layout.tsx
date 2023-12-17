@@ -16,7 +16,6 @@ export default function Layout({ children }: Props) {
 					</h1>
 					<div className="mt-4">
 						<span><Link className="bg-black p-3 text-white hover:bg-gray-800" href="/dashboard"> Dashboard </Link></span>
-						<span><Link className="bg-black p-3 text-white hover:bg-gray-800" href="/dashboard/company"> Company </Link></span>
 						<span><Link className="bg-black p-3 text-white hover:bg-gray-800" href="/dashboard/favourite"> Favourite </Link></span>
 
 					</div>

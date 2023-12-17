@@ -1,11 +1,11 @@
-import {useState, ChangeEvent, FormEvent} from 'react';
-import {useRouter} from 'next/navigation';
-import {useRegisterMutation} from '@/redux/features/authApiSlice';
-import {toast} from 'react-toastify';
+import { useState, ChangeEvent, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { useRegisterMutation } from '@/redux/features/authApiSlice';
+import { toast } from 'react-toastify';
 
-export default function useRegister() {
+export default function useCompanyRegister() {
     const router = useRouter();
-    const [register, {isLoading}] = useRegisterMutation();
+    const [register, { isLoading }] = useRegisterMutation();
 
     const [formData, setFormData] = useState({
         first_name: '',
@@ -13,21 +13,20 @@ export default function useRegister() {
         email: '',
         password: '',
         re_password: '',
-        account_type: 1
+        account_type: 2
     });
 
-    const {first_name, last_name, email, password, re_password, account_type = 1} = formData;
-
+    const { first_name, last_name, email, password, re_password , account_type = 2} = formData;
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
 
-        setFormData({...formData, [name]: value});
+        setFormData({ ...formData, [name]: value });
     };
 
     const onSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        register({first_name, last_name, email, password, re_password, account_type})
+        register({ first_name, last_name, email, password, re_password , account_type})
             .unwrap()
             .then(() => {
                 toast.success('Please check email to verify account');
