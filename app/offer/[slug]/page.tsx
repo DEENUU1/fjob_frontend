@@ -4,14 +4,14 @@ import {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
 
 export default function Offer({params}) {
-    const offerId = params.offerId;
+    const slug = params.slug;
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
             <div>
                 <Suspense fallback={<Spinner/>}>
-                    <OfferDetails offerId={offerId}/>
+                    <OfferDetails slug={slug}/>
                 </Suspense>
             </div>
 

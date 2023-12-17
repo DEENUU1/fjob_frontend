@@ -108,7 +108,7 @@ export default function OfferCard({offer}: any) {
                 <div className="flex justify-between items-center p-4">
                     <div className="flex items-start">
                         <div className="mr-4">
-                            <Link href={`offer/${offer.id}`}>
+                            <Link href={`offer/${offer.slug}`}>
                                 <h2 className="text-3xl font-medium">{offer.title}</h2>
 
                             </Link>

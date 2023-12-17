@@ -4,8 +4,8 @@ import {FaHeart} from "react-icons/fa";
 import Image from "next/image";
 
 
-async function getOffer(id: number) {
-    const response = await fetch(`${getApiUrl()}/api/offer/offer/${id}`, {
+async function getOffer(slug: string) {
+    const response = await fetch(`${getApiUrl()}/api/offer/offer/${slug}`, {
         next: {
             revalidate: 0
         }
@@ -38,11 +38,11 @@ function hasCustomForm(offer: any): boolean {
 }
 
 
-export default async function OfferDetails({offerId}) {
-    const offer = await getOffer(offerId);
+export default async function OfferDetails({slug}) {
+    const offer = await getOffer(slug);
     const isScrapedOffer = isScraped(offer);
     const skills = processSkills(offer.skills);
-    const favouriteCounter = await getOfferFavouriteCounter(offerId);
+    const favouriteCounter = await getOfferFavouriteCounter(offer.id);
     const hasForm = hasCustomForm(offer);
 
 
