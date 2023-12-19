@@ -91,6 +91,9 @@ const Navbar = () => {
                             <Link href="/offer" className="inline-block px-4 py-2 text-lg font-normal text-black no-underline rounded-md  hover:text-gray-700">
                                 Offers
                             </Link>
+                            <Link href="/companies" className="inline-block px-4 py-2 text-lg font-normal text-black no-underline rounded-md  hover:text-gray-700">
+                                Companies
+                            </Link>
                             <Link href="/contact" className="inline-block px-4 py-2 text-lg font-normal text-black no-underline rounded-md  hover:text-gray-700">
                                 Contact
                             </Link>
