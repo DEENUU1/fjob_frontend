@@ -16,7 +16,7 @@ export default function useRegister() {
         account_type: "USER"
     });
 
-    const {first_name, last_name, email, password, re_password, account_type = "COMPANY"} = formData;
+    const {first_name, last_name, email, password, re_password, account_type = "USER"} = formData;
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;

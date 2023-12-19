@@ -15,7 +15,6 @@ const Navbar = () => {
     const pathname = usePathname();
     const dispatch = useAppDispatch();
     const {data: user} = useRetrieveUserQuery()
-
     const [logout] = useLogoutMutation();
 
     const { isAuthenticated } = useAppSelector(state => state.auth);

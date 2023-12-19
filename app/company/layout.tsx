@@ -1,6 +1,7 @@
 import { RequireAuth } from '@/components/utils';
 import Link from "next/link";
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
+import CompanyOnly from "@/components/utils/CompanyOnly";
 
 interface Props {
     children: React.ReactNode;
@@ -9,6 +10,7 @@ interface Props {
 export default function Layout({ children }: Props) {
     return (
         <RequireAuth>
+            <CompanyOnly>
             <header className='bg-white shadow'>
                 <div className='mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8'>
                     <h1 className='text-3xl font-bold tracking-tight text-gray-900'>
@@ -23,6 +25,7 @@ export default function Layout({ children }: Props) {
                 </div>
             </header>
             {children}
+            </CompanyOnly>
         </RequireAuth>
     )
 }
