@@ -1,6 +1,8 @@
 'use client'
 import getApiUrl from "@/components/api";
 import Image from "next/image";
+import Link from "next/link";
+import { SocialIcon } from 'react-social-icons'
 
 async function getCompany(){
     const token = localStorage.getItem("access")
@@ -15,27 +17,62 @@ async function getCompany(){
 
 }
 
-// {'id': 1, 'name': '-155781922110444758', 'logo': None, 'company_size': '1', 'description': None, 'num_of_offers_to_add': 1, 'linkedin_url': None, 'facebook_url': None, 'twitter_
-//     url': None, 'instagram_url': None, 'youtube_url': None, 'website_url': None, 'created_at': '2023-12-19T15:42:52.762735Z', 'is_active': False, 'user': 6, 'addresses': []}
 
 export default async function CompanyData() {
     const data = await getCompany()
-    console.log(data)
+
     return (
         <>
-            <h2>{data?.name} Name</h2>
-            {data.image && (
-                <Image src={data?.logo} width={400} height={400} alt="logo"/>
-            )}
-            <p>{data?.description}</p>
-            <p>{data?.company_size}</p>
-            <p>{data?.linkedin_url}</p>
-            <p>{data?.facebook_url}</p>
-            <p>{data?.twitter_url}</p>
-            <p>{data?.instagram_url}</p>
-            <p>{data?.youtube_url}</p>
-            <p>{data?.website_url}</p>
-            <p>{data?.addresses}</p>
+            <div className="space-x-2 mb-5">
+                {data.linkedin_url && (
+                    <SocialIcon url={data?.linkedin_url}/>
+                )}
+                {data.facebook_url && (
+                    <SocialIcon url={data?.facebook_url}/>
+                )}
+                {data.twitter_url && (
+                    <SocialIcon url={data?.twitter_url}/>
+                )}
+                {data.instagram_url && (
+                    <SocialIcon url={data?.instagram_url}/>
+                )}
+                {data.youtube_url && (
+                    <SocialIcon url={data?.youtube_url}/>
+                )}
+                {data.website_url && (
+                    <SocialIcon url={data?.website_url}/>
+                )}
+            </div>
+
+            <h2 className="text-4xl">{data?.name} Name </h2>
+
+
+            {/*{data.image && (*/}
+            {/*    <Image src={data?.logo} width={400} height={400} alt="logo"/>*/}
+            {/*)}*/}
+            <p className="text-xl mt-2 mb-2">Company size: {data?.company_size}</p>
+
+            <h3 className="text-xl mt-2">Addresses:</h3>
+            <div>
+                {data.addresses && (
+                    <div className="mb-2">
+                        {data.addresses.map((address: any) => (
+                            <p key={address.id}>
+                                - {address.country.name} {address.city.name} {address.region.name} {address.street}
+                            </p>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            <h3 className="text-xl">Description:</h3>
+
+            <p className="text-gray-800 mb-2">{data?.description}</p>
+
+
+
+
+
 
         </>
     )
