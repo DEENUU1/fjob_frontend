@@ -33,7 +33,7 @@ export default function useLogin() {
 					localStorage.setItem('access', data.access);
 					dispatch(setAuth());
 					toast.success('Logged in');
-					router.push('/dashboard');
+					router.push('/');
 				} else {
 					toast.error('Failed to log in');
 				}
