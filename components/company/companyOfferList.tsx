@@ -1,7 +1,7 @@
 'use client'
 
 import getApiUrl from "@/components/api";
-
+import Link from "next/link";
 
 
 async function getCompanyOfferList(){
@@ -29,8 +29,9 @@ export default async function OfferList() {
                     <div>
                         {data.map((offer: any) => (
                             <div key={offer.id}>
-                                <h1>{offer.title}</h1>
-                                <p>{offer.description}</p>
+                                <Link href={`/company/offer/${offer.id}`}>
+                                    <h1>{offer.title}</h1>
+                                </Link>
                             </div>
                         ))}
                     </div>
