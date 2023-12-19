@@ -3,7 +3,11 @@
 import {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
 import Companies from "@/components/companies/getCompanies";
+import {Metadata} from "next";
 
+export const metadata: Metadata = {
+    title: 'FJob | Companies',
+}
 
 function Offers() {
 

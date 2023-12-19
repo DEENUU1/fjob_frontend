@@ -3,7 +3,12 @@ import AddOffer from "@/components/company/addOfferButton";
 import {Suspense} from "react";
 import Spinner from '@/components/common/Spinner';
 import OfferList from "@/components/company/companyOfferList";
+import {Metadata} from "next";
 
+
+export const metadata: Metadata = {
+    title: 'FJob | Dashboard offers',
+}
 
 export default async function Page() {
     return (

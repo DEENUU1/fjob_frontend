@@ -3,6 +3,11 @@ import SectionTitle from '@/components/home/sectionTitle';
 import Benefits from '@/components/home/benefits';
 import Faq from '@/components/home/faq';
 import { benefitOne, benefitTwo } from "@/components/home/data";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: 'FJob | Home',
+}
 
 export default function Home() {
   return (

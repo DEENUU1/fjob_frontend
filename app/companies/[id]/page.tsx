@@ -2,7 +2,11 @@ import {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
 import CompanyDetails from "@/components/companies/companyDetails";
 import CompanyActiveOffers from "@/components/companies/getPublicOffers";
+import {Metadata} from "next";
 
+export const metadata: Metadata = {
+    title: 'FJob | Company details',
+}
 
 export default function Page({params}) {
     const id = params.id;

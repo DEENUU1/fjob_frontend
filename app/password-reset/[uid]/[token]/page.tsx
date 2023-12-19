@@ -2,9 +2,8 @@ import { PasswordResetConfirmForm } from '@/components/forms';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Full Auth | Password Reset Confirm',
-	description: 'Full Auth password reset confirm page',
-};
+	title: 'FJob | Password reset confirm',
+}
 
 interface Props {
 	params: {

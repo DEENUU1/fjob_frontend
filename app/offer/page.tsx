@@ -5,6 +5,7 @@ import OfferList from "@/components/offer/OfferList";
 import OfferFilters from "@/components/offer/OfferFilters";
 import OfferPagination from "@/components/offer/OfferPagination";
 import offerList from "@/components/offer/OfferList";
+import {Metadata} from "next";
 
 function Offers() {
     const [isRemote, setIsRemote] = useState("");

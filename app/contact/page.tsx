@@ -1,4 +1,10 @@
 import ContactForm from '@/components/contact/ContactForm';
+import {Metadata} from "next";
+
+
+export const metadata: Metadata = {
+    title: 'FJob | Contact us',
+}
 
 export default function Contact() {
     return (

@@ -4,10 +4,8 @@ import  SocialButtons  from '@/components/common/SocialButtons';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Full Auth | Register',
-	description: 'Full Auth register page',
-};
-
+	title: 'FJob | User register',
+}
 export default function Page() {
 	return (
 		<div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>

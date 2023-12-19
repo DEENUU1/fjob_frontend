@@ -3,9 +3,8 @@ import { CompanyRegisterForm } from '@/components/forms';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Full Auth | Register',
-    description: 'Full Auth register page',
-};
+    title: 'FJob | Company register',
+}
 
 export default function Page() {
     return (

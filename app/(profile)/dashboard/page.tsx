@@ -10,6 +10,12 @@ import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import {useState} from "react";
 import getApiUrl from "@/components/api";
 import {toast} from "react-toastify";
+import {Metadata} from "next";
+
+
+export const metadata: Metadata = {
+	title: 'FJob | Dashboard',
+}
 
 export default function Page() {
 	const { data: user, isLoading, isFetching } = useRetrieveUserQuery();

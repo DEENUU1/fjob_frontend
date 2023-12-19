@@ -4,9 +4,8 @@ import  SocialButtons  from '@/components/common/SocialButtons';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Full Auth | Login',
-	description: 'Full Auth login page',
-};
+	title: 'FJob | Login',
+}
 
 export default function Page() {
 	return (

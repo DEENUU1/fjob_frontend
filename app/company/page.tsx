@@ -10,7 +10,11 @@ import Spinner from '@/components/common/Spinner';
 import {toast} from "react-toastify";
 import CompanyData from "@/components/company/getCompany";
 import {Suspense} from "react";
+import {Metadata} from "next";
 
+export const metadata: Metadata = {
+    title: 'FJob | Dashboard',
+}
 
 export default async function Page() {
     return (

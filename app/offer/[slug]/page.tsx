@@ -2,6 +2,11 @@ import OfferDetails from "@/components/offer/fetchOffer";
 import {Suspense} from "react";
 // import Loading from "@/components/loading";
 import Spinner from "@/components/common/Spinner";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: 'FJob | Offer details',
+}
 
 export default function Offer({params}) {
     const slug = params.slug;

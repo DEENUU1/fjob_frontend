@@ -1,6 +1,11 @@
 import Favourites from "@/components/profile/favourite/FavouriteList";
 import React, {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: 'FJob | Favourites',
+}
 
 export default async function FavouritePage() {
     return (
