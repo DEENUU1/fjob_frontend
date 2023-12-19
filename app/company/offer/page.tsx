@@ -15,7 +15,7 @@ export default async function Page() {
                         <AddOffer/>
                     </Suspense>
 
-                    <h1 className="text-2xl">Offers</h1>
+                    <h1 className="text-2xl mt-5 mb-5">Offers</h1>
 
                     <Suspense fallback={<Spinner/>}>
                         <OfferList/>

@@ -25,20 +25,59 @@ export default async function OfferList() {
     return (
         <>
             <div>
-                {data ? (
-                    <div>
-                        {data.map((offer: any) => (
-                            <div key={offer.id}>
-                                <Link href={`/company/offer/${offer.id}`}>
-                                    <h1>{offer.title}</h1>
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
-
-                ): (
-                    <h1>You dont have any offers yet</h1>
-                )}
+                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table className="w-full text-sm text-left rtl:text-right">
+                        <thead className="text-xs">
+                        <tr>
+                            <th scope="col" className="px-6 py-3">
+                                Title
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Created at
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Updated at
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Status
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Candidates
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Actions
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {data && (
+                            data.map((offer:any) =>(
+                            <tr key={offer.slug} className="border-b">
+                                <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
+                                    {offer.title}
+                                </th>
+                                <td className="px-6 py-4">
+                                    {offer.created_at}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {offer.updated_at}
+                                </td>
+                                <td className="px-6 py-4 font-bold">
+                                    {offer.status}
+                                </td>
+                                <td className="px-6 py-4 font-bold">
+                                    <Link href="/" className="font-medium text-blue-600  hover:underline">Candidates</Link>
+                                </td>
+                                <td className="px-6 py-4 space-x-2">
+                                    <Link href="/" className="font-medium text-blue-600  hover:underline">Edit</Link>
+                                    <Link href="/" className="font-medium text-red-600  hover:underline">Delete</Link>
+                                </td>
+                            </tr>
+                            ))
+                        )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </>
     )
