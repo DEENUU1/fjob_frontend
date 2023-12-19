@@ -17,7 +17,7 @@ const benefitOne = {
   bullets: [
     {
       title: "Less search",
-      desc: "FJob collects job offers from many different job boards to save your time and focus on your expectations",
+      desc: "FJob collects job offer from many different job boards to save your time and focus on your expectations",
       icon: <FaceSmileIcon />,
     },
     {
@@ -27,7 +27,7 @@ const benefitOne = {
     },
     {
       title: "Easy and transparent",
-      desc: "We try to provide as much information as possible about each job offer, we also allow you to filter offers through advanced forms that will help you find your dream job",
+      desc: "We try to provide as much information as possible about each job offer, we also allow you to filter offer through advanced forms that will help you find your dream job",
       icon: <CursorArrowRaysIcon />,
     },
   ],
@@ -45,7 +45,7 @@ const benefitTwo = {
     },
     {
       title: "Additional promotion",
-      desc: "If you post an offer on our website, it will be promoted, making it stand out from other job offers",
+      desc: "If you post an offer on our website, it will be promoted, making it stand out from other job offer",
       icon: <AdjustmentsHorizontalIcon />,
     },
     {

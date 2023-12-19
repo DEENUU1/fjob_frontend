@@ -7,14 +7,14 @@ import { Disclosure } from "@headlessui/react";
 import { usePathname } from 'next/navigation';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { useLogoutMutation } from '@/redux/features/authApiSlice';
+import {useLogoutMutation, useRetrieveUserQuery} from '@/redux/features/authApiSlice';
 import { logout as setLogout } from '@/redux/features/authSlice';
 
 
 const Navbar = () => {
-
     const pathname = usePathname();
     const dispatch = useAppDispatch();
+    const {data: user} = useRetrieveUserQuery()
 
     const [logout] = useLogoutMutation();
 
@@ -24,7 +24,7 @@ const Navbar = () => {
         logout(undefined)
             .unwrap()
             .then(() => {
-                dispatch(setLogout());
+                dispatch(setrLogout());
             });
     };
 
@@ -102,9 +102,16 @@ const Navbar = () => {
                 <div className="hidden mr-3 space-x-4 lg:flex nav__item">
                     {isAuthenticated ? (
                         <>
-                        <Link href="/dashboard" className="px-6 py-2 text-black">
-                            Dashboard
-                        </Link>
+                        {/*  If user.account_type == "USER" display Dashboard and if its "COMPANY" display company dashboard  */}
+                        {user?.account_type == "USER" ? (
+                            <Link href="/dashboard" className="px-6 py-2 text-black">
+                                Dashboard
+                            </Link>
+                        ) : (
+                            <Link href="/company/dashboard" className="px-6 py-2 text-black">
+                                Dashboard
+                            </Link>
+                        )}
                         <button onClick={handleLogout}>
                             Logout
                         </button>

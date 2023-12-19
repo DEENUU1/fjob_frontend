@@ -1,5 +1,3 @@
-import React from "react";
-
 function OfferPagination({offers, page, setPage }) {
     const nextPage = offers?.next;
     const previousPage = offers?.previous;

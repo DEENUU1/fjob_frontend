@@ -1,4 +1,4 @@
-import OfferDetails from "@/components/offers/fetchOffer";
+import OfferDetails from "@/components/offer/fetchOffer";
 import {Suspense} from "react";
 // import Loading from "@/components/loading";
 import Spinner from "@/components/common/Spinner";

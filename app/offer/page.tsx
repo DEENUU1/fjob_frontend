@@ -1,10 +1,10 @@
 'use client'
 
 import React, {Suspense, useState} from "react";
-import OfferList from "../../components/offers/OfferList";
-import OfferFilters from "../../components/offers/OfferFilters";
-import OfferPagination from "../../components/offers/OfferPagination";
-import offerList from "../../components/offers/OfferList";
+import OfferList from "@/components/offer/OfferList";
+import OfferFilters from "@/components/offer/OfferFilters";
+import OfferPagination from "@/components/offer/OfferPagination";
+import offerList from "@/components/offer/OfferList";
 
 function Offers() {
     const [isRemote, setIsRemote] = useState("");

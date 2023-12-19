@@ -1,6 +1,6 @@
 import Link from "next/link";
-import FavouriteButton from "@/components/offers/favourite";
-import ReportModal from "@/components/offers/report";
+import FavouriteButton from "@/components/offer/favourite";
+import ReportModal from "@/components/offer/report";
 import {useAppSelector} from "@/redux/hooks";
 import getApiUrl from "@/components/api";
 

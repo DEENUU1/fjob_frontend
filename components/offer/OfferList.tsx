@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import OfferCard from "@/components/offers/fetchOfferList";
+import OfferCard from "@/components/offer/offerCard";
 import Spinner from "@/components/common/Spinner";
 import getApiUrl from "@/components/api";
 

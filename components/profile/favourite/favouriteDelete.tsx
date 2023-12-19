@@ -4,6 +4,7 @@ import getApiUrl from "@/components/api";
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { IoTrashBinSharp } from "react-icons/io5";
+import {useDispatch} from "react-redux";
 
 
 const FavouriteButtonDelete = ({offerId}) => {
@@ -24,7 +25,7 @@ const FavouriteButtonDelete = ({offerId}) => {
                 toast.success('Delete offer from favourite')
                 router.refresh();
             } else if (response.status == 400) {
-                toast.info('Error')
+                toast.info('Error!')
             }
         } catch (error) {
             console.log(error)

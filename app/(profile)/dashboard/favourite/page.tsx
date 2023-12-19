@@ -1,4 +1,4 @@
-import Favourites from "@/components/profile/FavouriteList";
+import Favourites from "@/components/profile/favourite/FavouriteList";
 import React, {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
 

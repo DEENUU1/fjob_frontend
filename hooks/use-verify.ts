@@ -7,7 +7,6 @@ export default function useVerify() {
 	const dispatch = useAppDispatch();
 
 	const [verify] = useVerifyMutation();
-
 	useEffect(() => {
 		verify(undefined)
 			.unwrap()

@@ -1,7 +1,7 @@
 import React from "react";
-import getExperiences from "@/components/offers/experience";
-import getWorkType from "@/components/offers/workType";
-import getEmploymentTypes from "@/components/offers/employmentType";
+import getExperiences from "@/components/offer/experience";
+import getWorkType from "@/components/offer/workType";
+import getEmploymentTypes from "@/components/offer/employmentType";
 
 function OfferFilters({
                           search,
