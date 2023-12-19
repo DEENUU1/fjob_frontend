@@ -24,7 +24,7 @@ const Navbar = () => {
         logout(undefined)
             .unwrap()
             .then(() => {
-                dispatch(setrLogout());
+                dispatch(setLogout());
             });
     };
 
@@ -108,7 +108,7 @@ const Navbar = () => {
                                 Dashboard
                             </Link>
                         ) : (
-                            <Link href="/company/dashboard" className="px-6 py-2 text-black">
+                            <Link href="/company" className="px-6 py-2 text-black">
                                 Dashboard
                             </Link>
                         )}
