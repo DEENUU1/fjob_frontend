@@ -5,7 +5,6 @@ import Spinner from '@/components/common/Spinner';
 import OfferList from "@/components/company/companyOfferList";
 import {Metadata} from "next";
 
-
 export const metadata: Metadata = {
     title: 'FJob | Dashboard offers',
 }

@@ -2,6 +2,7 @@
 
 import getApiUrl from "@/components/api";
 import Link from "next/link";
+import EditOfferModal from "@/components/company/editOffer";
 
 
 async function getCompanyOfferList(){
@@ -69,7 +70,7 @@ export default async function OfferList() {
                                     <Link href="/" className="font-medium text-blue-600  hover:underline">Candidates</Link>
                                 </td>
                                 <td className="px-6 py-4 space-x-2">
-                                    <Link href="/" className="font-medium text-blue-600  hover:underline">Edit</Link>
+                                    <EditOfferModal offer={offer}/>
                                     <Link href="/" className="font-medium text-red-600  hover:underline">Delete</Link>
                                 </td>
                             </tr>
