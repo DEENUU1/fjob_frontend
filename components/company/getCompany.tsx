@@ -3,6 +3,7 @@ import getApiUrl from "@/components/api";
 import Image from "next/image";
 import Link from "next/link";
 import { SocialIcon } from 'react-social-icons'
+import EditCompanyModal from "@/components/company/editCompany";
 
 async function getCompany(){
     const token = localStorage.getItem("access")
@@ -23,6 +24,8 @@ export default async function CompanyData() {
 
     return (
         <>
+            <EditCompanyModal company={data}/>
+
             <div className="space-x-2 mb-5">
                 {data.linkedin_url && (
                     <SocialIcon url={data?.linkedin_url}/>
