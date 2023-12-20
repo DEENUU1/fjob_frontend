@@ -6,9 +6,11 @@ import {toast} from "react-toastify";
 import getExperiences from "@/components/offer/experience";
 import getWorkType from "@/components/offer/workType";
 import getEmploymentTypes from "@/components/offer/employmentType";
-
+import { useRouter } from 'next/navigation';
 
 export default function CreateJobOffer() {
+    const router = useRouter();
+
     const token = localStorage.getItem("access")
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
@@ -28,17 +30,17 @@ export default function CreateJobOffer() {
 
     const experienceMultiSelect = () => {
         return (
-            <select multiple name="experience[]" onChange={(e) => setExperience(e.target.value)}>
+            <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setExperience(e.target.value)}>
                 {experiences && experiences.length > 0 && experiences.map((experience:any) => (
                     <option key={experience.id} value={experience.id}>{experience.name}</option>
                 ))}
             </select>
-        );
+    );
     };
 
     const workTypeMultiSelect = () => {
         return (
-            <select multiple name="experience[]" onChange={(e) => setWorkType(e.target.value)}>
+            <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setWorkType(e.target.value)}>
                 {workTypes && workTypes.length > 0 && workTypes.map((workType:any) => (
                     <option key={workType.id} value={workType.id}>{workType.name}</option>
                 ))}
@@ -48,7 +50,7 @@ export default function CreateJobOffer() {
 
     const employmentTypeMultiSelect = () => {
         return (
-            <select multiple name="experience[]" onChange={(e) => setEmploymentType(e.target.value)}>
+            <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setEmploymentType(e.target.value)}>
                 {employmentTypes && employmentTypes.length > 0 && employmentTypes.map((employmentType: any) => (
                     <option key={employmentType.id} value={employmentType.id}>{employmentType.name}</option>
                 ))}
@@ -94,6 +96,7 @@ export default function CreateJobOffer() {
             });
             if (response.ok) {
                 toast.success("Offer created successfully")
+                router.push('/company/offer')
             } else {
                 toast.error("Offer creation failed")
             }
@@ -105,50 +108,62 @@ export default function CreateJobOffer() {
 
     return (
         <>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="title">Title</label>
-                    <input type="text" placeholder="title" required autoComplete="false"
-                           name="title"
-                           value={title}
-                           onChange={(e) => setTitle(e.target.value)}/>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="title" className="block mb-2 font-medium">Title</label>
+                <input type="text" placeholder="title" required autoComplete="false"
+                       name="title"
+                       value={title}
+                       onChange={(e) => setTitle(e.target.value)}
+                       className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                />
 
-                    <label htmlFor="description">Description</label>
-                    <textarea placeholder="description" name="description" required autoComplete="false"
-                              value={description}
-                              onChange={(e) => setDescription(e.target.value)}/>
+                <label htmlFor="description" className="block mb-2 font-medium">Description</label>
+                <textarea placeholder="description" name="description" required autoComplete="false"
+                          value={description}
+                          onChange={(e) => setDescription(e.target.value)}
+                          className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                />
 
-                    <label htmlFor="is_remote">Is remote</label>
-                    <input type="checkbox" name="is_remote" value={isRemote} onChange={() => setIsRemote(!isRemote)}/>
+                <div className="grid gap-6 mb-6 md:grid-cols-2 mt-2">
+                    <div className="flex items-center">
+                        <input value={isRemote} onChange={() => setIsRemote(!isRemote)} id="link-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+                        <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium">Is remote</label>
+                    </div>
 
-                    <label htmlFor="is_hybrid">Is hybrid</label>
-                    <input type="checkbox" name="is_hybrid" value={isHybrid} onChange={() => setIsHybrid(!isHybrid)}/>
+                    <div className="flex items-center">
+                        <input value={isHybrid} onChange={() => setIsHybrid(!isHybrid)} id="link-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+                        <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium">Is hybrid</label>
+                    </div>
+                </div>
 
-                    <label htmlFor="apply_form">Apply form</label>
-                    <input type="text" placeholder="apply form" name="apply_form" autoComplete="false"/>
+                <label htmlFor="apply_form" className="block mb-2 font-medium">Apply form</label>
+                <input type="text" placeholder="apply form" name="apply_form" autoComplete="false"
+                       className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                />
 
-                    <label htmlFor="skills">Skills</label>
-                    <input type="text" placeholder="skills" name="skills" autoComplete="false"/>
+                <label htmlFor="skills" className="block mb-2 font-medium">Skills</label>
+                <input type="text" placeholder="skills" name="skills" autoComplete="false"
+                       className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                />
 
-                    <label htmlFor="experience">Experience</label>
-                    {experienceMultiSelect()}
+                <label htmlFor="experience" className="block mb-2 font-medium">Experience</label>
+                {experienceMultiSelect()}
 
-                    <label htmlFor="experience">Employment Type</label>
-                    {workTypeMultiSelect()}
+                <label htmlFor="experience" className="block mb-2 font-medium">Employment Type</label>
+                {workTypeMultiSelect()}
 
-                    <label htmlFor="experience">Work Type</label>
-                    {employmentTypeMultiSelect()}
+                <label htmlFor="experience" className="block mb-2 font-medium">Work Type</label>
+                {employmentTypeMultiSelect()}
 
-                    <label htmlFor="status">Status</label>
-                    <select name="status" onChange={(e) => setStatus(e.target.value)}>
-                        <option value="DRAFT">Draft</option>
-                        <option value="ACTIVE">Published</option>
-                    </select>
+                <label htmlFor="status" className="block mb-2 font-medium">Status</label>
+                <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="status" onChange={(e) => setStatus(e.target.value)}>
+                    <option value="DRAFT">Draft</option>
+                    <option value="ACTIVE">Published</option>
+                </select>
 
 
-                    <button type="submit">Create</button>
-                </form>
-            </div>
+                <button type="submit" className=" mt-2 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Create</button>
+            </form>
         </>
     )
 
