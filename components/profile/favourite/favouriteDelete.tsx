@@ -28,7 +28,6 @@ const FavouriteButtonDelete = ({offerId}) => {
                 toast.info('Error!')
             }
         } catch (error) {
-            console.log(error)
             toast.error('Something went wrong')
         }
 
