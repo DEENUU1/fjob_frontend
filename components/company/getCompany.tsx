@@ -44,7 +44,7 @@ export default async function CompanyData() {
                 )}
             </div>
 
-            <h2 className="text-4xl">{data?.name} Name </h2>
+            <h2 className="text-4xl">{data?.name}</h2>
 
 
             {/*{data.image && (*/}
