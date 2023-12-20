@@ -7,21 +7,6 @@ import {toast} from "react-toastify";
 import {useRouter} from 'next/navigation';
 import {FaFlag} from "react-icons/fa";
 
-// name = models.CharField(max_length=255)
-// logo = models.FileField
-// company_size = models.CharField(max_length=255, default=1)
-// description = models.TextField(null=True, blank=True)
-// user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
-// addresses = models.ManyToManyField(Address, blank=True)
-// num_of_offers_to_add = models.IntegerField(default=1)
-// linkedin_url = models.URLField(null=True, blank=True)
-// facebook_url = models.URLField(null=True, blank=True)
-// twitter_url = models.URLField(null=True, blank=True)
-// instagram_url = models.URLField(null=True, blank=True)
-// youtube_url = models.URLField(null=True, blank=True)
-// website_url = models.URLField(null=True, blank=True)
-// created_at = models.DateTimeField(auto_now_add=True)
-// is_active = models.BooleanField(default=False)
 
 export default function EditCompanyModal({company}) {
     const [showModal, setShowModal] = useState(false);
@@ -30,7 +15,7 @@ export default function EditCompanyModal({company}) {
 
     const [name, setName] = useState(company.name || "")
     const [logo, setLogo] = useState(company.logo || "")
-    const [companySize, setCompanySize] = useState(company.company_size || "")
+    const [companySize, setCompanySize] = useState(company.company_size || 0)
     const [description, setDescription] = useState(company.description || "")
     const [user, setUser] = useState(company.user || "")
     const [addresses, setAddresses] = useState(company.addresses || [1])
@@ -54,7 +39,7 @@ export default function EditCompanyModal({company}) {
         formData.append("description", description);
         formData.append("user", user);
         formData.append("addresses", addresses);
-        formData.append("num_of_offers_to_add", numOfOffersToAdd);
+        // formData.append("num_of_offers_to_add", numOfOffersToAdd);
         formData.append("linkedin_url", linkedinUrl);
         formData.append("facebook_url", facebookUrl);
         formData.append("twitter_url", twitterUrl);
@@ -120,14 +105,81 @@ export default function EditCompanyModal({company}) {
                                 <form onSubmit={handleSubmit}>
 
 
-                                    {/*<label htmlFor="title" className="block mb-2 font-medium">Title</label>*/}
-                                    {/*<input type="text" placeholder="title" required autoComplete="false"*/}
-                                    {/*       name="title"*/}
-                                    {/*       value={title}*/}
-                                    {/*       onChange={(e) => setTitle(e.target.value)}*/}
-                                    {/*       className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"*/}
-                                    {/*/>*/}
+                                    <label htmlFor="title" className="block mb-2 font-medium">Name</label>
+                                    <input type="text" placeholder="title" required autoComplete="false"
+                                           name="title"
+                                           value={name}
+                                           onChange={(e) => setName(e.target.value)}
+                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                                    />
 
+                                    <label htmlFor="description" className="block mb-2 font-medium">Description</label>
+                                    <textarea placeholder="description" required autoComplete="false"
+                                           name="description"
+                                           value={description}
+                                           onChange={(e) => setDescription(e.target.value)}
+                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                                    />
+
+                                    <label className="block mb-2 font-medium" htmlFor="default_size">Default size</label>
+                                    <input className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400" id="default_size" type="file"/>
+
+
+                                    <label htmlFor="company_size" className="block mb-2 font-medium">Company Size</label>
+                                    <input type="number" placeholder="company size" required autoComplete="false"
+                                           name="company_size"
+                                           value={companySize}
+                                           onChange={(e) => setCompanySize(e.target.value)}
+                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                                    />
+
+                                    <label htmlFor="linkedin" className="block mb-2 font-medium">LinkedIn</label>
+                                    <input type="url" placeholder="linkedin.com" autoComplete="false"
+                                           name="linkedin"
+                                           value={linkedinUrl}
+                                           onChange={(e) => setLinkedinUrl(e.target.value)}
+                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                                    />
+
+                                    <label htmlFor="facebook" className="block mb-2 font-medium">Facebook</label>
+                                    <input type="url" placeholder="facebook.com" autoComplete="false"
+                                           name="facebook"
+                                           value={facebookUrl}
+                                           onChange={(e) => setFacebookUrl(e.target.value)}
+                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                                    />
+
+                                    <label htmlFor="twitter" className="block mb-2 font-medium">Twitter</label>
+                                    <input type="url" placeholder="twitter.com" autoComplete="false"
+                                           name="twitter"
+                                           value={twitterUrl}
+                                           onChange={(e) => setTwitterUrl(e.target.value)}
+                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                                    />
+
+                                    <label htmlFor="instagram" className="block mb-2 font-medium">Instagram</label>
+                                    <input type="url" placeholder="instagram.com" autoComplete="false"
+                                           name="instagram"
+                                           value={instagramUrl}
+                                           onChange={(e) => setInstagramUrl(e.target.value)}
+                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                                    />
+
+                                    <label htmlFor="youtube" className="block mb-2 font-medium">Youtube</label>
+                                    <input type="url" placeholder="youtube.com" autoComplete="false"
+                                           name="youtube"
+                                           value={youtubeUrl}
+                                           onChange={(e) => setYoutubeUrl(e.target.value)}
+                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                                    />
+
+                                    <label htmlFor="website" className="block mb-2 font-medium">Website</label>
+                                    <input type="url" placeholder="website.com" autoComplete="false"
+                                           name="website"
+                                           value={websiteUrl}
+                                           onChange={(e) => setWebsiteUrl(e.target.value)}
+                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                                    />
 
                                     <button type="submit"
                                             className=" mt-2 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Update
