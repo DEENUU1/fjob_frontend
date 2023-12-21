@@ -67,7 +67,7 @@ export default async function OfferList() {
                                     {offer.status}
                                 </td>
                                 <td className="px-6 py-4 font-bold">
-                                    <Link href="/" className="font-medium text-blue-600  hover:underline">Candidates</Link>
+                                    <Link title="This function is not available yet" href="/company/offer" className="font-medium text-blue-600  hover:underline">Candidates</Link>
                                 </td>
                                 <td className="px-6 py-4 space-x-2">
                                     <EditOfferModal offer={offer}/>
