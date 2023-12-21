@@ -3,15 +3,17 @@
 import getApiUrl from "@/components/api";
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { IoTrashBinSharp } from "react-icons/io5";
-import {useDispatch} from "react-redux";
-
+import {RiDeleteBin5Line, RiDeleteBin6Fill} from "react-icons/ri";
+import {useState} from "react";
 
 const FavouriteButtonDelete = ({offerId}) => {
     const token = localStorage.getItem('access')
     const router = useRouter();
+    const [isHover, setIsHover] = useState(false);
+    const onMouseEnter = () => setIsHover(true);
+    const onMouseLeave = () => setIsHover(false);
 
-    const handlePostFavourite = async () => {
+    const handleDeleteFavourite = async () => {
         try {
             const response = await fetch(`${getApiUrl()}api/favourite/${offerId}`, {
                 method: 'DELETE',
@@ -34,8 +36,13 @@ const FavouriteButtonDelete = ({offerId}) => {
     }
 
     return (
-        <button type="button" className="ml-auto text-2xl  hover:text-3xl" onClick={handlePostFavourite}>
-            <IoTrashBinSharp />
+        <button className="cursor-pointer ml-auto text-xl" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} type="button" onClick={handleDeleteFavourite}>
+            {isHover ? (
+                <RiDeleteBin6Fill />
+            ): (
+                <RiDeleteBin5Line />
+
+            )}
         </button>
     )
 }
