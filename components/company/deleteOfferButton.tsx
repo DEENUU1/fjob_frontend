@@ -39,7 +39,6 @@ export default function DeleteOfferButton({offerId}) {
     }
 
     return (
-        // <div >
             <button className="cursor-pointer ml-auto text-xl" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} type="button" onClick={handleDeleteOffer}>
                 {isHover ? (
                     <RiDeleteBin6Fill />
@@ -48,7 +47,6 @@ export default function DeleteOfferButton({offerId}) {
 
                 )}
             </button>
-        // </div>
     )
 
 }
