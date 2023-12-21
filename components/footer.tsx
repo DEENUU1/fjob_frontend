@@ -21,13 +21,13 @@ export default function Footer() {
                             {" "}
                             <Link href="/" className="flex items-center space-x-2 text-2xl font-medium text-black">
                                 <Image
-                                    src="/img/logo.svg"
+                                    src="/img/logo.png"
                                     alt="N"
-                                    width="32"
-                                    height="32"
-                                    className="w-8"
+                                    width="100"
+                                    height="100"
+                                    // className="w-10"
                                 />
-                                <span>FJob</span>
+                                {/*<span>FJob</span>*/}
                             </Link>
                         </div>
 

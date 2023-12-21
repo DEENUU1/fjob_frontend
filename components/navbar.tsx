@@ -41,14 +41,14 @@ const Navbar = () => {
                   <span className="flex items-center space-x-2 text-2xl font-medium text-black">
                     <span>
                       <Image
-                          src="/img/logo.svg"
+                          src="/img/logo.png"
                           alt="N"
-                          width="32"
-                          height="32"
-                          className="w-8"
+                          width="100"
+                          height="100"
+                          // className="w-8"
                       />
                     </span>
-                    <span>FJob</span>
+                    {/*<span>FJob</span>*/}
                   </span>
                                 </Link>
 
