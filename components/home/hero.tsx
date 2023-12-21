@@ -25,7 +25,7 @@ const Hero = () => {
                 Find job
               </Link>
               <Link
-                  href="/"
+                  href="/auth/register/company"
                   className="px-8 py-4 text-lg font-normal text-center text-black bg-blue-100 rounded-md hover:bg-blue-200">
                 Add your own ad
               </Link>
