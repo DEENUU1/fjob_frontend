@@ -74,7 +74,54 @@ const Navbar = () => {
                                         )}
                                     </svg>
                                 </Disclosure.Button>
+                                <Disclosure.Panel className="flex flex-wrap w-full my-5 lg:hidden">
+                                    <>
+                                        <Link href="/" className="w-full px-6 py-2 mt-3 text-center lg:ml-5">
+                                            Home
+                                        </Link>
+                                        <Link href="/offer" className="w-full px-6 py-2 mt-3 text-center lg:ml-5">
+                                            Offers
+                                        </Link>
+                                        <Link href="/companies" className="w-full px-6 py-2 mt-3 text-center lg:ml-5">
+                                            Companies
+                                        </Link>
+                                        <Link href="/contact" className="w-full px-6 py-2 mt-3 text-center lg:ml-5">
+                                            Contact
+                                        </Link>
 
+                                        {isAuthenticated ? (
+                                                <>
+                                                    {/*  If user.account_type == "USER" display Dashboard and if its "COMPANY" display company dashboard  */}
+                                                    {user?.account_type == "USER" ? (
+                                                        <Link href="/dashboard" className="w-full px-6 py-2 mt-3 text-center lg:ml-5">
+                                                            Dashboard
+                                                        </Link>
+                                                    ) : (
+                                                        <Link href="/company" className="w-full px-6 py-2 mt-3 text-center lg:ml-5">
+                                                            Dashboard
+                                                        </Link>
+                                                    )}
+                                                    <button onClick={handleLogout} className="w-full px-6 py-2 mt-3 text-center- lg:ml-5">
+                                                        Logout
+                                                    </button>
+
+
+                                                </>
+                                            )
+                                            : (
+                                                <>
+                                                    <Link href="/auth/login" className="w-full px-6 py-2 mt-3 text-center lg:ml-5 bg-blue-400 hover:bg-blue-500 rounded-md ">
+                                                        Get Started
+                                                    </Link>
+                                                    <Link href="/auth/register/company" className="w-full px-6 py-2 mt-3 text-center bg-purple-400 hover:bg-purple-500 rounded-md lg:ml-5">
+                                                        Post offer
+                                                    </Link>
+                                                </>
+                                            )
+                                        }
+
+                                    </>
+                                </Disclosure.Panel>
 
                             </div>
                         </>

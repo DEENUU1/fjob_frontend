@@ -13,10 +13,6 @@ import {toast} from "react-toastify";
 import {Metadata} from "next";
 
 
-export const metadata: Metadata = {
-	title: 'FJob | Dashboard',
-}
-
 export default function Page() {
 	const { data: user, isLoading, isFetching } = useRetrieveUserQuery();
 	const token = localStorage.getItem('access');
