@@ -1,12 +1,20 @@
+"use client"
+
 import getApiUrl from "@/components/api";
 import {useRouter} from "next/navigation";
 import { toast } from 'react-toastify';
-import {IoTrashBinSharp} from "react-icons/io5";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import { useState } from "react";
 
 
 export default function DeleteOfferButton({offerId}) {
     const token = localStorage.getItem("access")
     const router = useRouter();
+    const [isHover, setIsHover] = useState(false);
+    const onMouseEnter = () => setIsHover(true);
+    const onMouseLeave = () => setIsHover(false);
+
 
     const handleDeleteOffer = async () => {
         try {
@@ -31,9 +39,16 @@ export default function DeleteOfferButton({offerId}) {
     }
 
     return (
-        <button type="button" className="ml-auto" onClick={handleDeleteOffer}>
-            <IoTrashBinSharp />
-        </button>
+        // <div >
+            <button className="cursor-pointer ml-auto text-xl" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} type="button" onClick={handleDeleteOffer}>
+                {isHover ? (
+                    <RiDeleteBin6Fill />
+                ): (
+                    <RiDeleteBin5Line />
+
+                )}
+            </button>
+        // </div>
     )
 
 }
