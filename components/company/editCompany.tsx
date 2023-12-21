@@ -72,11 +72,11 @@ export default function EditCompanyModal({company}) {
     return (
         <>
             <button
-                className="ease-linear transition-all duration-150"
+                className="border-2 border-black bg-gray-200 text-black font-bold py-1 px-4 mb-2 hover:bg-gray-400 ease-linear transition-all duration-150"
                 type="button"
                 onClick={() => setShowModal(true)}
             >
-                <FaFlag/>
+                <span>Edit</span>
             </button>
 
             {showModal ? (
