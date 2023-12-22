@@ -7,7 +7,7 @@ import getApiUrl from "@/components/api";
 type Dict = Record<number, any>;
 
 
-function getDetails(offer: any): Array<string> {
+export function getDetails(offer: any): Array<string> {
     const experienceList: Array<Dict> = offer.experience;
     const workTypeList: Array<Dict> = offer.work_type;
     const employmentTypeList: Array<Dict> = offer.experience;

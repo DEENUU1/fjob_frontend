@@ -2,6 +2,9 @@ import getApiUrl from "@/components/api";
 import Link from "next/link";
 import {FaHeart} from "react-icons/fa";
 import Image from "next/image";
+import FavouriteButton from "@/components/offer/favourite";
+import ReportModal from "@/components/offer/report";
+import {getDetails} from "@/components/offer/offerCard";
 
 
 async function getOffer(slug: string) {
@@ -11,7 +14,7 @@ async function getOffer(slug: string) {
         }
     });
     // Primitive backend delay
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    // await new Promise(resolve => setTimeout(resolve, 3000));
     return response.json();
 }
 
@@ -48,123 +51,124 @@ export default async function OfferDetails({slug}) {
 
     return (
         <>
+            <div className="container mx-auto max-w-2xl">
             <div className="mb-5">
-                <div>
-                    <h2 className="text-black text-3xl font-bold">{offer.title}</h2>
-                    <span className="text-gray-500 text-sm mb-5">{offer.created_at}</span>
+                <div className="flex items-center justify-between">
+                    <div>
+                        <h2 className="text-black text-3xl font-bold">{offer.title}</h2>
+                        <span className="text-gray-500 text-sm mb-5">{offer.created_at}</span>
 
-                    {isScrapedOffer && (
-                        <Link
-                            href={offer.url}
-                            className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        >
-                            Apply
-                        </Link>
-                    )}
-                    {isScrapedOffer === false && hasForm ? (
-                        <Link
-                            href={offer.apply_form}
-                            className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        >
-                            Apply
-                        </Link>
-                    ) : (isScrapedOffer === false && !hasForm &&
-                        <Link
-                            href="/"
-                            className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        >
-                            Apply
-                        </Link>)}
+                        <div className="flex space-x-5">
+                            {favouriteCounter.counter >= 1 && (
+                                <div>
+                                    <span className="text-xl ml-auto">{favouriteCounter.counter} <FavouriteButton offerId={offer.id}/></span>
+                                </div>
+                            )}
+
+                            <ReportModal offerId={offer.id}/>
+                        </div>
+
+                    </div>
 
 
-                    {favouriteCounter.counter >= 1 && (
+                    <div>
+                        {isScrapedOffer && (
+                            <Link
+                                href={offer.url}
+                                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            >
+                                Apply
+                            </Link>
+                        )}
+                        {isScrapedOffer === false && hasForm ? (
+                            <Link
+                                href={offer.apply_form}
+                                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            >
+                                Apply
+                            </Link>
+                        ) : (
+                            isScrapedOffer === false && !hasForm && (
+                                <Link
+                                    href="/"
+                                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                                >
+                                    Apply
+                                </Link>
+                            )
+                        )}
+                    </div>
+                </div>
+
+                <div className="mb-5">
+                    {!isScrapedOffer ? (
                         <div>
-                          <span>{favouriteCounter.counter} <FaHeart/> </span>
+                            <Link href={`/companies/${offer.company.id}`}>
+                                <h2>Company: <strong>{offer.company.name}</strong></h2>
+                            </Link>
+                        </div>
+                    ) : (
+                        <div>
+                            <h2>Company: <strong>{offer.company_name}</strong></h2>
                         </div>
                     )}
-
                 </div>
-                <p>{offer.description}</p>
+
+                <div className="mb-3 flex flex-wrap gap-2">
+                    {getDetails(offer).map((detail: string) => (
+                        <span
+                            key={detail}
+                            className="bg-black text-white font-medium rounded-2xl py-2 px-4"
+                        >
+                          {detail}
+                        </span>
+                    ))}
+                </div>
+
+
+
+                <div className="mb-2 mt-4">
+                    {offer.salary.map((salary: any) => (
+                        <div key={salary.id} className="flex items-center space-x-2">
+                            {salary.salary_from && (
+                                <span className="font-bold">{salary.salary_from}</span>
+                            )}
+                            {salary.salary_from && salary.salary_to && (
+                                <span className="font-bold"> - </span>
+                            )}
+                            {salary.salary_to && (
+                                <span className="font-bold">{salary.salary_to}</span>
+                            )}
+                            {salary.currency && salary.schedule && (
+                                <span className="text-gray-600"> {salary.currency} /</span>
+                            )}
+                            {salary.schedule && (
+                                <span className="text-gray-600">{salary.schedule}</span>
+                            )}
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mb-2 mt-4">
+                    {offer.addresses.map((addresses: any) => (
+                        <p >{addresses.country.name} {addresses.city.name} {addresses.region.name} {addresses.street}</p>
+                    ))}
+                </div>
+
+
+                <div>
+                    <p className="text-gray-700 text-lg mb-5 mt-3 align-baseline">{offer.description}</p>
+                </div>
             </div>
 
-            <div className="mb-5">
-                {!isScrapedOffer ? (
-                    <div>
-                        {/* todo add url to company details page */}
-                        <Link href="/">
-                            <h2>{offer.company.name}</h2>
-                        </Link>
-                        {offer.company.logo === null ? (
-                            <Image src="https://www.eclosio.ong/wp-content/uploads/2018/08/default.png" alt="default" width={500} height={500}/>
-                        ): (
-                            <Image src={offer.company.logo} alt={offer.company.name} width={500} height={500}/>
 
-                        )}
 
-                        <p>{offer.company.description}</p>
 
-                        {skills.map((skill: any) => (
-                            <span>{skill}</span>
-                        ))}
+            {isScrapedOffer && (
+                <Link href={offer.url} className="link text-gray-400">{offer.url}</Link>
+            )}
 
-                    </div>
-                ) : (
-                    <div>
-                        <h2>{offer.company_name}</h2>
-                        {offer.company_logo === null ? (
-                            <Image src="https://www.eclosio.ong/wp-content/uploads/2018/08/default.png" alt="default" width={500} height={500}/>
-
-                        ): (
-                            <Image src={offer.company_logo} alt={offer.company_name} width={500} height={500}/>
-
-                        )}
-                        <span>Source: {offer.url}</span>
-                    </div>
-                )}
             </div>
-
-
-            {offer.is_remote && (
-                <span>Remote</span>
-            )}
-            {offer.is_hybrid && (
-                <span>Hybrid</span>
-            )}
-
-            {offer.addresses.map((addresses: any) => (
-                <p>{addresses.country.name} {addresses.city.name} {addresses.region.name} {addresses.street}</p>
-            ))}
-
-            {offer.salary.map((salary: any) => (
-                <div>
-                    <span>{salary.salary_from}</span>
-                    <span> - </span>
-                    <span>{salary.salary_to}</span>
-                    <span> {salary.currency}</span>
-                    <span>/</span>
-                    <span>{salary.schedule}</span>
-                </div>
-            ))}
-
-
-            {offer.experience.map((experience: any) => (
-                <div>
-                    <span>{experience.name}</span>
-                </div>
-            ))}
-
-            {offer.work_type.map((workType: any) => (
-                <div>
-                    <span>{workType.name}</span>
-                </div>
-            ))}
-
-            {offer.employment_type.map((employmentType: any) => (
-                <div>
-                    <span>{employmentType.name}</span>
-                </div>
-            ))}
-
         </>
     )
 }

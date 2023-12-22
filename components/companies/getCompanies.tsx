@@ -5,7 +5,8 @@ import Link from "next/link";
 
 async function getCompanies() {
     const response = await fetch(`${getApiUrl()}api/company`, {
-        next: {revalidate: 3600},
+        cache:  'no-store',
+        // next: {revalidate: 3600},
     })
 
     return await response.json()
