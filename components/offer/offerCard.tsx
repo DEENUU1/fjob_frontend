@@ -117,7 +117,7 @@ export default function OfferCard({offer}: any) {
                                 </div>
                             ) : (
                                 <div>
-                                    <Link className="text-lg text-gray-700" href="/">{offer.company.name}</Link>
+                                    <Link className="text-lg text-gray-700" href={`/companies/${offer.company.id}`}>{offer.company.name}</Link>
                                 </div>
                             )}
                             <h4 className="text-xl font-bold">{getSalary(offer)}</h4>
@@ -139,10 +139,14 @@ export default function OfferCard({offer}: any) {
                 </div>
 
 
-                <div className="mb-3">
+                <div className="mb-3 flex flex-wrap gap-2">
                     {getDetails(offer).map((detail: string) => (
-                        <span className="bg-black text-white font-medium rounded-2xl ml-4 py-2 px-2"
-                        >{detail}</span>
+                        <span
+                            key={detail}
+                            className="bg-black text-white font-medium rounded-2xl py-2 px-4"
+                        >
+                          {detail}
+                        </span>
                     ))}
                 </div>
 
