@@ -17,9 +17,9 @@ function Offers() {
             <div className="">
                 <h1 className="text-center font-bold text-3xl mb-10">Companies</h1>
 
-                <Suspense fallback={<Spinner/>}>
+                {/*<Suspense fallback={<Spinner/>}>*/}
                     <Companies/>
-                </Suspense>
+                {/*</Suspense>*/}
 
             </div>
         </main>

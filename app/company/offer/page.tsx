@@ -1,4 +1,3 @@
-
 import AddOffer from "@/components/company/addOfferButton";
 import {Suspense} from "react";
 import Spinner from '@/components/common/Spinner';

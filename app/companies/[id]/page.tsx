@@ -19,15 +19,15 @@ export default function Page({ params }: { params: PageParams }) {
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
             <div>
-                <Suspense fallback={<Spinner/>}>
+                {/*<Suspense fallback={<Spinner/>}>*/}
                     <CompanyDetails companyId={id}/>
-                </Suspense>
+                {/*</Suspense>*/}
 
                 <h1 className="text-2xl">Active job offers:</h1>
-                <Suspense fallback={<Spinner/>}>
+                {/*<Suspense fallback={<Spinner/>}>*/}
                     <CompanyActiveOffers companyId={id}/>
-                </Suspense>
-
+                {/*</Suspense>*/}
+`
             </div>
 
         </main>

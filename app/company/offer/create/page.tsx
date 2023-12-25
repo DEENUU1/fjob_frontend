@@ -1,7 +1,3 @@
-import AddOffer from "@/components/company/addOfferButton";
-import {Suspense} from "react";
-import Spinner from '@/components/common/Spinner';
-import OfferList from "@/components/company/companyOfferList";
 import {Metadata} from "next";
 import CreateJobOffer from "@/components/company/createOffer";
 
