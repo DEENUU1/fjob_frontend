@@ -151,7 +151,7 @@ export default async function OfferDetails({slug}) {
 
                 <div className="mb-2 mt-4">
                     {offer.addresses.map((addresses: any) => (
-                        <p >{addresses.country.name} {addresses.city.name} {addresses.region.name} {addresses.street}</p>
+                        <p key={addresses.id}>{addresses.country.name} {addresses.city.name} {addresses.region.name} {addresses.street}</p>
                     ))}
                 </div>
 

@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from "react";
+'use client'
+
+import React, {useState} from "react";
 import {toast} from "react-toastify";
 
 
-export default function patchUser() {
+export default function PatchUser() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [isLoading, setIsLoading] = useState(false);

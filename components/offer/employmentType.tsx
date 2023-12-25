@@ -1,8 +1,10 @@
+'use client'
+
 import getApiUrl from "@/components/api";
 import {useEffect, useState} from "react";
 
 
-export default function getEmploymentTypes(){
+export default function GetEmploymentTypes(){
     const [employmentTypes, setEmploymentTypes] = useState();
     useEffect(() => {
         fetch(`${getApiUrl()}api/offer/employment`)

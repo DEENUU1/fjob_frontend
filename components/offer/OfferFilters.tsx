@@ -1,7 +1,7 @@
 import React from "react";
-import getExperiences from "@/components/offer/experience";
-import getWorkType from "@/components/offer/workType";
-import getEmploymentTypes from "@/components/offer/employmentType";
+import GetExperiences from "@/components/offer/experience";
+import GetWorkType from "@/components/offer/workType";
+import GetEmploymentTypes from "@/components/offer/employmentType";
 
 function OfferFilters({
                           search,
@@ -25,9 +25,9 @@ function OfferFilters({
     orderingTypes.set("Lowest salary", "salary__salary_from");
     orderingTypes.set("Highest salary", "-salary__salary_from");
 
-    const experiences = getExperiences();
-    const workTypes = getWorkType();
-    const employmentTypes = getEmploymentTypes();
+    const experiences = GetExperiences();
+    const workTypes = GetWorkType();
+    const employmentTypes = GetEmploymentTypes();
 
     return (
         <>

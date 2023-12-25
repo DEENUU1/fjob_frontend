@@ -3,9 +3,9 @@
 import React, {useState} from "react";
 import getApiUrl from "@/components/api";
 import {toast} from "react-toastify";
-import getExperiences from "@/components/offer/experience";
-import getWorkType from "@/components/offer/workType";
-import getEmploymentTypes from "@/components/offer/employmentType";
+import GetExperiences from "@/components/offer/experience";
+import GetWorkType from "@/components/offer/workType";
+import GetEmploymentTypes from "@/components/offer/employmentType";
 import {useRouter} from 'next/navigation';
 import {FaFlag} from "react-icons/fa";
 import {RiEditFill, RiEditLine} from "react-icons/ri";
@@ -33,9 +33,9 @@ export default function EditOfferModal({offer}) {
     const onMouseLeave = () => setIsHover(false);
 
 
-    const experiences = getExperiences();
-    const workTypes = getWorkType();
-    const employmentTypes = getEmploymentTypes();
+    const experiences = GetExperiences();
+    const workTypes = GetWorkType();
+    const employmentTypes = GetEmploymentTypes();
 
 
     const experienceMultiSelect = () => {
