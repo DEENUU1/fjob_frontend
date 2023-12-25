@@ -4,11 +4,15 @@ import CompanyDetails from "@/components/companies/companyDetails";
 import CompanyActiveOffers from "@/components/companies/getPublicOffers";
 import {Metadata} from "next";
 
+interface PageParams {
+    id: string;
+}
+
 export const metadata: Metadata = {
     title: 'FJob | Company details',
 }
 
-export default function Page({params}) {
+export default function Page({ params }: { params: PageParams }) {
     const id = params.id;
 
     return (
