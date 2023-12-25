@@ -31,6 +31,7 @@ export default function CreateJobOffer() {
     const employmentTypes = GetEmploymentTypes();
 
     const experienceMultiSelect = () => {
+        // @ts-ignore
         return (
             <select
                 className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -49,6 +50,7 @@ export default function CreateJobOffer() {
     };
 
     const workTypeMultiSelect = () => {
+        // @ts-ignore
         return (
             <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setWorkType(e.target.value)}>
                 {workTypes && workTypes.map((workType:any) => (
@@ -59,6 +61,7 @@ export default function CreateJobOffer() {
     };
 
     const employmentTypeMultiSelect = () => {
+        // @ts-ignore
         return (
             <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setEmploymentType(e.target.value)}>
                 {employmentTypes && employmentTypes.map((employmentType: any) => (
