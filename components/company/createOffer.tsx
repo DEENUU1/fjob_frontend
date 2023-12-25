@@ -39,7 +39,7 @@ export default function CreateJobOffer() {
                 name="experience[]"
                 onChange={(e) => setExperience(Array.from(e.target.selectedOptions, (option) => option.value))}
             >
-                {experiences && experiences.length > 0 && experiences.map((experience: any) => (
+                {experiences && experiences.map((experience: any) => (
                     <option key={experience.id} value={experience.id}>
                         {experience.name}
                     </option>
@@ -51,7 +51,7 @@ export default function CreateJobOffer() {
     const workTypeMultiSelect = () => {
         return (
             <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setWorkType(e.target.value)}>
-                {workTypes && workTypes.length > 0 && workTypes.map((workType:any) => (
+                {workTypes && workTypes.map((workType:any) => (
                     <option key={workType.id} value={workType.id}>{workType.name}</option>
                 ))}
             </select>
@@ -61,7 +61,7 @@ export default function CreateJobOffer() {
     const employmentTypeMultiSelect = () => {
         return (
             <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setEmploymentType(e.target.value)}>
-                {employmentTypes && employmentTypes.length > 0 && employmentTypes.map((employmentType: any) => (
+                {employmentTypes && employmentTypes.map((employmentType: any) => (
                     <option key={employmentType.id} value={employmentType.id}>{employmentType.name}</option>
                 ))}
             </select>
