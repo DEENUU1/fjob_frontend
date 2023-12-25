@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SocialIcon } from 'react-social-icons'
 
-async function getCompanyDetails(companyId: number){
+async function getCompanyDetails(companyId: string){
 
     const response = await fetch(`${getApiUrl()}api/company/${companyId}`, {
         headers: {
@@ -16,7 +16,8 @@ async function getCompanyDetails(companyId: number){
 }
 
 
-export default async function CompanyDetails(companyId: number) {
+// @ts-ignore
+export default async function CompanyDetails({companyId}) {
     const data = await getCompanyDetails(companyId)
 
     return (
