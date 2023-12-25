@@ -8,6 +8,8 @@ import GetWorkType from "@/components/offer/workType";
 import GetEmploymentTypes from "@/components/offer/employmentType";
 import { useRouter } from 'next/navigation';
 
+
+// @ts-ignore
 export default function CreateJobOffer() {
     const router = useRouter();
 
@@ -19,9 +21,9 @@ export default function CreateJobOffer() {
     const [isHybrid, setIsHybrid] = useState(false)
     const [applyForm, setApplyForm] = useState("")
     const [skills, setSkills] = useState()
-    const [experience, setExperience] = useState<string[]>([]);
-    const [workType, setWorkType] = useState<string[]>([]);
-    const [employmentType, setEmploymentType] = useState<string[]>([]);
+    const [experience, setExperience] = useState([])
+    const [workType, setWorkType] = useState([])
+    const [employmentType, setEmploymentType] = useState([])
     const [status, setStatus] = useState("")
 
     const experiences = GetExperiences();
