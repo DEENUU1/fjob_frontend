@@ -8,7 +8,13 @@ export const metadata: Metadata = {
     title: 'FJob | Offer details',
 }
 
-export default function Offer({params}) {
+
+interface PageParams {
+    slug: string;
+}
+
+
+export default function Offer({params}: {params: PageParams}) {
     const slug = params.slug;
 
     return (
