@@ -6,9 +6,6 @@ import  Spinner  from '@/components/common/Spinner';
 import {Metadata} from "next";
 
 
-export const metadata: Metadata = {
-	title: 'FJob | Google provider',
-}
 
 export default function Page() {
 	const [googleAuthenticate] = useSocialAuthenticateMutation();

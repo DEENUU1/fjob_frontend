@@ -5,9 +5,6 @@ import { useSocialAuth } from '@/hooks';
 import Spinner from '@/components/common/Spinner';
 import {Metadata} from "next";
 
-export const metadata: Metadata = {
-	title: 'FJob | Facebook provider',
-}
 
 export default function Page() {
 	const [facebookAuthenticate] = useSocialAuthenticateMutation();
