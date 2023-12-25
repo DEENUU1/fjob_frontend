@@ -4,7 +4,7 @@ import Link from "next/link";
 
 
 async function getCompanies() {
-    const response = await fetch(`${getApiUrl()}api/company`, {
+    const response = await fetch(process.env.API_URL + "api/company", {
         next: {revalidate: 3600},
     })
 

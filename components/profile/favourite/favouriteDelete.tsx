@@ -15,7 +15,7 @@ const FavouriteButtonDelete = ({offerId}) => {
 
     const handleDeleteFavourite = async () => {
         try {
-            const response = await fetch(`${getApiUrl()}api/favourite/${offerId}`, {
+            const response = await fetch(process.env.API_URL + `api/favourite/${offerId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

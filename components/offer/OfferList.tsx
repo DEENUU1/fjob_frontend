@@ -37,7 +37,7 @@ function OfferList({
             url += `&employment_type=${employmentType}`;
         }
 
-        fetch(`${getApiUrl()}${url}`, {headers: {"Allow-Control-Allow-Origin": "*", 'Content-Type': 'application/json'}})
+        fetch(process.env.API_URL + url, {headers: {"Allow-Control-Allow-Origin": "*", 'Content-Type': 'application/json'}})
             .then((response) => response.json())
             .then((data) => {
                 setOffers(data);

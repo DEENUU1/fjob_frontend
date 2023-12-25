@@ -50,7 +50,7 @@ export default function EditCompanyModal({company}) {
         formData.append("is_active", isActive);
 
         try {
-            const response = await fetch(`${getApiUrl()}api/company/management/`, {
+            const response = await fetch(process.env.API_URL + "api/company/management/", {
                 method: "PUT",
                 headers: {
                     accept: "application/json",

@@ -37,7 +37,7 @@ const ReportModal = ({offerId}) => {
                 return
             }
 
-            const response = await fetch(`${getApiUrl()}/api/support/report/`, {
+            const response = await fetch(process.env.API_URL + "/api/support/report/", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

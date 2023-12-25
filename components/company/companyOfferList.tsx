@@ -8,7 +8,7 @@ import DeleteOfferButton from "@/components/company/deleteOfferButton";
 async function getCompanyOfferList(){
     const token = localStorage.getItem("access");
 
-    const response = await fetch(`${getApiUrl()}api/company/offer`, {
+    const response = await fetch( process.env.API_URL + "api/company/offer", {
            headers: {
                Authorization: `Bearer ${token}`,
                accept: 'application/json',

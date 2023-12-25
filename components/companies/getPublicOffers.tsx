@@ -3,7 +3,7 @@ import OfferCard from "@/components/offer/offerCard";
 
 
 async function getCompanyPublicOffers(companyId: number){
-    const response = await fetch(`${getApiUrl()}api/offer/offer/company/${companyId}`)
+    const response = await fetch(process.env.API_URL + `api/offer/offer/company/${companyId}`)
 
     return await response.json()
 }

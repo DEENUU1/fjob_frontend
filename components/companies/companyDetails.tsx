@@ -6,7 +6,7 @@ import { SocialIcon } from 'react-social-icons'
 
 async function getCompanyDetails(companyId: string){
 
-    const response = await fetch(`${getApiUrl()}api/company/${companyId}`, {
+    const response = await fetch(process.env.API_URL + "api/company/${companyId}", {
         headers: {
             accept: "application/json",
         }

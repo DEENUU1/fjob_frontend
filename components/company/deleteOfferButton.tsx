@@ -19,7 +19,7 @@ export default function DeleteOfferButton({offerId}) {
 
     const handleDeleteOffer = async () => {
         try {
-            const response = await fetch(`${getApiUrl()}api/offer/company/${offerId}`, {
+            const response = await fetch(process.env.API_URL + "api/offer/company/${offerId}", {
                 method: "DELETE",
                 headers: {
                     accept: "application/json",

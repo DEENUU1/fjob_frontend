@@ -25,7 +25,7 @@ const FavouriteButton = ({offerId}) => {
                 return
             }
 
-            const response = await fetch(`${getApiUrl()}api/favourite/`, {
+            const response = await fetch(process.env.API_URL + "api/favourite/", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

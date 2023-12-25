@@ -8,7 +8,7 @@ import Link from "next/link";
 export async function getFavourites() {
     const token = localStorage.getItem('access');
 
-    const response = await fetch(`${getApiUrl()}api/favourite`, {
+    const response = await fetch(process.env.API_URL + "api/favourite", {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

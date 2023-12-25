@@ -99,7 +99,7 @@ export default function CreateJobOffer() {
         formData.append("company", 2);
 
         try {
-            const response = await fetch(`${getApiUrl()}api/offer/company/`, {
+            const response = await fetch(process.env.API_URL + "api/offer/company/", {
                 method: "POST",
                 headers: {
                     accept: "application/json",

@@ -21,7 +21,7 @@ export default function ContactForm() {
         formData.append("message", message);
 
         try {
-            const response = await fetch(`${getApiUrl()}api/support/contact/`, {
+            const response = await fetch(process.env.API_URL + "api/support/contact/", {
                 method: "POST",
                 headers: {
                     accept: "application/json",

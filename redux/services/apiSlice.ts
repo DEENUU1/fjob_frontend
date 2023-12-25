@@ -10,7 +10,7 @@ import getApiUrl from "@/components/api";
 
 const mutex = new Mutex();
 const baseQuery = fetchBaseQuery({
-	baseUrl: `${getApiUrl()}api`,
+	baseUrl: process.env.API_URL + "api",
 	credentials: 'include',
 });
 const baseQueryWithReauth: BaseQueryFn<

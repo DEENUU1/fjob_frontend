@@ -8,7 +8,7 @@ import {getDetails} from "@/components/offer/offerCard";
 
 
 async function getOffer(slug: string) {
-    const response = await fetch(`${getApiUrl()}/api/offer/offer/${slug}`, {
+    const response = await fetch(process.env.API_URL + `/api/offer/offer/${slug}`, {
         next: {
             revalidate: 0
         }
@@ -20,7 +20,7 @@ async function getOffer(slug: string) {
 
 
 async function getOfferFavouriteCounter(id: number) {
-    const response = await fetch(`${getApiUrl()}/api/favourite/counter/${id}`)
+    const response = await fetch(process.env.API_URL + `/api/favourite/counter/${id}`)
 
     return response.json();
 }

@@ -21,9 +21,9 @@ export default function Offer({params}: {params: PageParams}) {
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
             <div>
-                {/*<Suspense fallback={<Spinner/>}>*/}
+                <Suspense fallback={<Spinner/>}>
                     <OfferDetails slug={slug}/>
-                {/*</Suspense>*/}
+                </Suspense>
             </div>
 
         </main>

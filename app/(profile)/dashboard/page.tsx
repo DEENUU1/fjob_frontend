@@ -27,7 +27,7 @@ export default function Page() {
 		formData.append("last_name", lastName);
 
 		try {
-			const response = await fetch(`${getApiUrl()}api/users/me/`, {
+			const response = await fetch(process.env.API_URL + "api/users/me/", {
 				method: "PATCH",
 				headers: {
 					accept: "application/json",

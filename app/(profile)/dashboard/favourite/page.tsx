@@ -15,9 +15,9 @@ export default async function FavouritePage() {
                 <div>
                     <h1 className="text-center font-bold text-3xl mb-5">Your saved job offers</h1>
 
-                    {/*<Suspense fallback={<Spinner/>}>*/}
+                    <Suspense fallback={<Spinner/>}>
                         <Favourites/>
-                    {/*</Suspense>*/}
+                    </Suspense>
 
                 </div>
             </main>
