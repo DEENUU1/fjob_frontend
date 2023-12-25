@@ -26,50 +26,50 @@ export default function CreateJobOffer() {
     const [employmentType, setEmploymentType] = useState([])
     const [status, setStatus] = useState("")
 
-    const experiences = GetExperiences();
-    const workTypes = GetWorkType();
-    const employmentTypes = GetEmploymentTypes();
+    // const experiences = GetExperiences();
+    // const workTypes = GetWorkType();
+    // const employmentTypes = GetEmploymentTypes();
 
-    const experienceMultiSelect = () => {
-        // @ts-ignore
-        return (
-            <select
-                className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                required
-                multiple
-                name="experience[]"
-                onChange={(e) => setExperience(Array.from(e.target.selectedOptions, (option) => option.value))}
-            >
-                {experiences && experiences.map((experience: any) => (
-                    <option key={experience.id} value={experience.id}>
-                        {experience.name}
-                    </option>
-                ))}
-            </select>
-    );
-    };
-
-    const workTypeMultiSelect = () => {
-        // @ts-ignore
-        return (
-            <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setWorkType(e.target.value)}>
-                {workTypes && workTypes.map((workType:any) => (
-                    <option key={workType.id} value={workType.id}>{workType.name}</option>
-                ))}
-            </select>
-        );
-    };
-
-    const employmentTypeMultiSelect = () => {
-        // @ts-ignore
-        return (
-            <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setEmploymentType(e.target.value)}>
-                {employmentTypes && employmentTypes.map((employmentType: any) => (
-                    <option key={employmentType.id} value={employmentType.id}>{employmentType.name}</option>
-                ))}
-            </select>
-        );
-    };
+    // const experienceMultiSelect = () => {
+    //     // @ts-ignore
+    //     return (
+    //         <select
+    //             className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+    //             required
+    //             multiple
+    //             name="experience[]"
+    //             onChange={(e) => setExperience(Array.from(e.target.selectedOptions, (option) => option.value))}
+    //         >
+    //             {experiences && experiences.map((experience: any) => (
+    //                 <option key={experience.id} value={experience.id}>
+    //                     {experience.name}
+    //                 </option>
+    //             ))}
+    //         </select>
+    // );
+    // };
+    //
+    // const workTypeMultiSelect = () => {
+    //     // @ts-ignore
+    //     return (
+    //         <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setWorkType(e.target.value)}>
+    //             {workTypes && workTypes.map((workType:any) => (
+    //                 <option key={workType.id} value={workType.id}>{workType.name}</option>
+    //             ))}
+    //         </select>
+    //     );
+    // };
+    //
+    // const employmentTypeMultiSelect = () => {
+    //     // @ts-ignore
+    //     return (
+    //         <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setEmploymentType(e.target.value)}>
+    //             {employmentTypes && employmentTypes.map((employmentType: any) => (
+    //                 <option key={employmentType.id} value={employmentType.id}>{employmentType.name}</option>
+    //             ))}
+    //         </select>
+    //     );
+    // };
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -159,14 +159,14 @@ export default function CreateJobOffer() {
                        className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
                 />
 
-                <label htmlFor="experience" className="block mb-2 font-medium">Experience</label>
-                {experienceMultiSelect()}
+                {/*<label htmlFor="experience" className="block mb-2 font-medium">Experience</label>*/}
+                {/*{experienceMultiSelect()}*/}
 
-                <label htmlFor="experience" className="block mb-2 font-medium">Employment Type</label>
-                {workTypeMultiSelect()}
+                {/*<label htmlFor="experience" className="block mb-2 font-medium">Employment Type</label>*/}
+                {/*{workTypeMultiSelect()}*/}
 
-                <label htmlFor="experience" className="block mb-2 font-medium">Work Type</label>
-                {employmentTypeMultiSelect()}
+                {/*<label htmlFor="experience" className="block mb-2 font-medium">Work Type</label>*/}
+                {/*{employmentTypeMultiSelect()}*/}
 
                 <label htmlFor="status" className="block mb-2 font-medium">Status</label>
                 <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="status" onChange={(e) => setStatus(e.target.value)}>
