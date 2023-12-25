@@ -19,9 +19,9 @@ export default function CreateJobOffer() {
     const [isHybrid, setIsHybrid] = useState(false)
     const [applyForm, setApplyForm] = useState("")
     const [skills, setSkills] = useState()
-    const [experience, setExperience] = useState([])
-    const [workType, setWorkType] = useState([])
-    const [employmentType, setEmploymentType] = useState([])
+    const [experience, setExperience] = useState<string[]>([]);
+    const [workType, setWorkType] = useState<string[]>([]);
+    const [employmentType, setEmploymentType] = useState<string[]>([]);
     const [status, setStatus] = useState("")
 
     const experiences = GetExperiences();
