@@ -16,7 +16,7 @@ export default async function CompanyActiveOffers({companyId}) {
     return (
         <>
             {data ? (
-                data.map((offer) => (
+                data.map((offer: { id: any; }) => (
                     <OfferCard key={offer.id} offer={offer} />
                 ))
             ) : (
