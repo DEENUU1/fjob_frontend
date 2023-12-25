@@ -9,6 +9,7 @@ async function getCompanyPublicOffers(companyId: number){
 }
 
 
+// @ts-ignore
 export default async function CompanyActiveOffers({companyId}) {
     const data = await getCompanyPublicOffers(companyId)
 
