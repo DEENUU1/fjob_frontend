@@ -21,7 +21,7 @@ export default function CreateJobOffer() {
     const [isHybrid, setIsHybrid] = useState(false)
     const [applyForm, setApplyForm] = useState("")
     const [skills, setSkills] = useState()
-    const [experience, setExperience] = useState([])
+    const [experience, setExperience] = useState<string[]>([]);
     const [workType, setWorkType] = useState([])
     const [employmentType, setEmploymentType] = useState([])
     const [status, setStatus] = useState("")
@@ -32,9 +32,17 @@ export default function CreateJobOffer() {
 
     const experienceMultiSelect = () => {
         return (
-            <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required multiple name="experience[]" onChange={(e) => setExperience(e.target.value)}>
-                {experiences && experiences.length > 0 && experiences.map((experience:any) => (
-                    <option key={experience.id} value={experience.id}>{experience.name}</option>
+            <select
+                className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                required
+                multiple
+                name="experience[]"
+                onChange={(e) => setExperience(Array.from(e.target.selectedOptions, (option) => option.value))}
+            >
+                {experiences && experiences.length > 0 && experiences.map((experience: any) => (
+                    <option key={experience.id} value={experience.id}>
+                        {experience.name}
+                    </option>
                 ))}
             </select>
     );
