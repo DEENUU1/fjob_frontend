@@ -8,6 +8,7 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useState } from "react";
 
 
+// @ts-ignore
 export default function DeleteOfferButton({offerId}) {
     const token = localStorage.getItem("access")
     const router = useRouter();

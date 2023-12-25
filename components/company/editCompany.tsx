@@ -8,6 +8,7 @@ import {useRouter} from 'next/navigation';
 import {FaFlag} from "react-icons/fa";
 
 
+// @ts-ignore
 export default function EditCompanyModal({company}) {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter();

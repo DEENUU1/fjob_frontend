@@ -3,6 +3,7 @@ import GetExperiences from "@/components/offer/experience";
 import GetWorkType from "@/components/offer/workType";
 import GetEmploymentTypes from "@/components/offer/employmentType";
 
+
 function OfferFilters({
                           search,
                           isRemote,

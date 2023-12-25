@@ -11,6 +11,7 @@ import {FaFlag} from "react-icons/fa";
 import {RiEditFill, RiEditLine} from "react-icons/ri";
 
 
+// @ts-ignore
 export default function EditOfferModal({offer}) {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter();
