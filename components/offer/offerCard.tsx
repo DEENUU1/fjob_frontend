@@ -163,7 +163,8 @@ export default function OfferCard({offer}: any) {
                         <div>
                             <span className="text-gray-400 mr-2">{getCreatedTime(offer)}</span>
                             {isNew &&
-                                <span className="bg-green-600 text-white font-bold rounded-xl py-1 px-1">New</span>}
+                                <span className="indicator-item badge badge-secondary">99+</span>
+                            }
                         </div>
                     </div>
                     <div>
