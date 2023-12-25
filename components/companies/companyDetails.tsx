@@ -16,7 +16,7 @@ async function getCompanyDetails(companyId: number){
 }
 
 
-export default async function CompanyDetails({companyId}) {
+export default async function CompanyDetails(companyId: number) {
     const data = await getCompanyDetails(companyId)
 
     return (
