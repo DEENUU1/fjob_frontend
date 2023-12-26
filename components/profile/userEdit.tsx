@@ -16,7 +16,7 @@ export default function PatchUser() {
                 last_name: lastName,
             };
 
-            const response = await fetch('http://localhost:8000/api/users/me/', {
+            const response = await fetch(process.env.API_URL + '/api/users/me/', {
                 method: 'PATCH',
                 headers: {
                     'Accept': 'application/json',
