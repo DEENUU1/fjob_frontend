@@ -15,9 +15,6 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true,
     },
-    headers: {
-        "Access-Control-Allow-Origin": "*",
-    }
 }
 
 module.exports = nextConfig
