@@ -39,6 +39,12 @@ export function getDetails(offer: any): Array<string> {
 }
 
 
+interface Dict {
+    country?: { name: string } | null;
+    region?: { name: string } | null;
+    city?: { name: string } | null;
+}
+
 function getLocalization(offer: any): string {
     const localizationList: Array<Dict> = offer.addresses;
 
@@ -48,17 +54,19 @@ function getLocalization(offer: any): string {
         return '';
     } else if (numOfData === 1) {
         const firstLocalization = localizationList[0];
-        return `${firstLocalization.country.name}, ${firstLocalization.region.name}, ${firstLocalization.city.name}`;
+        const countryName = firstLocalization.country?.name || 'N/A';
+        const regionName = firstLocalization.region?.name || 'N/A';
+        const cityName = firstLocalization.city?.name || 'N/A';
+        return `${countryName}, ${regionName}, ${cityName}`;
     } else {
         const firstLocalization = localizationList[0];
         const additionalLocalizations = numOfData - 1;
         if (numOfData === 2) {
-            return `${firstLocalization.country.name}, ${firstLocalization.region.name}, ${firstLocalization.city.name} + ${additionalLocalizations} localization`;
+            return `${firstLocalization?.country?.name}, ${firstLocalization?.region?.name}, ${firstLocalization?.city?.name} + ${additionalLocalizations} localization`;
         }
-        return `${firstLocalization.country.name}, ${firstLocalization.region.name}, ${firstLocalization.city.name} + ${additionalLocalizations} localizations`;
+        return `${firstLocalization.country?.name}, ${firstLocalization.region?.name}, ${firstLocalization.city?.name} + ${additionalLocalizations} localizations`;
     }
 }
-
 
 interface Salary {
     salaryFrom?: number,
@@ -76,7 +84,11 @@ function getSalary(offer: any): string {
         return '';
     } else if (numOfData === 1) {
         const firstSalary = salaryList[0];
-        return `${firstSalary.salary_from} - ${firstSalary.salary_to} ${firstSalary.currency}/${firstSalary.schedule}`;
+        if (firstSalary.salaryFrom === null && firstSalary.salaryTo === null){
+            return '';
+        } else {
+            return `${firstSalary.salary_from} - ${firstSalary.salary_to} ${firstSalary.currency}/${firstSalary.schedule}`;
+        }
     } else {
         return `${salaryList[0].salary_from} - ${salaryList[0].salary_to} ${salaryList[0].currency}/${salaryList[0].schedule} + ${numOfData - 1} salaries`;
     }
