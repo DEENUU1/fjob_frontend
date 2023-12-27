@@ -10,9 +10,9 @@ export default function SocialButtons() {
 			<SocialButton provider='google' onClick={continueWithGoogle}>
 				<ImGoogle className='mr-3' /> Google Signin
 			</SocialButton>
-			<SocialButton provider='facebook' onClick={continueWithFacebook}>
-				<ImFacebook className='mr-3' /> Facebook Signin
-			</SocialButton>
+			{/*<SocialButton provider='facebook' onClick={continueWithFacebook}>*/}
+			{/*	<ImFacebook className='mr-3' /> Facebook Signin*/}
+			{/*</SocialButton>*/}
 		</div>
 	);
 }
