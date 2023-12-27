@@ -39,14 +39,14 @@ export function getDetails(offer: any): Array<string> {
 }
 
 
-interface Dict {
+interface Localization {
     country?: { name: string } | null;
     region?: { name: string } | null;
     city?: { name: string } | null;
 }
 
 function getLocalization(offer: any): string {
-    const localizationList: Array<Dict> = offer.addresses;
+    const localizationList: Array<Localization> = offer.addresses;
 
     const numOfData: number = localizationList.length;
 
@@ -86,10 +86,10 @@ function getSalary(offer: any): string {
         if (firstSalary.salaryFrom === null && firstSalary.salaryTo === null) {
             return '';
         } else {
-            return `${firstSalary.salaryFrom ?? 'N/A'} - ${firstSalary.salaryTo ?? 'N/A'} ${firstSalary.currency}/${firstSalary.schedule}`;
+            return `${firstSalary.salaryFrom ?? 'N/A'} - ${firstSalary.salaryTo ?? 'N/A'} ${firstSalary.currency ?? "N/A"}/${firstSalary.schedule ?? "N/A"}`;
         }
     } else {
-        return `${salaryList[0].salaryFrom ?? 'N/A'} - ${salaryList[0].salaryTo ?? 'N/A'} ${salaryList[0].currency}/${salaryList[0].schedule} + ${numOfData - 1} salaries`;
+        return `${salaryList[0].salaryFrom ?? 'N/A'} - ${salaryList[0].salaryTo ?? 'N/A'} ${salaryList[0].currency ?? "N/A"}/${salaryList[0].schedule ?? "N/A"} + ${numOfData - 1} salaries`;
     }
 }
 
@@ -178,7 +178,7 @@ export default function OfferCard({offer}: any) {
                         <div>
                             <span className="text-gray-400 mr-2">{getCreatedTime(offer)}</span>
                             {isNew &&
-                                <span className="indicator-item badge badge-secondary">99+</span>
+                                <span className="indicator-item badge badge-secondary">NEW</span>
                             }
                         </div>
                     </div>
