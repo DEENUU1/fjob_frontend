@@ -69,11 +69,10 @@ function getLocalization(offer: any): string {
 }
 
 interface Salary {
-    salaryFrom?: number,
-    salaryTo?: number,
-    currency?: string,
-    schedule?: string
-
+    salaryFrom?: number;
+    salaryTo?: number;
+    currency?: string;
+    schedule?: string;
 }
 
 function getSalary(offer: any): string {
@@ -84,13 +83,13 @@ function getSalary(offer: any): string {
         return '';
     } else if (numOfData === 1) {
         const firstSalary = salaryList[0];
-        if (firstSalary.salaryFrom === null && firstSalary.salaryTo === null){
+        if (firstSalary.salaryFrom === null && firstSalary.salaryTo === null) {
             return '';
         } else {
-            return `${firstSalary.salary_from} - ${firstSalary.salary_to} ${firstSalary.currency}/${firstSalary.schedule}`;
+            return `${firstSalary.salaryFrom ?? 'N/A'} - ${firstSalary.salaryTo ?? 'N/A'} ${firstSalary.currency}/${firstSalary.schedule}`;
         }
     } else {
-        return `${salaryList[0].salary_from} - ${salaryList[0].salary_to} ${salaryList[0].currency}/${salaryList[0].schedule} + ${numOfData - 1} salaries`;
+        return `${salaryList[0].salaryFrom ?? 'N/A'} - ${salaryList[0].salaryTo ?? 'N/A'} ${salaryList[0].currency}/${salaryList[0].schedule} + ${numOfData - 1} salaries`;
     }
 }
 
