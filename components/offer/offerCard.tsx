@@ -152,7 +152,11 @@ export default function OfferCard({offer}: any) {
 
 
                 <div className="mb-3 p-4">
-                    <p>{offer.description.slice(0, 100)}...</p>
+                    {offer.description != null ? (
+                        <p>{offer.description.slice(0, 100)}...</p>
+                    ):(
+                        <p></p>
+                    )}
                 </div>
 
                 <div className="p-4 flex items-center justify-between">
