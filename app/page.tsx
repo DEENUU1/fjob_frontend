@@ -11,8 +11,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-
+    <>
       <Hero />
       <SectionTitle
           pretitle="FJob Benefits"
@@ -29,6 +28,6 @@ export default function Home() {
       </SectionTitle>
 
       <Faq />
-    </main>
+    </>
   )
 }
