@@ -1,5 +1,5 @@
 import getApiUrl from "@/components/api";
-import OfferCard from "@/components/offer/offerCard";
+import OfferCard from "@/components/offer/OfferCard";
 
 
 async function getCompanyPublicOffers(companyId: number){

@@ -1,6 +1,6 @@
 import {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
-import Companies from "@/components/companies/getCompanies";
+import Companies from "@/components/companies/GetCompanies";
 import {Metadata} from "next";
 
 export const metadata: Metadata = {

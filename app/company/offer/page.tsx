@@ -1,7 +1,7 @@
-import AddOffer from "@/components/company/addOfferButton";
+import AddOffer from "@/components/company/AddOfferButton";
 import {Suspense} from "react";
 import Spinner from '@/components/common/Spinner';
-import OfferList from "@/components/company/companyOfferList";
+import OfferList from "@/components/company/CompanyOfferList";
 import {Metadata} from "next";
 
 export const metadata: Metadata = {

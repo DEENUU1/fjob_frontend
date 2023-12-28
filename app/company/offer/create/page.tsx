@@ -1,5 +1,5 @@
 import {Metadata} from "next";
-import CreateJobOffer from "@/components/company/createOffer";
+import CreateJobOffer from "@/components/company/CreateOffer";
 
 
 export const metadata: Metadata = {

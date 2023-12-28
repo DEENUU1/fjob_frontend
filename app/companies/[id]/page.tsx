@@ -1,7 +1,7 @@
 import {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
-import CompanyDetails from "@/components/companies/companyDetails";
-import CompanyActiveOffers from "@/components/companies/getPublicOffers";
+import CompanyDetails from "@/components/companies/CompanyDetails";
+import CompanyActiveOffers from "@/components/companies/GetPublicOffers";
 import {Metadata} from "next";
 
 interface PageParams {

@@ -1,8 +1,8 @@
-import Hero from '@/components/home/hero';
-import SectionTitle from '@/components/home/sectionTitle';
-import Benefits from '@/components/home/benefits';
-import Faq from '@/components/home/faq';
-import { benefitOne, benefitTwo } from "@/components/home/data";
+import Hero from '@/components/home/Hero';
+import SectionTitle from '@/components/home/SectionTitle';
+import Benefits from '@/components/home/Benefits';
+import Faq from '@/components/home/Faq';
+import { benefitOne, benefitTwo } from "@/components/home/Data";
 import {Metadata} from "next";
 
 export const metadata: Metadata = {

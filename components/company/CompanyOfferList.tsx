@@ -2,8 +2,8 @@
 
 import getApiUrl from "@/components/api";
 import Link from "next/link";
-import EditOfferModal from "@/components/company/editOffer";
-import DeleteOfferButton from "@/components/company/deleteOfferButton";
+import EditOfferModal from "@/components/company/EditOffer";
+import DeleteOfferButton from "@/components/company/DeleteOfferButton";
 
 async function getCompanyOfferList(){
     const token = localStorage.getItem("access");

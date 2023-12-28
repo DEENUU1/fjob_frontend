@@ -1,7 +1,7 @@
 'use client'
 
 import getApiUrl from "@/components/api";
-import FavouriteButtonDelete from "./favouriteDelete";
+import FavouriteButtonDelete from "./FavouriteDelete";
 import Link from "next/link";
 
 

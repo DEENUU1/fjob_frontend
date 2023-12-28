@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import Container from "./home/container";
+import Container from "./home/Container";
 
 export default function Footer() {
     const navigation = [

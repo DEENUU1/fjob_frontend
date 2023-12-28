@@ -2,9 +2,9 @@ import getApiUrl from "@/components/api";
 import Link from "next/link";
 import {FaHeart} from "react-icons/fa";
 import Image from "next/image";
-import FavouriteButton from "@/components/offer/favourite";
-import ReportModal from "@/components/offer/report";
-import {getDetails} from "@/components/offer/offerCard";
+import FavouriteButton from "@/components/offer/Favourite";
+import ReportModal from "@/components/offer/Report";
+import {getDetails} from "@/components/offer/OfferCard";
 
 
 async function getOffer(slug: string) {

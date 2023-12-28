@@ -1,5 +1,5 @@
 import Spinner from '@/components/common/Spinner';
-import CompanyData from "@/components/company/getCompany";
+import CompanyData from "@/components/company/GetCompany";
 import {Suspense} from "react";
 import {Metadata} from "next";
 
