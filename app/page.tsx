@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: 'FJob | Home',
 }
 
-export default function Home() {
+export default function Page() {
   return (
     <>
       <Hero />

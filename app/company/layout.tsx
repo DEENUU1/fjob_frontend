@@ -1,6 +1,5 @@
 import { RequireAuth } from '@/components/utils';
 import Link from "next/link";
-import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 import CompanyOnly from "@/components/utils/CompanyOnly";
 
 interface Props {

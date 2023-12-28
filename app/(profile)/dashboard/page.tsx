@@ -1,16 +1,8 @@
 'use client';
 
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
-// import Spinner from '@/components/common/Spinner';
-// import List from '@/components/common/List';
-// import {useState, useEffect} from "react";
-// import getApiUrl from "@/components/api";
-// import { useRouter } from 'next/navigation';
-// import {toast} from "react-toastify";
 import {useState} from "react";
-import getApiUrl from "@/components/api";
 import {toast} from "react-toastify";
-import {Metadata} from "next";
 
 
 export default function Page() {

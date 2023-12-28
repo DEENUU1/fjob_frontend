@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     title: 'FJob | Contact us',
 }
 
-export default function Contact() {
+export default function Page() {
     return (
         <>
             <div>

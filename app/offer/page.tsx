@@ -5,9 +5,8 @@ import OfferList from "@/components/offer/OfferList";
 import OfferFilters from "@/components/offer/OfferFilters";
 import OfferPagination from "@/components/offer/OfferPagination";
 import offerList from "@/components/offer/OfferList";
-import {Metadata} from "next";
 
-function Offers() {
+function Page() {
     const [isRemote, setIsRemote] = useState("");
     const [isHybrid, setIsHybrid] = useState("");
     const [ordering, setOrdering] = useState("-created_at");
@@ -56,4 +55,4 @@ function Offers() {
     );
 }
 
-export default Offers;
+export default Page;

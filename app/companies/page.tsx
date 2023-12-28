@@ -1,5 +1,3 @@
-
-
 import {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
 import Companies from "@/components/companies/getCompanies";
@@ -9,7 +7,7 @@ export const metadata: Metadata = {
     title: 'FJob | Companies',
 }
 
-function Offers() {
+function Page() {
 
 
     return (

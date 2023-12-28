@@ -1,6 +1,5 @@
 import OfferDetails from "@/components/offer/fetchOffer";
 import {Suspense} from "react";
-// import Loading from "@/components/loading";
 import Spinner from "@/components/common/Spinner";
 import {Metadata} from "next";
 
@@ -14,7 +13,7 @@ interface PageParams {
 }
 
 
-export default function Offer({params}: {params: PageParams}) {
+export default function Page({params}: {params: PageParams}) {
     const slug = params.slug;
 
     return (
