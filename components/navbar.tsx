@@ -88,7 +88,9 @@ const Navbar = () => {
                                         <Link href="/contact" className="w-full px-6 py-2 mt-3 text-center lg:ml-5">
                                             Contact
                                         </Link>
-
+                                        <Link href="/product" className="w-full px-6 py-2 mt-3 text-center lg:ml-5">
+                                            Products
+                                        </Link>
                                         {isAuthenticated ? (
                                                 <>
                                                     {/*  If user.account_type == "USER" display Dashboard and if its "COMPANY" display company dashboard  */}
@@ -143,6 +145,9 @@ const Navbar = () => {
                             </Link>
                             <Link href="/contact" className="inline-block px-4 py-2 text-lg font-normal text-black no-underline rounded-md  hover:text-gray-700">
                                 Contact
+                            </Link>
+                            <Link href="/product" className="inline-block px-4 py-2 text-lg font-normal text-black no-underline rounded-md  hover:text-gray-700">
+                                Products
                             </Link>
                         </li>
                     </ul>
