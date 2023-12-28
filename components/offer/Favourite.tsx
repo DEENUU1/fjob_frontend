@@ -1,6 +1,5 @@
 'use client'
 
-import getApiUrl from "@/components/api";
 import { toast } from 'react-toastify';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import {useAppSelector} from "@/redux/hooks";

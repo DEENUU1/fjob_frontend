@@ -1,13 +1,11 @@
 import Link from "next/link";
 import FavouriteButton from "@/components/offer/Favourite";
 import ReportModal from "@/components/offer/Report";
-import {useAppSelector} from "@/redux/hooks";
-import getApiUrl from "@/components/api";
 
 type Dict = Record<number, any>;
 
 
-export function getDetails(offer: any): Array<string> {
+export function GetDetails(offer: any): Array<string> {
     const experienceList: Array<Dict> = offer.experience;
     const workTypeList: Array<Dict> = offer.work_type;
     const employmentTypeList: Array<Dict> = offer.experience;
@@ -45,7 +43,7 @@ interface Localization {
     city?: { name: string } | null;
 }
 
-function getLocalization(offer: any): string {
+function GetLocalization(offer: any): string {
     const localizationList: Array<Localization> = offer.addresses;
 
     const numOfData: number = localizationList.length;
@@ -75,7 +73,7 @@ interface Salary {
     schedule?: string;
 }
 
-function getSalary(offer: any): string {
+function GetSalary(offer: any): string {
     const salaryList: Array<Salary> = offer.salary;
     const numOfData: number = salaryList.length;
 
@@ -94,13 +92,13 @@ function getSalary(offer: any): string {
 }
 
 
-function getCreatedTime(offer: any): string {
+function GetCreatedTime(offer: any): string {
     const createdTime = offer.created_at;
     return createdTime.slice(0, 10);
 
 }
 
-function hasCustomForm(offer: any): boolean {
+function HasCustomForm(offer: any): boolean {
     return offer.apply_form === null;
 }
 
@@ -108,7 +106,7 @@ function hasCustomForm(offer: any): boolean {
 export default function OfferCard({offer}: any) {
     const isNew = offer.is_new;
     const isScraped = offer.is_scraped;
-    const hasForm = hasCustomForm(offer);
+    const hasForm = HasCustomForm(offer);
 
     return (
         <>
@@ -131,7 +129,7 @@ export default function OfferCard({offer}: any) {
                                     <Link className="text-lg text-gray-700" href={`/companies/${offer.company.id}`}>{offer.company.name}</Link>
                                 </div>
                             )}
-                            <h4 className="text-xl font-bold">{getSalary(offer)}</h4>
+                            <h4 className="text-xl font-bold">{GetSalary(offer)}</h4>
                         </div>
                     </div>
 
@@ -151,7 +149,7 @@ export default function OfferCard({offer}: any) {
 
 
                 <div className="mb-3 flex flex-wrap gap-2">
-                    {getDetails(offer).map((detail: string) => (
+                    {GetDetails(offer).map((detail: string) => (
                         <span
                             key={detail}
                             className="bg-black text-white font-medium rounded-2xl py-2 px-4"
@@ -173,10 +171,10 @@ export default function OfferCard({offer}: any) {
                 <div className="p-4 flex items-center justify-between">
                     <div className="flex flex-col">
                         <div className="mb-1">
-                            <span className="text-gray-700">{getLocalization(offer)}</span>
+                            <span className="text-gray-700">{GetLocalization(offer)}</span>
                         </div>
                         <div>
-                            <span className="text-gray-400 mr-2">{getCreatedTime(offer)}</span>
+                            <span className="text-gray-400 mr-2">{GetCreatedTime(offer)}</span>
                             {isNew &&
                                 <span className="indicator-item badge badge-secondary">NEW</span>
                             }

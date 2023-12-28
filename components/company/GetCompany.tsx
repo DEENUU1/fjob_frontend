@@ -1,11 +1,8 @@
 'use client'
-import getApiUrl from "@/components/api";
-import Image from "next/image";
-import Link from "next/link";
 import { SocialIcon } from 'react-social-icons'
 import EditCompanyModal from "@/components/company/EditCompany";
 
-async function getCompany(){
+async function GetCompany(){
     const token = localStorage.getItem("access")
 
     const response = await fetch(process.env.API_URL + "api/company/company", {
@@ -20,7 +17,7 @@ async function getCompany(){
 
 
 export default async function CompanyData() {
-    const data = await getCompany()
+    const data = await GetCompany()
 
     return (
         <>
@@ -69,14 +66,7 @@ export default async function CompanyData() {
             </div>
 
             <h3 className="text-xl">Description:</h3>
-
             <p className="text-gray-800 mb-2">{data?.description}</p>
-
-
-
-
-
-
         </>
     )
 }

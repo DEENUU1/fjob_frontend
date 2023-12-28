@@ -1,11 +1,8 @@
 'use client'
 
 import {useState} from "react";
-import {FaFlag} from "react-icons/fa";
-import getApiUrl from "@/components/api";
 import {toast} from 'react-toastify';
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
-import {Fa0} from "react-icons/fa6";
 import {useAppSelector} from "@/redux/hooks";
 import {IoFlagOutline, IoFlagSharp} from "react-icons/io5";
 
@@ -24,11 +21,6 @@ const ReportModal = ({offerId}) => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setShowModal(false);
-
-        // const formData = new FormData();
-        // formData.append('description', description);
-        // formData.append('offer', offerId);
-        // formData.append('user', user.id);
 
         try {
 

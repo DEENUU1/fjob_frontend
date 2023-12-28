@@ -1,8 +1,8 @@
 'use client'
-import getApiUrl from "@/components/api";
+
 import Link from "next/link";
 
-async function getCompany(){
+async function GetCompany(){
     const token = localStorage.getItem("access")
 
     const response = await fetch(process.env.API_URL + "api/company/company", {
@@ -17,7 +17,7 @@ async function getCompany(){
 
 
 export default async function AddOffer() {
-    const data = await getCompany()
+    const data = await GetCompany()
 
     return (
         <div className="mt-2">

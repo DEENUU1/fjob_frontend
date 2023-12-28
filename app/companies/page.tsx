@@ -24,4 +24,4 @@ function Page() {
     );
 }
 
-export default Offers;
+export default Page;

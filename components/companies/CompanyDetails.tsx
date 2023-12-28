@@ -1,10 +1,6 @@
-'use client'
-import getApiUrl from "@/components/api";
-import Image from "next/image";
-import Link from "next/link";
 import { SocialIcon } from 'react-social-icons'
 
-async function getCompanyDetails(companyId: string){
+async function GetCompanyDetails(companyId: string){
 
     const response = await fetch(process.env.API_URL + `api/company/${companyId}`, {
         headers: {
@@ -18,7 +14,7 @@ async function getCompanyDetails(companyId: string){
 
 // @ts-ignore
 export default async function CompanyDetails({companyId}) {
-    const data = await getCompanyDetails(companyId)
+    const data = await GetCompanyDetails(companyId)
 
     return (
         <>

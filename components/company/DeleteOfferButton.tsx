@@ -1,6 +1,5 @@
 "use client"
 
-import getApiUrl from "@/components/api";
 import {useRouter} from "next/navigation";
 import { toast } from 'react-toastify';
 import { RiDeleteBin5Line } from "react-icons/ri";

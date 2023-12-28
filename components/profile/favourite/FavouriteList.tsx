@@ -1,11 +1,10 @@
 'use client'
 
-import getApiUrl from "@/components/api";
 import FavouriteButtonDelete from "./FavouriteDelete";
 import Link from "next/link";
 
 
-export async function getFavourites() {
+export async function GetFavourites() {
     const token = localStorage.getItem('access');
 
     const response = await fetch(process.env.API_URL + "api/favourite", {
@@ -21,7 +20,7 @@ export async function getFavourites() {
 
 
 export default async function Favourites() {
-    const favourites = await getFavourites();
+    const favourites = await GetFavourites();
 
     return (
         <div className="flex flex-col">

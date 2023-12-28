@@ -1,13 +1,11 @@
 'use client'
 
 import React, {useState} from "react";
-import getApiUrl from "@/components/api";
 import {toast} from "react-toastify";
 import GetExperiences from "@/components/offer/Experience";
 import GetWorkType from "@/components/offer/WorkType";
 import GetEmploymentTypes from "@/components/offer/EmploymentType";
 import {useRouter} from 'next/navigation';
-import {FaFlag} from "react-icons/fa";
 import {RiEditFill, RiEditLine} from "react-icons/ri";
 
 

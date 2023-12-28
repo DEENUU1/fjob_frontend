@@ -1,52 +1,47 @@
-import getApiUrl from "@/components/api";
 import Link from "next/link";
-import {FaHeart} from "react-icons/fa";
-import Image from "next/image";
 import FavouriteButton from "@/components/offer/Favourite";
 import ReportModal from "@/components/offer/Report";
-import {getDetails} from "@/components/offer/OfferCard";
+import {GetDetails} from "@/components/offer/OfferCard";
 
 
-async function getOffer(slug: string) {
+async function GetOffer(slug: string) {
     const response = await fetch(process.env.API_URL + `/api/offer/offer/${slug}`, {
         next: {
             revalidate: 0
         }
     });
-    // Primitive backend delay
-    // await new Promise(resolve => setTimeout(resolve, 3000));
     return response.json();
 }
 
 
-async function getOfferFavouriteCounter(id: number) {
+async function GetOfferFavouriteCounter(id: number) {
     const response = await fetch(process.env.API_URL + `/api/favourite/counter/${id}`)
 
     return response.json();
 }
 
-function isScraped(offer: any) {
+function IsScraped(offer: any) {
     return offer.is_scraped;
 }
 
-function processSkills(skills: string | null) {
+function ProcessSkills(skills: string | null) {
     if (skills === null) {
         return [];
     }
     return skills.split(",");
 }
 
-function hasCustomForm(offer: any): boolean {
+function HasCustomForm(offer: any): boolean {
     return offer.apply_form === null;
 }
 
 
 export default async function OfferDetails({slug}) {
-    const offer = await getOffer(slug);
-    const isScrapedOffer = isScraped(offer);
-    const skills = processSkills(offer.skills);
-    const favouriteCounter = await getOfferFavouriteCounter(offer.id);
-    const hasForm = hasCustomForm(offer);
+    const offer = await GetOffer(slug);
+    const isScrapedOffer = IsScraped(offer);
+    const skills = ProcessSkills(offer.skills);
+    const favouriteCounter = await GetOfferFavouriteCounter(offer.id);
+    const hasForm = HasCustomForm(offer);
 
 
     return (
@@ -115,7 +110,7 @@ export default async function OfferDetails({slug}) {
                 </div>
 
                 <div className="mb-3 flex flex-wrap gap-2">
-                    {getDetails(offer).map((detail: string) => (
+                    {GetDetails(offer).map((detail: string) => (
                         <span
                             key={detail}
                             className="bg-black text-white font-medium rounded-2xl py-2 px-4"
@@ -124,8 +119,6 @@ export default async function OfferDetails({slug}) {
                         </span>
                     ))}
                 </div>
-
-
 
                 <div className="mb-2 mt-4">
                     {offer.salary.map((salary: any) => (
@@ -148,28 +141,21 @@ export default async function OfferDetails({slug}) {
                         </div>
                     ))}
                 </div>
-
-                <div className="mb-2 mt-4">
-                    {offer.addresses.map((address: Dict) => (
-                        <p key={address.id}>
-                            {address.country?.name ?? ''} {address.city?.name ?? ''} {address.region?.name ?? ''} {address.street ?? ''}
-                        </p>
-                    ))}
-                </div>
-
-
-                <div>
-                    <p className="text-gray-700 text-lg mb-5 mt-3 align-baseline">{offer.description}</p>
-                </div>
+                    <div className="mb-2 mt-4">
+                        {offer.addresses.map((address: Dict) => (
+                            <p key={address.id}>
+                                {address.country?.name ?? ''} {address.city?.name ?? ''} {address.region?.name ?? ''} {address.street ?? ''}
+                            </p>
+                        ))}
+                    </div>
+                    <div>
+                        <p className="text-gray-700 text-lg mb-5 mt-3 align-baseline">{offer.description}</p>
+                    </div>
             </div>
 
-
-
-
-            {isScrapedOffer && (
-                <Link href={offer.url} className="link text-gray-400">{offer.url}</Link>
-            )}
-
+                {isScrapedOffer && (
+                    <Link href={offer.url} className="link text-gray-400">{offer.url}</Link>
+                )}
             </div>
         </>
     )

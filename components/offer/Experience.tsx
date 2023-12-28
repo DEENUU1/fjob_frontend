@@ -1,6 +1,4 @@
 'use client'
-
-import getApiUrl from "@/components/api";
 import {useEffect, useState} from "react";
 
 

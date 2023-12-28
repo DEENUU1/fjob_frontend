@@ -2,7 +2,6 @@
 
 import {useState} from "react";
 import {toast} from "react-toastify";
-import getApiUrl from "@/components/api";
 import Confetti from "@/components/Confetti";
 
 

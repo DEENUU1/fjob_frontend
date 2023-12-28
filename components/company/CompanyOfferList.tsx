@@ -1,11 +1,10 @@
 'use client'
 
-import getApiUrl from "@/components/api";
 import Link from "next/link";
 import EditOfferModal from "@/components/company/EditOffer";
 import DeleteOfferButton from "@/components/company/DeleteOfferButton";
 
-async function getCompanyOfferList(){
+async function GetCompanyOfferList(){
     const token = localStorage.getItem("access");
 
     const response = await fetch( process.env.API_URL + "api/company/offer", {
@@ -21,7 +20,7 @@ async function getCompanyOfferList(){
 
 
 export default async function OfferList() {
-    const data = await getCompanyOfferList()
+    const data = await GetCompanyOfferList()
 
     return (
         <>

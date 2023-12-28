@@ -1,8 +1,7 @@
-import getApiUrl from "@/components/api";
 import OfferCard from "@/components/offer/OfferCard";
 
 
-async function getCompanyPublicOffers(companyId: number){
+async function GetCompanyPublicOffers(companyId: number){
     const response = await fetch(process.env.API_URL + `api/offer/offer/company/${companyId}`)
 
     return await response.json()
@@ -11,7 +10,7 @@ async function getCompanyPublicOffers(companyId: number){
 
 // @ts-ignore
 export default async function CompanyActiveOffers({companyId}) {
-    const data = await getCompanyPublicOffers(companyId)
+    const data = await GetCompanyPublicOffers(companyId)
 
     return (
         <>

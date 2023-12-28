@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
-
 
 async function FetchProducts() {
     const response = await fetch(process.env.API_URL + "/api/payment/product/");

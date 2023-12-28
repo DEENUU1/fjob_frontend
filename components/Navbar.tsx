@@ -5,7 +5,6 @@ import Image from "next/image"
 import { Disclosure } from "@headlessui/react";
 
 import { usePathname } from 'next/navigation';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import {useLogoutMutation, useRetrieveUserQuery} from '@/redux/features/authApiSlice';
 import { logout as setLogout } from '@/redux/features/authSlice';

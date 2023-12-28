@@ -2,10 +2,8 @@
 
 import React, {useState} from "react";
 // @ts-ignore
-import getApiUrl from "@/components/api";
 import {toast} from "react-toastify";
 import {useRouter} from 'next/navigation';
-import {FaFlag} from "react-icons/fa";
 
 
 // @ts-ignore

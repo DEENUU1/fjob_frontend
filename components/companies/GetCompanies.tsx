@@ -1,9 +1,8 @@
-import getApiUrl from "@/components/api";
 import Image from "next/image";
 import Link from "next/link";
 
 
-async function getCompanies() {
+async function GetCompanies() {
     const response = await fetch(process.env.API_URL + "api/company", {
         next: {revalidate: 3600},
     })
@@ -13,7 +12,7 @@ async function getCompanies() {
 
 
 export default async function Companies() {
-    const data = await getCompanies()
+    const data = await GetCompanies()
 
     return (
         <>
