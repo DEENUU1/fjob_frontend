@@ -3,6 +3,7 @@
 import {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
 import {Metadata} from "next";
+import Products from "@/components/product/ProductList";
 
 export const metadata: Metadata = {
     title: 'FJob | Products',
@@ -17,7 +18,7 @@ function Page() {
                 <h1 className="text-center font-bold text-3xl mb-10">Products</h1>
 
                 <Suspense fallback={<Spinner/>}>
-                    {/*<Companies/>*/}
+                    <Products/>
                 </Suspense>
 
             </div>
