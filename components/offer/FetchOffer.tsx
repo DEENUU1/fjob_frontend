@@ -14,12 +14,6 @@ async function GetOffer(slug: string) {
 }
 
 
-async function GetOfferFavouriteCounter(id: number) {
-    const response = await fetch(process.env.API_URL + `/api/favourite/counter/${id}`)
-
-    return response.json();
-}
-
 function IsScraped(offer: any) {
     return offer.is_scraped;
 }
@@ -40,7 +34,6 @@ export default async function OfferDetails({slug}) {
     const offer = await GetOffer(slug);
     const isScrapedOffer = IsScraped(offer);
     const skills = ProcessSkills(offer.skills);
-    const favouriteCounter = await GetOfferFavouriteCounter(offer.id);
     const hasForm = HasCustomForm(offer);
 
 
@@ -54,12 +47,7 @@ export default async function OfferDetails({slug}) {
                         <span className="text-gray-500 text-sm mb-5">{offer.created_at}</span>
 
                         <div className="flex space-x-5">
-                            {favouriteCounter.counter >= 1 && (
-                                <div>
-                                    <span className="text-xl ml-auto">{favouriteCounter.counter} <FavouriteButton offerId={offer.id}/></span>
-                                </div>
-                            )}
-
+                            <FavouriteButton offerId={offer.id}/>
                             <ReportModal offerId={offer.id}/>
                         </div>
 
