@@ -1,16 +1,16 @@
 import OfferCard from "@/components/offer/OfferCard";
 
 
-async function GetCompanyPublicOffers(companyId: number){
-    const response = await fetch(process.env.API_URL + `api/offer/offer/company/${companyId}`)
+async function GetCompanyPublicOffers(companySlug: number){
+    const response = await fetch(process.env.API_URL + `api/offer/offer/company/${companySlug}`)
 
     return await response.json()
 }
 
 
 // @ts-ignore
-export default async function CompanyActiveOffers({companyId}) {
-    const data = await GetCompanyPublicOffers(companyId)
+export default async function CompanyActiveOffers({companySlug}) {
+    const data = await GetCompanyPublicOffers(companySlug)
 
     return (
         <>

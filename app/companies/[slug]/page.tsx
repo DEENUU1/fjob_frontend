@@ -5,7 +5,7 @@ import CompanyActiveOffers from "@/components/companies/GetPublicOffers";
 import {Metadata} from "next";
 
 interface PageParams {
-    id: string;
+    slug: string;
 }
 
 export const metadata: Metadata = {
@@ -13,19 +13,19 @@ export const metadata: Metadata = {
 }
 
 export default function Page({ params }: { params: PageParams }) {
-    const id = params.id;
+    const slug = params.slug;
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
             <div>
                 <Suspense fallback={<Spinner/>}>
-                    <CompanyDetails companyId={id}/>
+                    <CompanyDetails companySlug={slug}/>
                 </Suspense>
 
                 <h1 className="text-2xl">Active job offers:</h1>
                 <Suspense fallback={<Spinner/>}>
-                    <CompanyActiveOffers companyId={id}/>
+                    <CompanyActiveOffers companySlug={slug}/>
                 </Suspense>
 `
             </div>

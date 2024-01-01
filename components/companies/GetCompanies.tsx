@@ -2,17 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 
-async function GetCompanies() {
-    const response = await fetch(process.env.API_URL + "api/company", {
-        next: {revalidate: 3600},
-    })
+async function getCompanies() {
+    const response = await fetch(process.env.API_URL + "api/company")
 
     return await response.json()
 }
 
 
 export default async function Companies() {
-    const data = await GetCompanies()
+    const data = await getCompanies()
 
     return (
         <>
@@ -22,7 +20,7 @@ export default async function Companies() {
                         {data.map((company: any) => (
                             <div key={company.name}
                                  className="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
-                                <Link href={`/companies/${company.id}`}>
+                                <Link href={`/companies/${company.slug}`}>
                                     {company.logo ? (
                                         <Image className="rounded-t-lg" src="/" alt={company.name} width={500}
                                                height={500} />

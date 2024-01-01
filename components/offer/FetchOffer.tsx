@@ -3,13 +3,18 @@ import FavouriteButton from "@/components/offer/Favourite";
 import ReportModal from "@/components/offer/Report";
 import {GetDetails} from "@/components/offer/OfferCard";
 
-
-async function GetOffer(slug: string) {
+export async function getOffer(slug: string) {
     const response = await fetch(process.env.API_URL + `/api/offer/offer/${slug}`, {
         next: {
             revalidate: 0
         }
     });
+
+    if (!response.ok) throw new Error("Failed to fetch offer");
+
+    //set timeout before retuning fetched data
+    await new Promise(resolve => setTimeout(resolve, 3000));
+
     return response.json();
 }
 
@@ -31,7 +36,8 @@ function HasCustomForm(offer: any): boolean {
 
 
 export default async function OfferDetails({slug}) {
-    const offer = await GetOffer(slug);
+    const offerData = getOffer(slug);
+    const offer = await offerData;
     const isScrapedOffer = IsScraped(offer);
     const skills = ProcessSkills(offer.skills);
     const hasForm = HasCustomForm(offer);

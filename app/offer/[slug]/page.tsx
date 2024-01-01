@@ -13,7 +13,7 @@ interface PageParams {
 }
 
 
-export default function Page({params}: {params: PageParams}) {
+export default async function Page({params}: {params: PageParams}) {
     const slug = params.slug;
 
     return (

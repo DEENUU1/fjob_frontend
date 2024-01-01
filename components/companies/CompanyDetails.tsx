@@ -1,8 +1,8 @@
 import { SocialIcon } from 'react-social-icons'
 
-async function GetCompanyDetails(companyId: string){
+async function GetCompanyDetails(companySlug: string){
 
-    const response = await fetch(process.env.API_URL + `api/company/${companyId}`, {
+    const response = await fetch(process.env.API_URL + `api/company/${companySlug}`, {
         headers: {
             accept: "application/json",
         }
@@ -13,8 +13,8 @@ async function GetCompanyDetails(companyId: string){
 
 
 // @ts-ignore
-export default async function CompanyDetails({companyId}) {
-    const data = await GetCompanyDetails(companyId)
+export default async function CompanyDetails({companySlug}) {
+    const data = await GetCompanyDetails(companySlug)
 
     return (
         <>
