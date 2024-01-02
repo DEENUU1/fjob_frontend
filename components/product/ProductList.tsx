@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 async function FetchProducts() {
-    const response = await fetch(process.env.API_URL + "/api/payment/product/");
+    const response = await fetch(process.env.API_URL + "/api/payment/product/", {"cache": "no-cache"});
     return await response.json();
 }
 
