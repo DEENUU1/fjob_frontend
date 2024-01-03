@@ -1,7 +1,8 @@
 import Link from "next/link";
 import FavouriteButton from "@/components/offer/Favourite";
 import ReportModal from "@/components/offer/Report";
-import {GetDetails} from "@/components/offer/OfferCard";
+import {getDetails} from "@/components/offer/OfferCard";
+import {detailBadge} from "@/components/offer/OfferCard";
 
 export async function getOffer(slug: string) {
     const response = await fetch(process.env.API_URL + `/api/offer/offer/${slug}`, {
@@ -96,13 +97,8 @@ export default async function OfferDetails({slug}: {slug: string}) {
                 </div>
 
                 <div className="mb-3 flex flex-wrap gap-2">
-                    {GetDetails(offer).map((detail: string) => (
-                        <span
-                            key={detail}
-                            className="bg-black text-white font-medium rounded-2xl py-2 px-4"
-                        >
-                          {detail}
-                        </span>
+                    {getDetails(offer).map((detail: string) => (
+                        detailBadge(detail)
                     ))}
                 </div>
 

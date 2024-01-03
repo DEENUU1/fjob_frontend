@@ -1,14 +1,13 @@
 import Link from "next/link";
 import FavouriteButton from "@/components/offer/Favourite";
 import ReportModal from "@/components/offer/Report";
+import { Badge } from "@/components/ui/badge"
 
-type Dict = Record<number, any>;
 
-
-export function GetDetails(offer: any): Array<string> {
-    const experienceList: Array<Dict> = offer.experience;
-    const workTypeList: Array<Dict> = offer.work_type;
-    const employmentTypeList: Array<Dict> = offer.experience;
+export function getDetails(offer: any): Array<string> {
+    const experienceList: Experience[] = offer.experience;
+    const workTypeList: WorkType[] = offer.work_type;
+    const employmentTypeList: EmploymentType[] = offer.experience;
     const isRemote: boolean = offer.is_remote;
     const isHybrid: boolean = offer.is_hybrid;
     const data: Array<string> = []
@@ -36,15 +35,8 @@ export function GetDetails(offer: any): Array<string> {
     return data
 }
 
-
-interface Localization {
-    country?: { name: string } | null;
-    region?: { name: string } | null;
-    city?: { name: string } | null;
-}
-
-function GetLocalization(offer: any): string {
-    const localizationList: Array<Localization> = offer.addresses;
+function getLocalization(offer: any): string {
+    const localizationList: Address[] = offer.addresses;
 
     const numOfData: number = localizationList.length;
 
@@ -66,14 +58,8 @@ function GetLocalization(offer: any): string {
     }
 }
 
-interface Salary {
-    salaryFrom?: number;
-    salaryTo?: number;
-    currency?: string;
-    schedule?: string;
-}
 
-function getSalary(offer: any): string {
+function getSalary(offer: Offer): string {
     const salaryList: Array<Salary> = offer.salary;
     const numOfData: number = salaryList.length;
 
@@ -92,21 +78,25 @@ function getSalary(offer: any): string {
 }
 
 
-function GetCreatedTime(offer: any): string {
+function getCreatedTime(offer: any): string {
     const createdTime = offer.created_at;
     return createdTime.slice(0, 10);
 
 }
 
-function HasCustomForm(offer: any): boolean {
+function hasCustomForm(offer: any): boolean {
     return offer.apply_form === null;
+}
+
+export function detailBadge(detail: string){
+    return <Badge>{detail}</Badge>
 }
 
 
 export default function OfferCard({offer}: any) {
     const isNew = offer.is_new;
     const isScraped = offer.is_scraped;
-    const hasForm = HasCustomForm(offer);
+    const hasForm = hasCustomForm(offer);
 
     return (
         <>
@@ -148,17 +138,11 @@ export default function OfferCard({offer}: any) {
                 </div>
 
 
-                <div className="mb-3 flex flex-wrap gap-2">
-                    {GetDetails(offer).map((detail: string) => (
-                        <span
-                            key={detail}
-                            className="bg-black text-white font-medium rounded-2xl py-2 px-4"
-                        >
-                          {detail}
-                        </span>
+                <div className="mb-3 p-4 flex flex-wrap gap-2">
+                    {getDetails(offer).map((detail: string) => (
+                        detailBadge(detail)
                     ))}
                 </div>
-
 
                 <div className="mb-3 p-4">
                     {offer.description != null ? (
@@ -171,10 +155,10 @@ export default function OfferCard({offer}: any) {
                 <div className="p-4 flex items-center justify-between">
                     <div className="flex flex-col">
                         <div className="mb-1">
-                            <span className="text-gray-700">{GetLocalization(offer)}</span>
+                            <span className="text-gray-700">{getLocalization(offer)}</span>
                         </div>
                         <div>
-                            <span className="text-gray-400 mr-2">{GetCreatedTime(offer)}</span>
+                            <span className="text-gray-400 mr-2">{getCreatedTime(offer)}</span>
                             {isNew &&
                                 <span className="indicator-item badge badge-secondary">NEW</span>
                             }
@@ -189,20 +173,19 @@ export default function OfferCard({offer}: any) {
                                 Apply
                             </Link>
                         )}
-                        {isScraped === false && hasForm ? (
+                        {!isScraped && hasForm ? (
                             <Link
                                 href={offer.apply_form}
                                 className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                             >
                                 Apply
                             </Link>
-                        ) : (isScraped === false && !hasForm &&
-                            <Link
-                                href="/"
-                                className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                            >
-                                Apply
-                            </Link>)}
+                        ) : (!isScraped && !hasForm && <Link
+                            href="/"
+                            className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                            Apply
+                        </Link>)}
 
                     </div>
                 </div>

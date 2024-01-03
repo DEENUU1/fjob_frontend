@@ -103,3 +103,13 @@ type Company = {
     addresses?: Address[] | null;
     num_of_offers_to_add: number;
 }
+
+type WorkType = {
+    id: number;
+    name: string;
+}
+
+type EmploymentType = {
+    id: number;
+    name: string;
+}
