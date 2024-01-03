@@ -2,7 +2,9 @@ import OfferCard from "@/components/offer/OfferCard";
 
 
 async function getCompanyPublicOffers(companySlug: string){
-    const response = await fetch(process.env.API_URL + `api/offer/offer/company/${companySlug}`)
+    const response = await fetch(process.env.API_URL + `api/offer/offer/company/${companySlug}`, {
+        next: {revalidate: 300}
+    })
 
     return await response.json()
 }
