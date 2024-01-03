@@ -2,14 +2,21 @@ import {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
 import CompanyDetails from "@/components/companies/CompanyDetails";
 import CompanyActiveOffers from "@/components/companies/GetPublicOffers";
-import {Metadata} from "next";
+import {getCompanyDetails} from "@/components/companies/CompanyDetails";
 
 interface PageParams {
     slug: string;
 }
 
-export const metadata: Metadata = {
-    title: 'FJob | Company details',
+export async function generateMetadata({params}: {params: PageParams}){
+    const slug = params.slug;
+    const data = await getCompanyDetails(slug);
+
+    return {
+        "title": "FJob | " + data.name,
+        "description": data.description,
+    }
+
 }
 
 export default function Page({ params }: { params: PageParams }) {

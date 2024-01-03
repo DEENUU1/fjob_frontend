@@ -1,6 +1,6 @@
 import { SocialIcon } from 'react-social-icons'
 
-async function GetCompanyDetails(companySlug: string){
+export async function getCompanyDetails(companySlug: string){
 
     const response = await fetch(process.env.API_URL + `api/company/${companySlug}`, {
         next: {revalidate: 300} // 5 minutes cache
@@ -12,7 +12,7 @@ async function GetCompanyDetails(companySlug: string){
 
 // @ts-ignore
 export default async function CompanyDetails({ companySlug }) {
-    const data = await GetCompanyDetails(companySlug)
+    const data = await getCompanyDetails(companySlug)
 
     return (
         <>
