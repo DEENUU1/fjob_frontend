@@ -42,9 +42,6 @@ export default async function OfferList() {
                                 Status
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Candidates
-                            </th>
-                            <th scope="col" className="px-6 py-3">
                                 Actions
                             </th>
                         </tr>
@@ -64,9 +61,6 @@ export default async function OfferList() {
                                 </td>
                                 <td className="px-6 py-4 font-bold">
                                     {offer.status}
-                                </td>
-                                <td className="px-6 py-4 font-bold">
-                                    <Link title="This function is not available yet" href="/company/offer" className="font-medium text-blue-600  hover:underline">Candidates</Link>
                                 </td>
                                 <td className="px-6 py-4 space-x-2">
                                     <EditOfferModal offer={offer}/>
