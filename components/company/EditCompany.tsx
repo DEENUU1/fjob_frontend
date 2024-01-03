@@ -1,13 +1,11 @@
 'use client'
 
 import React, {useState} from "react";
-// @ts-ignore
 import {toast} from "react-toastify";
 import {useRouter} from 'next/navigation';
 
 
-// @ts-ignore
-export default function EditCompanyModal({company}) {
+export default function EditCompanyModal({company}: {company: Company}) {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter();
     const token = localStorage.getItem("access")
@@ -33,9 +31,12 @@ export default function EditCompanyModal({company}) {
         // @ts-ignore
         formData.append("company_id", 2);
         formData.append("name", name);
+        // @ts-ignore
         formData.append("company_size", companySize);
         formData.append("description", description);
+        // @ts-ignore
         formData.append("user", user);
+        // @ts-ignore
         formData.append("addresses", addresses);
         formData.append("linkedin_url", linkedinUrl);
         formData.append("facebook_url", facebookUrl);
@@ -43,6 +44,7 @@ export default function EditCompanyModal({company}) {
         formData.append("instagram_url", instagramUrl);
         formData.append("youtube_url", youtubeUrl);
         formData.append("website_url", websiteUrl);
+        // @ts-ignore
         formData.append("is_active", isActive);
 
         if (logo !== null && typeof logo !== "string"){

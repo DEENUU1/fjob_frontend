@@ -78,10 +78,27 @@ type Employment = {
     name: string;
 }
 
+type User = {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+}
+
 type Company = {
     id: number;
     name: string;
+    logo: string | null;
     slug: string;
-    logo?: string | null;
     description?: string | null;
+    linkedin_url?: string | null;
+    facebook_url?: string | null;
+    twitter_url?: string | null;
+    youtube_url?: string | null;
+    instagram_url?: string | null;
+    website_url?: string | null;
+    is_active: boolean;
+    company_size: number;
+    user: User;
+    addresses?: Address[] | null;
 }
