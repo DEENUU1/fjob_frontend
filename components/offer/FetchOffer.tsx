@@ -6,42 +6,36 @@ import {GetDetails} from "@/components/offer/OfferCard";
 export async function getOffer(slug: string) {
     const response = await fetch(process.env.API_URL + `/api/offer/offer/${slug}`, {
         next: {
-            revalidate: 0
+            revalidate: 300 // 5 minute cache
         }
     });
 
     if (!response.ok) throw new Error("Failed to fetch offer");
-
-    //set timeout before retuning fetched data
-    await new Promise(resolve => setTimeout(resolve, 3000));
-
     return response.json();
 }
 
 
-function IsScraped(offer: any) {
+function isScraped(offer: Offer) {
     return offer.is_scraped;
 }
 
-function ProcessSkills(skills: string | null) {
+function processSkills(skills: string | null) {
     if (skills === null) {
         return [];
     }
     return skills.split(",");
 }
 
-function HasCustomForm(offer: any): boolean {
+function hasCustomForm(offer: any): boolean {
     return offer.apply_form === null;
 }
 
 
-export default async function OfferDetails({slug}) {
+export default async function OfferDetails({slug}: {slug: string}) {
     const offerData = getOffer(slug);
     const offer = await offerData;
-    const isScrapedOffer = IsScraped(offer);
-    const skills = ProcessSkills(offer.skills);
-    const hasForm = HasCustomForm(offer);
-
+    const isScrapedOffer = isScraped(offer);
+    const hasForm = hasCustomForm(offer);
 
     return (
         <>
@@ -69,23 +63,21 @@ export default async function OfferDetails({slug}) {
                                 Apply
                             </Link>
                         )}
-                        {isScrapedOffer === false && hasForm ? (
+                        {!isScrapedOffer && hasForm ? (
                             <Link
                                 href={offer.apply_form}
                                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                             >
                                 Apply
                             </Link>
-                        ) : (
-                            isScrapedOffer === false && !hasForm && (
-                                <Link
-                                    href="/"
-                                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                >
-                                    Apply
-                                </Link>
-                            )
-                        )}
+                        ) : (!isScrapedOffer && !hasForm && (
+                            <Link
+                                href="/"
+                                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                            >
+                                Apply
+                            </Link>
+                        ))}
                     </div>
                 </div>
 
@@ -136,7 +128,7 @@ export default async function OfferDetails({slug}) {
                     ))}
                 </div>
                     <div className="mb-2 mt-4">
-                        {offer.addresses.map((address: Dict) => (
+                        {offer.addresses.map((address: Address) => (
                             <p key={address.id}>
                                 {address.country?.name ?? ''} {address.city?.name ?? ''} {address.region?.name ?? ''} {address.street ?? ''}
                             </p>

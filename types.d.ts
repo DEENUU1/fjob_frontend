@@ -5,30 +5,42 @@ type Offer = {
     description: string;
     company?: string;
     addresses: Address[];
-    isRemote?: boolean;
-    isHybrid?: boolean;
-    applyForm?: string;
+    is_remote?: boolean;
+    is_hybrid?: boolean;
+    apply_form?: string;
     skills: string;
     salary: Salary[];
     experience: Experience[];
-    workType?: string[];
-    employmentType?: string[];
+    work_type?: string[];
+    employment_type?: string[];
     createdAt: Date;
     status: string;
-    companyLogo: string;
+    company_logo: string;
     url: string;
-    isScraped: boolean;
-    companyName?: string;
-    daysUntilExpirationStr: string;
-    isExpired?: boolean;
-    isNew?: boolean;
+    company_name?: string;
+    days_until_expiration_str: string;
+    is_expired?: boolean;
+    is_new?: boolean;
+    is_scraped: boolean;
+    created_at: string;
 };
+
+type Country = {
+    id: number
+    name: string
+}
+
+type Region = {
+    id: number
+    name: string
+    country?: Country
+}
 
 type Address = {
     id: number;
-    country?: string;
+    country: Country;
     city: City;
-    region?: string;
+    region: Region;
     street?: string;
 };
 
@@ -43,10 +55,10 @@ type City = {
 
 type Salary = {
     id: number;
-    salaryFrom?: number;
-    salaryTo: number;
-    currency: string;
-    schedule: string;
+    salary_from?: number;
+    salary_to?: number;
+    currency?: string;
+    schedule?: string;
 };
 
 type Experience = {
@@ -55,13 +67,13 @@ type Experience = {
 };
 
 type OfferResult = {
-    count: number,
-    next?: string | null,
-    previous?: string | null,
-    results: Offer[]
+    count: number;
+    next?: string | null;
+    previous?: string | null;
+    results: Offer[];
 }
 
 type Employment = {
-    id: number,
-    name: string,
+    id: number;
+    name: string;
 }
