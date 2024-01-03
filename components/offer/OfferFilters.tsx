@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Dispatch, SetStateAction} from "react";
 import GetExperiences from "@/components/offer/Experience";
 import GetWorkType from "@/components/offer/WorkType";
 import GetEmploymentTypes from "@/components/offer/EmploymentType";
@@ -20,6 +20,21 @@ export default function OfferFilters(
       setExperience,
       setWorkType,
       setEmploymentType,
+    }: {
+        search: string,
+        isRemote: string,
+        isHybrid: string,
+        ordering: string,
+        experience: string,
+        workType: string,
+        employmentType: string,
+        setSearch: Dispatch<SetStateAction<string>>,
+        setIsRemote: Dispatch<SetStateAction<string>>,
+        setIsHybrid: Dispatch<SetStateAction<string>>,
+        setOrdering: Dispatch<SetStateAction<string>>,
+        setExperience: Dispatch<SetStateAction<string>>,
+        setWorkType: Dispatch<SetStateAction<string>>,
+        setEmploymentType: Dispatch<SetStateAction<string>>,
     }){
     const orderingTypes = new Map();
     orderingTypes.set("Newest", "-created_at");
