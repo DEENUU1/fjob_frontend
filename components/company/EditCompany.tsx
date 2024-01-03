@@ -13,7 +13,7 @@ export default function EditCompanyModal({company}) {
     const token = localStorage.getItem("access")
 
     const [name, setName] = useState(company.name || "")
-    const [logo, setLogo] = useState(company.logo || "")
+    const [logo, setLogo] = useState(company.logo || null)
     const [companySize, setCompanySize] = useState(company.company_size || 0)
     const [description, setDescription] = useState(company.description || "")
     const [user, setUser] = useState(company.user || "")
@@ -68,6 +68,7 @@ export default function EditCompanyModal({company}) {
 
     }
 
+    // @ts-ignore
     return (
         <>
             <button
@@ -105,7 +106,7 @@ export default function EditCompanyModal({company}) {
 
 
                                     <label htmlFor="title" className="block mb-2 font-medium">Name</label>
-                                    <input type="text" placeholder="title" required autoComplete="false"
+                                    <input type="text" placeholder="title" autoComplete="false"
                                            name="title"
                                            value={name}
                                            onChange={(e) => setName(e.target.value)}
@@ -113,19 +114,24 @@ export default function EditCompanyModal({company}) {
                                     />
 
                                     <label htmlFor="description" className="block mb-2 font-medium">Description</label>
-                                    <textarea placeholder="description" required autoComplete="false"
+                                    <textarea placeholder="description" autoComplete="false"
                                            name="description"
                                            value={description}
                                            onChange={(e) => setDescription(e.target.value)}
                                            className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
                                     />
 
-                                    <label className="block mb-2 font-medium" htmlFor="default_size">Default size</label>
-                                    <input className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400" id="default_size" type="file"/>
+                                    <label className="block mb-2 font-medium" htmlFor="logo">Logo</label>
+                                    <input
+                                        className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                                        id="logo"
+                                        type="file"
+                                        onChange={(e) => setLogo(e.target.files[0])}
+                                    />
 
 
                                     <label htmlFor="company_size" className="block mb-2 font-medium">Company Size</label>
-                                    <input type="number" placeholder="company size" required autoComplete="false"
+                                    <input type="number" placeholder="company size" autoComplete="false"
                                            name="company_size"
                                            value={companySize}
                                            onChange={(e) => setCompanySize(e.target.value)}
@@ -180,7 +186,12 @@ export default function EditCompanyModal({company}) {
                                            className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
                                     />
 
-                                    <input className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox" name="is_active" value={isActive} onChange={(e) => setIsActive(e.target.checked)}/>
+                                    <input className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                           type="checkbox"
+                                           name="is_active"
+                                           value={isActive}
+                                           onChange={(e) => setIsActive(e.target.checked)}
+                                    />
                                     <label htmlFor="website" className="ms-2 text-sm font-medium">Is active</label>
 
                                     <div>
