@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 
 
-export default function GetWorkType(){
+export default function getWorkType(){
     const [employmentTypes, setEmploymentTypes] = useState();
     useEffect(() => {
         fetch(process.env.API_URL + "api/offer/work")

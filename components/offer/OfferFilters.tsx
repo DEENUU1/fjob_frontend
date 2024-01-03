@@ -1,8 +1,7 @@
 import React, {Dispatch, SetStateAction} from "react";
-import GetExperiences from "@/components/offer/Experience";
-import GetWorkType from "@/components/offer/WorkType";
-import GetEmploymentTypes from "@/components/offer/EmploymentType";
-
+import getExperiences from "@/components/offer/Experience";
+import getWorkType from "@/components/offer/WorkType";
+import getEmploymentTypes from "@/components/offer/EmploymentType";
 
 export default function OfferFilters(
     {
@@ -42,9 +41,9 @@ export default function OfferFilters(
     orderingTypes.set("Lowest salary", "salary__salary_from");
     orderingTypes.set("Highest salary", "-salary__salary_from");
 
-    const experiences = GetExperiences();
-    const workTypes = GetWorkType();
-    const employmentTypes = GetEmploymentTypes();
+    const experiences = getExperiences();
+    const workTypes = getWorkType();
+    const employmentTypes = getEmploymentTypes();
 
     return (
         <>

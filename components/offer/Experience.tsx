@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 
 
-export default function GetExperiences(){
+export default function getExperiences(){
     const [employmentTypes, setEmploymentTypes] = useState();
     useEffect(() => {
         fetch(process.env.API_URL + "api/offer/experience")

@@ -2,24 +2,30 @@ import React, {useEffect, useState} from "react";
 import OfferCard from "@/components/offer/OfferCard";
 import Spinner from "@/components/common/Spinner";
 
-function OfferList({
-                       isRemote,
-                       isHybrid,
-                       ordering,
-                       search,
-                       page,
-                       experience,
-                       workType,
-                       employmentType,
-                   }) {
-    const [offers, setOffers] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    // @ts-ignore
-    const nextPage = offers?.next;
-    // @ts-ignore
-    const previousPage = offers?.previous;
+export default function OfferList(
+    {
+       isRemote,
+       isHybrid,
+       ordering,
+       search,
+       page,
+       experience,
+       workType,
+       employmentType,
+   }: {
+        isRemote: string,
+        isHybrid: string,
+        ordering: string,
+        search: string,
+        page: number,
+        experience: string,
+        workType: string,
+        employmentType: string,
+    }
+   ) {
+    const [offers, setOffers] = useState<Offer[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         let url = `api/offer/offer?is_remote=${isRemote}&is_hybrid=${isHybrid}&ordering=${ordering}&search=${search}&p=${page}`;
@@ -36,10 +42,10 @@ function OfferList({
             url += `&employment_type=${employmentType}`;
         }
 
-        fetch(process.env.API_URL + url, {headers: {'Content-Type': 'application/json'}})
+        fetch(process.env.API_URL + url)
             .then((response) => response.json())
             .then((data) => {
-                setOffers(data);
+                setOffers(data.results);
                 setLoading(false);
             })
             .catch((error) => {
@@ -60,12 +66,10 @@ function OfferList({
         <div>
             <div className="mt-20">
 
-                {offers.results.map((offer: any) => (
+                {offers.map((offer: any) => (
                     <OfferCard key={offer.title} offer={offer}/>
                 ))}
             </div>
         </div>
     );
 }
-
-export default OfferList;
