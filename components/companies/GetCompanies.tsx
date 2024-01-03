@@ -3,8 +3,9 @@ import Link from "next/link";
 
 
 async function getCompanies() {
-    const response = await fetch(process.env.API_URL + "api/company")
-
+    const response = await fetch(process.env.API_URL + "api/company", {
+        next: {revalidate: 300} // 5 minutes cache
+    })
     return await response.json()
 }
 
