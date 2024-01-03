@@ -4,14 +4,12 @@ import Link from "next/link";
 import Image from "next/image"
 import { Disclosure } from "@headlessui/react";
 
-import { usePathname } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import {useLogoutMutation, useRetrieveUserQuery} from '@/redux/features/authApiSlice';
 import { logout as setLogout } from '@/redux/features/authSlice';
 
 
 const Navbar = () => {
-    const pathname = usePathname();
     const dispatch = useAppDispatch();
     const {data: user} = useRetrieveUserQuery()
     const [logout] = useLogoutMutation();
