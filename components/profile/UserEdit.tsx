@@ -2,63 +2,73 @@
 
 import React, {useState} from "react";
 import {toast} from "react-toastify";
+import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 
 
-export default function PatchUser() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
 
-    const updateProfile = async () => {
+export default function EditUser() {
+    const { data: user, isLoading, isFetching } = useRetrieveUserQuery();
+    const token = localStorage.getItem('access');
+    const [firstName, setFirstName] = useState(user?.first_name || "");
+    const [lastName, setLastName] = useState(user?.last_name || "");
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("first_name", firstName);
+        formData.append("last_name", lastName);
+
         try {
-            const data = {
-                first_name: firstName,
-                last_name: lastName,
-            };
-
-            const response = await fetch(process.env.API_URL + '/api/users/me/', {
-                method: 'PATCH',
+            const response = await fetch(process.env.API_URL + "api/users/me/", {
+                method: "PATCH",
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('access')}`,
+                    accept: "application/json",
+                    Authorization: `Bearer ${token}`,
                 },
-                body: JSON.stringify(data),
+                body: formData,
             });
 
             if (response.ok) {
-                setIsLoading(false);
+                toast.success("Form submitted successfully");
             } else {
-                toast.error('Error updating data');
+                toast.error("Form submission failed");
             }
         } catch (error) {
-            toast.error('Error updating data');
+            console.error("Form submission failed:", error);
+            toast.error("Form submission failed");
         }
     };
 
     return (
-        <div>
-            <label>First Name:</label>
-            <input
-                type="text"
-                value={firstName}
-                placeholder="Enter your first name"
-                required
-                onChange={(event) => setFirstName(event.target.value)}
-            />
+        <>
+            <main className="mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-2 gap-6">
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label className="text-sm font-medium text-gray-500">First name</label>
+                            <input
+                                type="text"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                            />
+                        </div>
 
-            <label>Last Name:</label>
-            <input
-                type="text"
-                value={lastName}
-                placeholder="Enter your last name"
-                required
-                onChange={(event) => setLastName(event.target.value)}
-            />
+                        <div>
+                            <label className="text-sm font-medium text-gray-500">Last name</label>
+                            <input
+                                type="text"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                            />
+                        </div>
 
-            <button onClick={updateProfile} disabled={isLoading}>
-                {isLoading ? 'Updating...' : 'Update Profile'}
-            </button>
-        </div>
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2" type="submit">Submit</button>
+                    </form>
+                </div>
+            </main>
+        </>
     );
 };
