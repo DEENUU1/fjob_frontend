@@ -31,7 +31,6 @@ export default function Page({ params }: { params: PageParams }) {
                     </Suspense>
                 </div>
                 <div>
-                    <h3 className="text-2xl">Active job offers:</h3>
                     <Suspense fallback={<Spinner/>}>
                         <CompanyActiveOffers companySlug={slug}/>
                     </Suspense>
