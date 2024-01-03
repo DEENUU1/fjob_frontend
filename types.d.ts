@@ -77,3 +77,11 @@ type Employment = {
     id: number;
     name: string;
 }
+
+type Company = {
+    id: number;
+    name: string;
+    slug: string;
+    logo?: string | null;
+    description?: string | null;
+}

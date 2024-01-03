@@ -4,14 +4,15 @@ import Link from "next/link";
 
 async function getCompanies() {
     const response = await fetch(process.env.API_URL + "api/company", {
-        next: {revalidate: 300} // 5 minutes cache
+        next: {revalidate: 0} // 5 minutes cache
     })
     return await response.json()
 }
 
 
 export default async function Companies() {
-    const data = await getCompanies()
+    const companyData = getCompanies();
+    const data = await companyData;
 
     return (
         <>
@@ -23,17 +24,18 @@ export default async function Companies() {
                                  className="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
                                 <Link href={`/companies/${company.slug}`}>
                                     {company.logo ? (
-                                        <Image className="rounded-t-lg" src="/" alt={company.name} width={500}
-                                               height={500} />
+                                        <Image className="rounded-t-lg" src={company.logo} alt={company.name}
+                                               width={250}
+                                               height={250}
+                                        />
                                     ) : (
                                         <Image className="rounded-t-lg"
                                                src="https://www.eclosio.ong/wp-content/uploads/2018/08/default.png"
-                                               alt="default" width={500} height={500} />
+                                               alt="default" width={250} height={250}/>
                                     )}
 
                                     <div className="p-5">
                                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 whitespace-normal line-clamp-2">{company.name}</h5>
-                                        <p className="mb-3 font-normal text-gray-700 line-clamp-3">{company.description}</p>
                                     </div>
                                 </Link>
                             </div>

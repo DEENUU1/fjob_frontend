@@ -10,6 +10,10 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'www.eclosio.ong',
             },
+            {
+                protocol: 'https',
+                hostname: 'fjobgeneral.s3.amazonaws.com',
+            }
         ],
     },
     typescript: {
