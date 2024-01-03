@@ -7,14 +7,14 @@ import OfferPagination from "@/components/offer/OfferPagination";
 import offerList from "@/components/offer/OfferList";
 
 export default function Page() {
-    const [isRemote, setIsRemote] = useState("");
-    const [isHybrid, setIsHybrid] = useState("");
-    const [ordering, setOrdering] = useState("-created_at");
-    const [search, setSearch] = useState("");
-    const [page, setPage] = useState(1);
-    const [experience, setExperience] = useState("All");
-    const [workType, setWorkType] = useState("All");
-    const [employmentType, setEmploymentType] = useState("All");
+    const [isRemote, setIsRemote] = useState<string>("");
+    const [isHybrid, setIsHybrid] = useState<string>("");
+    const [ordering, setOrdering] = useState<string>("-created_at");
+    const [search, setSearch] = useState<string>("");
+    const [page, setPage] = useState<number>(1);
+    const [experience, setExperience] = useState<string>("All");
+    const [workType, setWorkType] = useState<string>("All");
+    const [employmentType, setEmploymentType] = useState<string>("All");
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">

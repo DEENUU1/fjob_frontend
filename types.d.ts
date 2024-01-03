@@ -53,3 +53,15 @@ type Experience = {
     id: number;
     name: string;
 };
+
+type OfferResult = {
+    count: number,
+    next?: string | null,
+    previous?: string | null,
+    results: Offer[]
+}
+
+type Employment = {
+    id: number,
+    name: string,
+}

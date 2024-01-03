@@ -3,7 +3,9 @@ import {useEffect, useState} from "react";
 
 
 export default function getExperiences(){
-    const [employmentTypes, setEmploymentTypes] = useState();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [employmentTypes, setEmploymentTypes] = useState<Experience[] | null>();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
         fetch(process.env.API_URL + "api/offer/experience")
             .then(response => response.json())

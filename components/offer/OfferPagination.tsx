@@ -1,4 +1,14 @@
-function OfferPagination({offers, page, setPage }) {
+function OfferPagination(
+    {
+        offers,
+        page,
+        setPage
+    }: {
+        offers: OfferResult,
+        page: number,
+        setPage: any
+    }
+    ){
     const nextPage = offers?.next;
     const previousPage = offers?.previous;
 
