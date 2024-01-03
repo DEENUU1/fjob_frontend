@@ -33,12 +33,10 @@ export default function EditCompanyModal({company}) {
         // @ts-ignore
         formData.append("company_id", 2);
         formData.append("name", name);
-        formData.append("logo", logo);
         formData.append("company_size", companySize);
         formData.append("description", description);
         formData.append("user", user);
         formData.append("addresses", addresses);
-        // formData.append("num_of_offers_to_add", numOfOffersToAdd);
         formData.append("linkedin_url", linkedinUrl);
         formData.append("facebook_url", facebookUrl);
         formData.append("twitter_url", twitterUrl);
@@ -47,6 +45,9 @@ export default function EditCompanyModal({company}) {
         formData.append("website_url", websiteUrl);
         formData.append("is_active", isActive);
 
+        if (logo !== null && typeof logo !== "string"){
+            formData.append("logo", logo);
+        }
         try {
             const response = await fetch(process.env.API_URL + "api/company/management/", {
                 method: "PUT",
