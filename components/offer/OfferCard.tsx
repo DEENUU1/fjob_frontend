@@ -73,7 +73,7 @@ interface Salary {
     schedule?: string;
 }
 
-function GetSalary(offer: any): string {
+function getSalary(offer: any): string {
     const salaryList: Array<Salary> = offer.salary;
     const numOfData: number = salaryList.length;
 
@@ -81,13 +81,13 @@ function GetSalary(offer: any): string {
         return '';
     } else if (numOfData === 1) {
         const firstSalary = salaryList[0];
-        if (firstSalary.salaryFrom === null && firstSalary.salaryTo === null) {
+        if (firstSalary.salary_from === null && firstSalary.salary_to === null) {
             return '';
         } else {
-            return `${firstSalary.salaryFrom ?? 'N/A'} - ${firstSalary.salaryTo ?? 'N/A'} ${firstSalary.currency ?? "N/A"}/${firstSalary.schedule ?? "N/A"}`;
+            return `${firstSalary.salary_from ?? 'N/A'} - ${firstSalary.salary_to ?? 'N/A'} ${firstSalary.currency ?? "N/A"}/${firstSalary.schedule ?? "N/A"}`;
         }
     } else {
-        return `${salaryList[0].salaryFrom ?? 'N/A'} - ${salaryList[0].salaryTo ?? 'N/A'} ${salaryList[0].currency ?? "N/A"}/${salaryList[0].schedule ?? "N/A"} + ${numOfData - 1} salaries`;
+        return `${salaryList[0].salary_from ?? 'N/A'} - ${salaryList[0].salary_to ?? 'N/A'} ${salaryList[0].currency ?? "N/A"}/${salaryList[0].schedule ?? "N/A"} + ${numOfData - 1} salaries`;
     }
 }
 
@@ -129,7 +129,7 @@ export default function OfferCard({offer}: any) {
                                     <Link className="text-lg text-gray-700" href={`/companies/${offer.company.id}`}>{offer.company.name}</Link>
                                 </div>
                             )}
-                            <h4 className="text-xl font-bold">{GetSalary(offer)}</h4>
+                            <h4 className="text-xl font-bold">{getSalary(offer)}</h4>
                         </div>
                     </div>
 
