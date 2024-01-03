@@ -3,9 +3,7 @@ import { SocialIcon } from 'react-social-icons'
 async function GetCompanyDetails(companySlug: string){
 
     const response = await fetch(process.env.API_URL + `api/company/${companySlug}`, {
-        headers: {
-            accept: "application/json",
-        }
+        next: {revalidate: 300} // 5 minutes cache
     })
     return await response.json()
 
@@ -49,15 +47,13 @@ export default async function CompanyDetails({companySlug}) {
 
             <h3 className="text-xl mt-2">Addresses:</h3>
             <div>
-                {data.addresses && (
                     <div className="mb-2">
-                        {data.addresses.map((address: any) => (
+                        {data.addresses.map((address) => (
                             <p key={address.id}>
-                                - {address.country.name} {address.city.name} {address.region.name} {address.street}
+                                {address.country?.name ?? ''} {address.city?.name ?? ''} {address.region?.name ?? ''} {address.street ?? ''}
                             </p>
                         ))}
                     </div>
-                )}
             </div>
 
             <h3 className="text-xl">Description:</h3>

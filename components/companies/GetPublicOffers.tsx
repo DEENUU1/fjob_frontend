@@ -1,7 +1,7 @@
 import OfferCard from "@/components/offer/OfferCard";
 
 
-async function GetCompanyPublicOffers(companySlug: number){
+async function GetCompanyPublicOffers(companySlug: string){
     const response = await fetch(process.env.API_URL + `api/offer/offer/company/${companySlug}`)
 
     return await response.json()
