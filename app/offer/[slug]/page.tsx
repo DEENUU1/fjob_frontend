@@ -1,7 +1,7 @@
 import OfferDetails from "@/components/offer/FetchOffer";
 import {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
-import {Metadata} from "next";
+import type {Metadata} from "next";
 
 export const metadata: Metadata = {
     title: 'FJob | Offer details',

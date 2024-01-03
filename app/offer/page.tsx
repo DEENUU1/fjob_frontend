@@ -6,7 +6,7 @@ import OfferFilters from "@/components/offer/OfferFilters";
 import OfferPagination from "@/components/offer/OfferPagination";
 import offerList from "@/components/offer/OfferList";
 
-function Page() {
+export default function Page() {
     const [isRemote, setIsRemote] = useState("");
     const [isHybrid, setIsHybrid] = useState("");
     const [ordering, setOrdering] = useState("-created_at");
@@ -22,37 +22,39 @@ function Page() {
                 <h1 className="text-center font-bold text-3xl mb-10">Job offers list</h1>
 
                 <OfferFilters
-                search={search}
-                isRemote={isRemote}
-                isHybrid={isHybrid}
-                ordering={ordering}
-                experience={experience}
-                workType={workType}
-                employmentType={employmentType}
-                setSearch={setSearch}
-                setIsRemote={setIsRemote}
-                setIsHybrid={setIsHybrid}
-                setOrdering={setOrdering}
-                setExperience={setExperience}
-                setWorkType={setWorkType}
-                setEmploymentType={setEmploymentType}
-            />
+                    search={search}
+                    isRemote={isRemote}
+                    isHybrid={isHybrid}
+                    ordering={ordering}
+                    experience={experience}
+                    workType={workType}
+                    employmentType={employmentType}
+                    setSearch={setSearch}
+                    setIsRemote={setIsRemote}
+                    setIsHybrid={setIsHybrid}
+                    setOrdering={setOrdering}
+                    setExperience={setExperience}
+                    setWorkType={setWorkType}
+                    setEmploymentType={setEmploymentType}
+                />
 
-            <OfferList
-                isRemote={isRemote}
-                isHybrid={isHybrid}
-                ordering={ordering}
-                search={search}
-                page={page}
-                experience={experience}
-                workType={workType}
-                employmentType={employmentType}
-            />
+                <OfferList
+                    isRemote={isRemote}
+                    isHybrid={isHybrid}
+                    ordering={ordering}
+                    search={search}
+                    page={page}
+                    experience={experience}
+                    workType={workType}
+                    employmentType={employmentType}
+                />
 
-            <OfferPagination offers={offerList} page={page} setPage={setPage} />
+                <OfferPagination
+                    offers={offerList}
+                    page={page}
+                    setPage={setPage}
+                />
             </div>
         </main>
     );
 }
-
-export default Page;

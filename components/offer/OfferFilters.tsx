@@ -4,22 +4,23 @@ import GetWorkType from "@/components/offer/WorkType";
 import GetEmploymentTypes from "@/components/offer/EmploymentType";
 
 
-function OfferFilters({
-                          search,
-                          isRemote,
-                          isHybrid,
-                          ordering,
-                          experience,
-                          workType,
-                          employmentType,
-                          setSearch,
-                          setIsRemote,
-                          setIsHybrid,
-                          setOrdering,
-                          setExperience,
-                          setWorkType,
-                          setEmploymentType,
-                      }) {
+export default function OfferFilters(
+    {
+      search,
+      isRemote,
+      isHybrid,
+      ordering,
+      experience,
+      workType,
+      employmentType,
+      setSearch,
+      setIsRemote,
+      setIsHybrid,
+      setOrdering,
+      setExperience,
+      setWorkType,
+      setEmploymentType,
+    }){
     const orderingTypes = new Map();
     orderingTypes.set("Newest", "-created_at");
     orderingTypes.set("Oldest", "created_at");
@@ -120,5 +121,3 @@ function OfferFilters({
         </>
     );
 }
-
-export default OfferFilters;
