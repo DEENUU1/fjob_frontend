@@ -1,7 +1,6 @@
 import OfferDetails from "@/components/offer/FetchOffer";
 import {Suspense} from "react";
 import Spinner from "@/components/common/Spinner";
-import type {Metadata} from "next";
 import {getOffer} from "@/components/offer/FetchOffer";
 
 

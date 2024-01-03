@@ -3,7 +3,7 @@ import {Metadata} from "next";
 
 
 export const metadata: Metadata = {
-    title: 'FJob | Contact us',
+    title: 'FJob | Contact Form',
 }
 
 export default function Page() {
