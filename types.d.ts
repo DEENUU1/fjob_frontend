@@ -2,11 +2,11 @@ type Offer = {
     id: number;
     title: string;
     slug: string;
-    description: string;
+    description?: string;
     company?: string;
     addresses: Address[];
-    is_remote?: boolean;
-    is_hybrid?: boolean;
+    is_remote: boolean;
+    is_hybrid: boolean;
     apply_form?: string;
     skills: string;
     salary: Salary[];
