@@ -16,8 +16,6 @@ export default async function CompanyActiveOffers({companySlug}: {companySlug: s
 
     return (
         <>
-            <h3 className="text-2xl">Active job offers:</h3>
-
             {data ? (
                 data.map((offer: { id: any; }) => (
                     <OfferCard key={offer.id} offer={offer} />
