@@ -101,4 +101,5 @@ type Company = {
     company_size: number;
     user: User;
     addresses?: Address[] | null;
+    num_of_offers_to_add: number;
 }

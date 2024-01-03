@@ -1,12 +1,16 @@
 import Link from "next/link";
+import BuyButton from "./GetProductButton";
 
-async function FetchProducts() {
-    const response = await fetch(process.env.API_URL + "/api/payment/product/", {"cache": "no-cache"});
+async function getProducts() {
+    const response = await fetch(process.env.API_URL + "/api/payment/product/", {
+        next: {revalidate: 300} // 5 minutes cache
+    });
     return await response.json();
 }
 
 export default async function Products(){
-    const data = await FetchProducts();
+    const productsData = getProducts();
+    const data = await productsData;
 
     return (
         <>
@@ -24,10 +28,7 @@ export default async function Products(){
                                         <h3 className="mb-2 text-4xl font-bold tracking-tight">{product.price_euro}€</h3>
                                     )}
 
-                                    <Link href="/"
-                                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                        Buy
-                                    </Link>
+                                    <BuyButton/>
                                 </div>
                             </div>
 

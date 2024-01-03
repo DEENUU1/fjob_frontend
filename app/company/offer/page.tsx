@@ -14,15 +14,16 @@ export default async function Page() {
             <main className="mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8">
 
                 <div>
-                    <Suspense fallback={<Spinner/>}>
-                        <AddOffer/>
-                    </Suspense>
-
-                    <h3 className="text-2xl mt-5 mb-5">Offers</h3>
-
-                    <Suspense fallback={<Spinner/>}>
-                        <OfferList/>
-                    </Suspense>
+                    <div>
+                        <Suspense fallback={<Spinner/>}>
+                            <AddOffer/>
+                        </Suspense>
+                    </div>
+                    <div>
+                        <Suspense fallback={<Spinner/>}>
+                            <OfferList/>
+                        </Suspense>
+                    </div>
                 </div>
             </main>
         </>

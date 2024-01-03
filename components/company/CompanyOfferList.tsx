@@ -25,6 +25,8 @@ export default async function OfferList() {
     return (
         <>
             <div>
+                <h3 className="text-2xl mt-5 mb-5">Offers</h3>
+
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-left rtl:text-right">
                         <thead className="text-xs">

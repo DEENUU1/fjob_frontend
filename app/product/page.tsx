@@ -12,7 +12,7 @@ function Page() {
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="">
+            <div>
                 <h1 className="text-center font-bold text-3xl mb-10">Products</h1>
 
                 <Suspense fallback={<Spinner/>}>
