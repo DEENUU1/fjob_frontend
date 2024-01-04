@@ -34,9 +34,9 @@ const baseQueryWithReauth: BaseQueryFn<
 					extraOptions
 				);
 				if (refreshResult.data) {
+					localStorage.setItem("access", refreshResult.data.access);
 					api.dispatch(setAuth());
 					result = await baseQuery(args, api, extraOptions);
-					localStorage.setItem("access", refreshResult.data.access);
 				} else {
 					api.dispatch(logout());
 				}

@@ -10,13 +10,11 @@ export default function useVerify() {
 	useEffect(() => {
 		verify(undefined)
 			.unwrap()
-
 			.then(() => {
 				dispatch(setAuth());
-				// localStorage.setItem('access', data.access);
 			})
 			.finally(() => {
 				dispatch(finishInitialLoad());
 			});
-	}, []);
+	}, [dispatch, verify]);
 }
