@@ -101,25 +101,25 @@ export default function OfferCard({offer}: any) {
     return (
         <>
             <div
-                className="border-2 border-3-black hover:border-black hover:border-3 rounded-2xl container mb-4 mt-4"
+                className="border-2 border-gray-200 hover:border-black hover:border-3 rounded-2xl container mb-4 mt-4"
                 key={offer.title}>
                 <div className="flex justify-between items-center p-4">
                     <div className="flex items-start">
                         <div className="mr-4">
                             <Link href={`/offer/${offer.slug}`}>
-                                <h2 className="text-3xl font-medium">{offer.title}</h2>
+                                <h2 className="text-xl font-medium">{offer.title}</h2>
 
                             </Link>
                             {isScraped ? (
                                 <div>
-                                    <span className="text-lg text-gray-700">{offer.company_name}</span>
+                                    <span className="text-md text-gray-700">{offer.company_name}</span>
                                 </div>
                             ) : (
                                 <div>
-                                    <Link className="text-lg text-gray-700" href={`/companies/${offer.company.id}`}>{offer.company.name}</Link>
+                                    <Link className="text-md text-gray-700" href={`/companies/${offer.company.slug}`}>{offer.company.name}</Link>
                                 </div>
                             )}
-                            <h4 className="text-xl font-bold">{getSalary(offer)}</h4>
+                            <h4 className="text-md font-bold">{getSalary(offer)}</h4>
                         </div>
                     </div>
 
@@ -137,18 +137,17 @@ export default function OfferCard({offer}: any) {
                     </div>
                 </div>
 
-
-                <div className="mb-3 p-4 flex flex-wrap gap-2">
+                <div className="mb-1 p-4 flex flex-wrap gap-2">
                     {getDetails(offer).map((detail: string) => (
                         detailBadge(detail)
                     ))}
                 </div>
 
-                <div className="mb-3 p-4">
+                <div className="p-4">
                     {offer.description != null ? (
-                        <p>{offer.description.slice(0, 100)}...</p>
+                        <p className="inline-block">{offer.description.slice(0, 100)}...</p>
                     ):(
-                        <p></p>
+                        <p className="inline-block"></p>
                     )}
                 </div>
 

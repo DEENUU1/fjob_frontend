@@ -85,7 +85,7 @@ export default async function OfferDetails({slug}: {slug: string}) {
                 <div className="mb-5">
                     {!isScrapedOffer ? (
                         <div>
-                            <Link href={`/companies/${offer.company.id}`}>
+                            <Link href={`/companies/${offer.company.slug}`}>
                                 <h2>Company: <strong>{offer.company.name}</strong></h2>
                             </Link>
                         </div>

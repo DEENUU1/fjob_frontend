@@ -48,7 +48,7 @@ export default function OfferFilters(
     return (
         <>
         <div className="lg:flex lg:space-x-4 lg:items-center lg:mb-4">
-            <div className="lg:w-1/4 mb-4 lg:mb-0">
+            <div className="lg:w-2/4 mb-4 lg:mb-0">
                 <input
                     type="text"
                     id="search"

@@ -6,6 +6,7 @@ import OfferFilters from "@/components/offer/OfferFilters";
 import OfferPagination from "@/components/offer/OfferPagination";
 import offerList from "@/components/offer/OfferList";
 
+
 export default function Page() {
     const [isRemote, setIsRemote] = useState<string>("");
     const [isHybrid, setIsHybrid] = useState<string>("");
