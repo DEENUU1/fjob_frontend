@@ -149,6 +149,7 @@ export default function CreateJobOffer() {
                 </div>
 
                 <label htmlFor="apply_form" className="block mb-2 font-medium">Apply form</label>
+                <strong>Leave this empty if you want to use our default form</strong>
                 <input type="text" placeholder="apply form" name="apply_form" autoComplete="false"
                        className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
                 />
