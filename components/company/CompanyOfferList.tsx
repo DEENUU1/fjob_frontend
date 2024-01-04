@@ -1,13 +1,12 @@
 'use client'
 
-import Link from "next/link";
 import EditOfferModal from "@/components/company/EditOffer";
 import DeleteOfferButton from "@/components/company/DeleteOfferButton";
 
-async function GetCompanyOfferList(){
+async function getCompanyOfferList(){
     const token = localStorage.getItem("access");
 
-    const response = await fetch( process.env.API_URL + "api/company/offer", {
+    const response = await fetch( process.env.API_URL + "api/offer/company", {
            headers: {
                Authorization: `Bearer ${token}`,
                accept: 'application/json',
@@ -20,7 +19,7 @@ async function GetCompanyOfferList(){
 
 
 export default async function OfferList() {
-    const data = await GetCompanyOfferList()
+    const data = await getCompanyOfferList()
 
     return (
         <>

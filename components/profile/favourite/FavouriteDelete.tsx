@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import {RiDeleteBin5Line, RiDeleteBin6Fill} from "react-icons/ri";
 import {useState} from "react";
 
-const FavouriteButtonDelete = ({offerId}) => {
+const FavouriteButtonDelete = ({offerId}: {offerId: number}) => {
     const token = localStorage.getItem('access')
     const router = useRouter();
     const [isHover, setIsHover] = useState(false);

@@ -6,7 +6,7 @@ import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 import {useAppSelector} from "@/redux/hooks";
 import {IoFlagOutline, IoFlagSharp} from "react-icons/io5";
 
-const ReportModal = ({offerId}) => {
+const ReportModal = ({offerId}: {offerId: number}) => {
     const {isLoading, isAuthenticated} = useAppSelector(state => state.auth);
     const [description, setDescription] = useState('')
     const {data: user} = useRetrieveUserQuery()

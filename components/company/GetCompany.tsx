@@ -2,7 +2,7 @@
 import { SocialIcon } from 'react-social-icons'
 import EditCompanyModal from "@/components/company/EditCompany";
 
-async function GetCompany(){
+async function getCompany(){
     const token = localStorage.getItem("access")
 
     const response = await fetch(process.env.API_URL + "api/company/company", {
@@ -17,7 +17,7 @@ async function GetCompany(){
 
 
 export default async function CompanyData() {
-    const data = await GetCompany()
+    const data = await getCompany()
 
     return (
         <>
