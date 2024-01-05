@@ -113,3 +113,17 @@ type EmploymentType = {
     id: number;
     name: string;
 }
+
+type OfferHelper = {
+    id: number;
+    slug: string;
+    title: string;
+}
+
+type UserAppliedOffer = {
+    id: number;
+    created_at: string;
+    user: number;
+    status: string;
+    job_offer: OfferHelper;
+}
