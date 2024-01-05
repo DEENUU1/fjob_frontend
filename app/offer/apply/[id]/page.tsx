@@ -2,7 +2,7 @@ import ApplyForm from "@/components/offer/ApplyForm";
 
 
 interface PageParams {
-    id: number;
+    id: string;
 }
 
 
