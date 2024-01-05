@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import Spinner from "@/components/common/Spinner";
 import Link from "next/link";
 import UpdateStatus from "@/components/company/UpdateCandidateStatus";
-import CandidateDetails from "@/components/company/CandidateDetails";
+import CandidateDetailsDialog from "@/components/company/CandidateDetails";
 
 export default function CandidateList(
     {
@@ -20,7 +20,7 @@ export default function CandidateList(
     const [candidates, setCandidates] = useState([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-
+    const [selectedCandidateId, setSelectedCandidateId] = useState<number | null>(null);
 
     useEffect(() => {
         let url = `api/candidate/candidate/offer/${offerId}?status=${status}&ordering=${ordering}`;
@@ -113,7 +113,7 @@ export default function CandidateList(
                                         <UpdateStatus currentStatus={can.status} candidateId={can.id}/>
                                     </td>
                                     <td className="px-6 py-4 space-x-2">
-                                        <CandidateDetails id={can.id}/>
+                                        <CandidateDetailsDialog message={can.message}/>
                                     </td>
                                 </tr>
                             ))

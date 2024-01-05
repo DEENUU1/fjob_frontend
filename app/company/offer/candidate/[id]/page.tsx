@@ -10,16 +10,6 @@ interface PageParams {
 }
 
 
-// export async function generateMetadata({params}: {params: PageParams}){
-//     const offerData: Promise<Offer> = getOffer(params.slug);
-//     const offer = await offerData;
-//
-//     return {
-//         title: "FJob | " + offer.title,
-//         description: offer.description,
-//     }
-// }
-
 export default function Page({params}: {params: PageParams}) {
     const offerId = params.id;
     const [ordering, setOrdering] = useState<string>("-created_at");
