@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Spinner from "@/components/common/Spinner";
 import Link from "next/link";
-
+import UpdateStatus from "@/components/company/UpdateCandidateStatus";
 
 export default function CandidateList(
     {
@@ -91,8 +91,7 @@ export default function CandidateList(
                                 <Link href={can.cv}>CV</Link>
                             </td>
                             <td className="px-6 py-4 space-x-2">
-                                {can.status}
-
+                                <UpdateStatus currentStatus={can.status} candidateId={can.id}/>
                             </td>
                         </tr>
                     ))

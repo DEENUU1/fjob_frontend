@@ -2,16 +2,20 @@
 
 import {useEffect, useState} from "react";
 
-export default function UpdateStatus(currentStatus: string, candidateId: number) {
+export default function UpdateStatus({currentStatus, candidateId}: {currentStatus: string, candidateId: string}) {
 
     const statusType: string[] = ["PENDING", "ACCEPTED", "REJECTED"];
 
     const [status, setStatus] = useState<string>(currentStatus);
 
     useEffect(() => {
-        fetch(process.env.API_URL +  `api/candidate/candidate/${candidateId}`, {
+        fetch(process.env.API_URL +  `api/candidate/candidate/${candidateId}/`, {
             method: 'PATCH',
             body: JSON.stringify({"status": status}),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access')}`,
+            }
         })
             .then(response => response.json())
             .then(data => {
@@ -27,17 +31,11 @@ export default function UpdateStatus(currentStatus: string, candidateId: number)
     return (
         <>
             <select onChange={handleStatusUpdate} value={status}>
-                {statusType.map((statusOption) => {
-                    if (statusOption !== status || status === "PENDING") {
-                        return (
-                            <option key={statusOption} value={statusOption}>
-                                {statusOption}
-                            </option>
-                        );
-                    } else {
-                        return null;
-                    }
-                })}
+                {statusType.map((statusOption) => (
+                    <option key={statusOption} value={statusOption}>
+                        {statusOption}
+                    </option>
+                ))}
             </select>
         </>
     )
