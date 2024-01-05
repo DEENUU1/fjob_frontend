@@ -18,9 +18,6 @@ export default function UpdateStatus({currentStatus, candidateId}: {currentStatu
             }
         })
             .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            })
     }, [status, candidateId]);
 
     const handleStatusUpdate = (event: React.ChangeEvent<HTMLSelectElement>) => {

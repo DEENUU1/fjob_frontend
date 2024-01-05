@@ -13,6 +13,4 @@ export default function getEmploymentTypes(){
     }, []);
 
     return employmentTypes;
-
-
 }

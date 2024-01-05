@@ -126,4 +126,5 @@ type UserAppliedOffer = {
     user: number;
     status: string;
     job_offer: OfferHelper;
+    message?: string | null;
 }
