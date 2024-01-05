@@ -2,6 +2,8 @@
 
 import CandidateList from "@/components/company/CandidateList";
 import {useState} from "react";
+import CandidateFilter from "@/components/company/CandidateFilter";
+
 
 interface PageParams {
     id: number;
@@ -27,8 +29,18 @@ export default function Page({params}: {params: PageParams}) {
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
             <div>
+                <CandidateFilter
+                    ordering={ordering}
+                    status={status}
+                    setOrdering={setOrdering}
+                    setStatus={setStatus}
+                />
 
-                <CandidateList offerId={offerId} ordering={ordering} status={status}/>
+                <CandidateList
+                    offerId={offerId}
+                    ordering={ordering}
+                    status={status}
+                />
 
             </div>
 

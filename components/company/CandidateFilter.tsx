@@ -27,7 +27,6 @@ export default function CandidateFilter(
                     Sort by:
                 </label>
                 <select
-                    className="w-full bg-gray-50 font-medium p-2"
                     id="ordering"
                     value={ordering}
                     onChange={(e) => setOrdering(e.target.value)}
@@ -43,7 +42,6 @@ export default function CandidateFilter(
                     Status
                 </label>
                 <select
-                    className="w-full bg-gray-50 font-medium p-2"
                     id="status"
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
