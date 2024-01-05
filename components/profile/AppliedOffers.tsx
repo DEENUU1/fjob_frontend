@@ -48,7 +48,7 @@ export default async function AppliedOffers() {
             ) : (
                 offerData.map((offer: UserAppliedOffer) => (
                     <div key={offer.id}
-                         className="border-2 border-black border-opacity-50 rounded-b mb-2 p-5 hover:shadow-md transition duration-300">
+                         className="border-2 border-black border-opacity-50 rounded-xl mb-2 p-5 hover:shadow-md transition duration-300">
                         <AppliedCard data={offer}/>
                     </div>
 
@@ -57,4 +57,3 @@ export default async function AppliedOffers() {
         </div>
     )
 }
-// // {id, created_at, job_offer, user, status}

@@ -7,6 +7,13 @@ import { Disclosure } from "@headlessui/react";
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import {useLogoutMutation, useRetrieveUserQuery} from '@/redux/features/authApiSlice';
 import { logout as setLogout } from '@/redux/features/authSlice';
+import {
+    DropdownMenu,
+    DropdownMenuContent, DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 
 
 const Navbar = () => {
@@ -92,13 +99,49 @@ const Navbar = () => {
                                                 <>
                                                     {/*  If user.account_type == "USER" display Dashboard and if its "COMPANY" display company dashboard  */}
                                                     {user?.account_type == "USER" ? (
-                                                        <Link href="/dashboard" className="w-full px-6 py-2 mt-3 text-center lg:ml-5">
-                                                            Dashboard
-                                                        </Link>
+                                                        <DropdownMenu>
+                                                            <DropdownMenuTrigger className="w-full px-6 py-2 mt-3 text-center lg:ml-5">Actions</DropdownMenuTrigger>
+                                                            <DropdownMenuContent>
+                                                                <DropdownMenuLabel>
+                                                                    <Link href="/dashboard">
+                                                                        Dashboard
+                                                                    </Link>
+                                                                </DropdownMenuLabel>
+                                                                <DropdownMenuSeparator />
+                                                                <DropdownMenuItem>
+                                                                    <Link href="/dashboard">
+                                                                        Dashboard
+                                                                    </Link>
+                                                                </DropdownMenuItem>
+                                                                <DropdownMenuItem>
+                                                                    <Link href="/dashboard/favourite">
+                                                                        Favourite
+                                                                    </Link>
+                                                                </DropdownMenuItem>
+                                                                <DropdownMenuItem>
+                                                                    <Link href="/dashboard/offer">
+                                                                        Applied offers
+                                                                    </Link>
+                                                                </DropdownMenuItem>
+                                                            </DropdownMenuContent>
+                                                        </DropdownMenu>
                                                     ) : (
-                                                        <Link href="/company" className="w-full px-6 py-2 mt-3 text-center lg:ml-5">
-                                                            Dashboard
-                                                        </Link>
+                                                        <DropdownMenu>
+                                                            <DropdownMenuTrigger className="w-full px-6 py-2 mt-3 text-center lg:ml-5">Actions</DropdownMenuTrigger>
+                                                            <DropdownMenuContent>
+                                                                <DropdownMenuLabel>
+                                                                    <Link href="/company">
+                                                                        Dashboard
+                                                                    </Link>
+                                                                </DropdownMenuLabel>
+                                                                <DropdownMenuSeparator />
+                                                                <DropdownMenuItem>
+                                                                    <Link href="/company/offer">
+                                                                        Offer
+                                                                    </Link>
+                                                                </DropdownMenuItem>
+                                                            </DropdownMenuContent>
+                                                        </DropdownMenu>
                                                     )}
                                                     <button onClick={handleLogout} className="w-full px-6 py-2 mt-3 text-center- lg:ml-5">
                                                         Logout
@@ -155,13 +198,50 @@ const Navbar = () => {
                         <>
                         {/*  If user.account_type == "USER" display Dashboard and if its "COMPANY" display company dashboard  */}
                         {user?.account_type == "USER" ? (
-                            <Link href="/dashboard" className="px-6 py-2 text-black">
-                                Dashboard
-                            </Link>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger className="px-6 py-2">Actions</DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuLabel>
+                                        <Link href="/dashboard">
+                                            Dashboard
+                                        </Link>
+                                    </DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem>
+                                        <Link href="/dashboard">
+                                            Dashboard
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <Link href="/dashboard/favourite">
+                                            Favourite
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <Link href="/dashboard/offer">
+                                            Applied offers
+                                        </Link>
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
                         ) : (
-                            <Link href="/company" className="px-6 py-2 text-black">
-                                Dashboard
-                            </Link>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger className="px-6 py-2">Actions</DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuLabel>
+                                        <Link href="/company">
+                                            Dashboard
+                                        </Link>
+                                    </DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem>
+                                        <Link href="/company/offer">
+                                            Offer
+                                        </Link>
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+
                         )}
                         <button onClick={handleLogout}>
                             Logout

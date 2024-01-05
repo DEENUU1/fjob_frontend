@@ -15,12 +15,6 @@ export default function Layout({ children }: Props) {
                     <h1 className='text-3xl font-bold tracking-tight text-gray-900'>
                         Company dashboard
                     </h1>
-                    <div className="mt-4">
-                        <span><Link className="bg-black p-3 text-white hover:bg-gray-800" href="/company"> Home </Link></span>
-                        <span><Link className="bg-black p-3 text-white hover:bg-gray-800" href="/company/offer"> Offer </Link></span>
-
-                    </div>
-
                 </div>
             </header>
             {children}
