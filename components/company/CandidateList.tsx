@@ -68,9 +68,6 @@ export default function CandidateList(
                     <th scope="col" className="px-6 py-3">
                         Status
                     </th>
-                    <th scope="col" className="px-6 py-3">
-                        Action
-                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -95,6 +92,7 @@ export default function CandidateList(
                             </td>
                             <td className="px-6 py-4 space-x-2">
                                 {can.status}
+
                             </td>
                         </tr>
                     ))
