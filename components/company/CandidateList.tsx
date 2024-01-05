@@ -78,8 +78,8 @@ export default function CandidateList(
                             <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
                                 {can.first_name} {can.last_name}
                             </th>
-                            <td className="px-6 py-4">
-                                {can.email}
+                            <td className="px-6 py-4 text-blue-500 hover:underline cursor-pointer">
+                                <a href={`mailto: ${can.email}`}>{can.email}</a>
                             </td>
                             <td className="px-6 py-4">
                                 {can.phone}
@@ -88,7 +88,7 @@ export default function CandidateList(
                                 {can.created_at}
                             </td>
                             <td className="px-6 py-4 font-bold">
-                                <Link href={can.cv}>CV</Link>
+                                <Link className="text-blue-500 hover:underline cursor-pointer" href={can.cv}>CV</Link>
                             </td>
                             <td className="px-6 py-4 space-x-2">
                                 <UpdateStatus currentStatus={can.status} candidateId={can.id}/>
