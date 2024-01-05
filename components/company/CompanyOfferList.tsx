@@ -67,9 +67,9 @@ export default async function OfferList() {
                                 </td>
                                 <td className="px-6 py-4">
                                     {offer.apply_form !== null ? (
-                                        <Link href={`/company/offer/candidate/${offer.id}`} className="text-blue-500 hover:underline cursor-pointer">Candidates</Link>
-                                    ): (
                                         <span>N/A</span>
+                                    ): (
+                                        <Link href={`/company/offer/candidate/${offer.id}`} className="text-blue-500 hover:underline cursor-pointer">Candidates</Link>
                                     )}
                                 </td>
                                 <td className="px-6 py-4 font-bold">
