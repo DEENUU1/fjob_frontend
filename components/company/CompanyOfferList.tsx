@@ -2,6 +2,8 @@
 
 import EditOfferModal from "@/components/company/EditOffer";
 import DeleteOfferButton from "@/components/company/DeleteOfferButton";
+import Link from "next/link";
+
 
 async function getCompanyOfferList(){
     const token = localStorage.getItem("access");
@@ -40,6 +42,9 @@ export default async function OfferList() {
                                 Updated at
                             </th>
                             <th scope="col" className="px-6 py-3">
+                                Candidates
+                            </th>
+                            <th scope="col" className="px-6 py-3">
                                 Status
                             </th>
                             <th scope="col" className="px-6 py-3">
@@ -59,6 +64,13 @@ export default async function OfferList() {
                                 </td>
                                 <td className="px-6 py-4">
                                     {offer.updated_at}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {offer.apply_form !== null ? (
+                                        <Link href={`/company/offer/candidate/${offer.id}`} className="text-blue-500 hover:underline cursor-pointer">Candidates</Link>
+                                    ): (
+                                        <span>N/A</span>
+                                    )}
                                 </td>
                                 <td className="px-6 py-4 font-bold">
                                     {offer.status}

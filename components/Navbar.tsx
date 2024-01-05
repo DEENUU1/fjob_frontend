@@ -100,13 +100,13 @@ const Navbar = () => {
                                                     {/*  If user.account_type == "USER" display Dashboard and if its "COMPANY" display company dashboard  */}
                                                     {user?.account_type == "USER" ? (
                                                         <DropdownMenu>
-                                                            <DropdownMenuTrigger className="w-full px-6 py-2 mt-3 text-center lg:ml-5">Actions</DropdownMenuTrigger>
+                                                            <DropdownMenuTrigger className="w-full px-6 py-2 mt-3 text-center lg:ml-5">Profile</DropdownMenuTrigger>
                                                             <DropdownMenuContent>
-                                                                <DropdownMenuLabel>
+                                                                <DropdownMenuItem>
                                                                     <Link href="/dashboard">
                                                                         Dashboard
                                                                     </Link>
-                                                                </DropdownMenuLabel>
+                                                                </DropdownMenuItem>
                                                                 <DropdownMenuSeparator />
                                                                 <DropdownMenuItem>
                                                                     <Link href="/dashboard">
@@ -127,13 +127,13 @@ const Navbar = () => {
                                                         </DropdownMenu>
                                                     ) : (
                                                         <DropdownMenu>
-                                                            <DropdownMenuTrigger className="w-full px-6 py-2 mt-3 text-center lg:ml-5">Actions</DropdownMenuTrigger>
+                                                            <DropdownMenuTrigger className="w-full px-6 py-2 mt-3 text-center lg:ml-5">Profile</DropdownMenuTrigger>
                                                             <DropdownMenuContent>
-                                                                <DropdownMenuLabel>
+                                                                <DropdownMenuItem>
                                                                     <Link href="/company">
                                                                         Dashboard
                                                                     </Link>
-                                                                </DropdownMenuLabel>
+                                                                </DropdownMenuItem>
                                                                 <DropdownMenuSeparator />
                                                                 <DropdownMenuItem>
                                                                     <Link href="/company/offer">
@@ -199,13 +199,13 @@ const Navbar = () => {
                         {/*  If user.account_type == "USER" display Dashboard and if its "COMPANY" display company dashboard  */}
                         {user?.account_type == "USER" ? (
                             <DropdownMenu>
-                                <DropdownMenuTrigger className="px-6 py-2">Actions</DropdownMenuTrigger>
+                                <DropdownMenuTrigger className="px-6 py-2">Profile</DropdownMenuTrigger>
                                 <DropdownMenuContent>
-                                    <DropdownMenuLabel>
+                                    <DropdownMenuItem>
                                         <Link href="/dashboard">
                                             Dashboard
                                         </Link>
-                                    </DropdownMenuLabel>
+                                    </DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem>
                                         <Link href="/dashboard">
@@ -226,13 +226,13 @@ const Navbar = () => {
                             </DropdownMenu>
                         ) : (
                             <DropdownMenu>
-                                <DropdownMenuTrigger className="px-6 py-2">Actions</DropdownMenuTrigger>
+                                <DropdownMenuTrigger className="px-6 py-2">Profile</DropdownMenuTrigger>
                                 <DropdownMenuContent>
-                                    <DropdownMenuLabel>
+                                    <DropdownMenuItem>
                                         <Link href="/company">
                                             Dashboard
                                         </Link>
-                                    </DropdownMenuLabel>
+                                    </DropdownMenuItem>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem>
                                         <Link href="/company/offer">
