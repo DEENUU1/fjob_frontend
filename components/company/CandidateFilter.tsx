@@ -22,6 +22,7 @@ export default function CandidateFilter(
 
     return (
         <>
+            <div>
             <div className="lg:flex lg:space-x-4 lg:items-center lg:mb-4">
                 <label htmlFor="ordering">
                     Sort by:
@@ -52,7 +53,7 @@ export default function CandidateFilter(
                         </option>
                     ))}
                 </select>
-
+            </div>
             </div>
         </>
     )

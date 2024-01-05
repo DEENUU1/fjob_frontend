@@ -26,8 +26,8 @@ export default function Page({params}: {params: PageParams}) {
     const [status, setStatus] = useState<string>("")
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-
+        <>
+        <main className="mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8">
             <div>
                 <CandidateFilter
                     ordering={ordering}
@@ -35,15 +35,15 @@ export default function Page({params}: {params: PageParams}) {
                     setOrdering={setOrdering}
                     setStatus={setStatus}
                 />
-
-                <CandidateList
-                    offerId={offerId}
-                    ordering={ordering}
-                    status={status}
-                />
-
+                <div>
+                    <CandidateList
+                        offerId={offerId}
+                        ordering={ordering}
+                        status={status}
+                    />
+                </div>
             </div>
-
         </main>
+        </>
     )
 }
