@@ -16,8 +16,21 @@ export default function Layout({ children }: Props) {
 							Profile dashboard
 						</h1>
 						<div className="mt-4">
-							<span><Link className="bg-black p-3 text-white hover:bg-gray-800" href="/dashboard"> Dashboard </Link></span>
-							<span><Link className="bg-black p-3 text-white hover:bg-gray-800" href="/dashboard/favourite"> Favourite </Link></span>
+							<span>
+								<Link className="bg-black p-3 text-white hover:bg-gray-800" href="/dashboard">
+									Dashboard
+								</Link>
+							</span>
+							<span>
+								<Link className="bg-black p-3 text-white hover:bg-gray-800" href="/dashboard/favourite">
+									Favourite
+								</Link>
+							</span>
+							<span>
+								<Link className="bg-black p-3 text-white hover:bg-gray-800" href="/dashboard/offer">
+									Applied offers
+								</Link>
+							</span>
 						</div>
 					</div>
 				</header>
