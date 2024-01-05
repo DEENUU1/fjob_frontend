@@ -19,7 +19,19 @@ export default function CandidateList(
 
 
     useEffect(() => {
-        let url = `api/candidate/candidate/offer/${offerId}?status=${status}&ordering=${ordering}`
+        let url = `api/candidate/candidate/offer/${offerId}?status=${status}&ordering=${ordering}`;
+
+        fetch(process.env.API_URL + url)
+            .then((response) => response.json())
+            .then((data) => {
+                setCandidates(data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setError(error);
+                setLoading(false);
+            })
+
     }, [offerId, status, ordering]);
 
     if (loading || error || !candidates) {

@@ -1,7 +1,7 @@
-import OfferDetails from "@/components/offer/FetchOffer";
-import {Suspense} from "react";
-import Spinner from "@/components/common/Spinner";
+'use client';
 
+import CandidateList from "@/components/company/CandidateList";
+import {useState} from "react";
 
 interface PageParams {
     id: number;
@@ -18,16 +18,18 @@ interface PageParams {
 //     }
 // }
 
-export default async function Page({params}: {params: PageParams}) {
+export default function Page({params}: {params: PageParams}) {
     const offerId = params.id;
+    const [ordering, setOrdering] = useState<string>("-created_at");
+    const [status, setStatus] = useState<string>("")
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
             <div>
-                <Suspense fallback={<Spinner/>}>
 
-                </Suspense>
+                <CandidateList offerId={offerId} ordering={ordering} status={status}/>
+
             </div>
 
         </main>
