@@ -6,6 +6,8 @@ import {toast} from 'react-toastify';
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 import Confetti from "@/components/Confetti";
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+const ALLOWED_FILE_TYPES = ["application/pdf"];
 
 export default function ApplyForm({offerId}: {offerId: string}) {
     const [first_name, setFirstName] = useState<string>("");
@@ -16,11 +18,38 @@ export default function ApplyForm({offerId}: {offerId: string}) {
     const [message, setMessage] = useState<string>("");
     const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
 
-    const {data: user} = useRetrieveUserQuery()
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [progress, setProgress] = useState<number>(0);
 
+    const {data: user} = useRetrieveUserQuery();
+    const userId = user?.id || null;
+
+
+    const validateFile = (file: File) => {
+        const allowedTypes = ALLOWED_FILE_TYPES;
+        const maxFileSize = MAX_FILE_SIZE
+
+        if (!allowedTypes.includes(file.type)) {
+            toast.error("Only PDF files are allowed.");
+            return false;
+        }
+
+        if (file.size > maxFileSize) {
+            toast.error("File size exceeds the limit (5 MB).");
+            return false;
+        }
+
+        return true;
+    };
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+
+        if (!validateFile(resume)) {
+            return;
+        }
+
+        setIsLoading(true);
 
         const formData = new FormData();
         formData.append("first_name", first_name);
@@ -31,8 +60,8 @@ export default function ApplyForm({offerId}: {offerId: string}) {
         formData.append("cv", resume);
         formData.append("job_offer", offerId);
 
-        if (user.id) {
-            formData.append("user", user.id);
+        if (userId) {
+            formData.append("user", userId);
         }
 
         try {
@@ -52,6 +81,8 @@ export default function ApplyForm({offerId}: {offerId: string}) {
             }
         } catch (error) {
             toast.error("Failed to sent your application");
+        } finally {
+            setIsLoading(false);
         }
     };
     return (
@@ -61,6 +92,20 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                     <Confetti />
                 </>
             ): null}
+
+            {isLoading && (
+                <div>
+                    {/* Display loading screen with progress bar or loading information */}
+                    {progress > 0 ? (
+                        <div>
+                            <p>Loading... {progress}%</p>
+                            {/* Add your progress bar component here */}
+                        </div>
+                    ) : (
+                        <p>Loading...</p>
+                    )}
+                </div>
+            )}
 
             <div>
                 <form onSubmit={handleSubmit} className="w-full max-w-lg">
