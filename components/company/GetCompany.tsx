@@ -3,13 +3,12 @@ import { SocialIcon } from 'react-social-icons'
 import EditCompanyModal from "@/components/company/EditCompany";
 
 async function getCompany(){
-    const token = localStorage.getItem("access")
-
     const response = await fetch(process.env.API_URL + "api/company/company", {
         headers: {
             accept: "application/json",
-            Authorization: `Bearer ${token}`
-        }
+            // Authorization: `Bearer ${token}`
+        },
+        credentials: "include",
     })
     return await response.json()
 

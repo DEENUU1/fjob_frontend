@@ -55,8 +55,9 @@ export default function EditCompanyModal({company}: {company: Company}) {
                 method: "PUT",
                 headers: {
                     accept: "application/json",
-                    Authorization: `Bearer ${token}`
+                    // Authorization: `Bearer ${token}`
                 },
+                credentials: "include",
                 body: formData,
             });
             if (response.ok) {

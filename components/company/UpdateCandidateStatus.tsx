@@ -14,8 +14,9 @@ export default function UpdateStatus({currentStatus, candidateId}: {currentStatu
             body: JSON.stringify({"status": status}),
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('access')}`,
-            }
+                // Authorization: `Bearer ${localStorage.getItem('access')}`,
+            },
+            credentials: "include",
         })
             .then(response => response.json())
     }, [status, candidateId]);

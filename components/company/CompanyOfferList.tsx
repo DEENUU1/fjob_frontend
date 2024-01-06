@@ -11,8 +11,9 @@ async function getCompanyOfferList(){
     const response = await fetch( process.env.API_URL + "api/offer/company", {
            headers: {
                Authorization: `Bearer ${token}`,
-               accept: 'application/json',
-           }
+               // accept: 'application/json',
+           },
+           credentials: "include"
     })
 
     return await response.json()

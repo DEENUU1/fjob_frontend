@@ -8,9 +8,10 @@ async function getAppliedOffers(){
     const token = localStorage.getItem("access");
 
     const response = await fetch(process.env.API_URL + "api/candidate/candidate/user/", {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
+        // headers: {
+        //     Authorization: `Bearer ${token}`
+        // }
+        credentials: "include",
     });
 
     return response.json();

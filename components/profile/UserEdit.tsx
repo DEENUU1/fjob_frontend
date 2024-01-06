@@ -24,8 +24,9 @@ export default function EditUser() {
                 method: "PATCH",
                 headers: {
                     accept: "application/json",
-                    Authorization: `Bearer ${token}`,
+                    // Authorization: `Bearer ${token}`,
                 },
+                credentials: "include",
                 body: formData,
             });
 
@@ -35,7 +36,6 @@ export default function EditUser() {
                 toast.error("Form submission failed");
             }
         } catch (error) {
-            console.error("Form submission failed:", error);
             toast.error("Form submission failed");
         }
     };

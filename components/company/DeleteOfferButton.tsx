@@ -18,17 +18,18 @@ export default function DeleteOfferButton({offerId}) {
 
     const handleDeleteOffer = async () => {
         try {
-            const response = await fetch(process.env.API_URL + "api/offer/company/${offerId}", {
+            const response = await fetch(process.env.API_URL + `api/offer/company/${offerId}`, {
                 method: "DELETE",
                 headers: {
                     accept: "application/json",
-                    Authorization: `Bearer ${token}`
-                }
+                    // Authorization: `Bearer ${token}`
+                },
+                credentials: "include",
             })
 
             if (response.ok) {
                 toast.success("Offer deleted successfully")
-                router.refresh()
+                // router.refresh()
             } else {
                 toast.error("Offer deletion failed")
             }

@@ -102,8 +102,9 @@ export default function CreateJobOffer() {
                 method: "POST",
                 headers: {
                     accept: "application/json",
-                    Authorization: `Bearer ${token}`
+                    // Authorization: `Bearer ${token}`
                 },
+                credentials: "include",
                 body: formData,
             });
             if (response.ok) {

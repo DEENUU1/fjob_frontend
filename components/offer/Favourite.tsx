@@ -28,8 +28,9 @@ const FavouriteButton = ({offerId}) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
+                    // Authorization: `Bearer ${token}`
                 },
+                credentials: "include",
                 body: JSON.stringify({offer: offerId, user: user?.id})
             })
 

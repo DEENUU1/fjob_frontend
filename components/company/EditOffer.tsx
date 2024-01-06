@@ -98,12 +98,13 @@ export default function EditOfferModal({offer}) {
         formData.append("company", 2);
 
         try {
-            const response = await fetch(process.env.API_URL + "api/offer/company/${offer.id}/", {
+            const response = await fetch(process.env.API_URL + `api/offer/company/${offer.id}/`, {
                 method: "PUT",
                 headers: {
                     accept: "application/json",
-                    Authorization: `Bearer ${token}`
+                    // Authorization: `Bearer ${token}`
                 },
+                credentials: "include",
                 body: formData,
             });
             if (response.ok) {

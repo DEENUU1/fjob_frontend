@@ -8,8 +8,9 @@ async function getCompany(){
     const response = await fetch(process.env.API_URL + "api/company/company", {
         headers: {
             accept: "application/json",
-            Authorization: `Bearer ${token}`
-        }
+            // Authorization: `Bearer ${token}`
+        },
+        credentials: "include"
     })
     return await response.json()
 

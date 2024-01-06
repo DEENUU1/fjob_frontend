@@ -20,15 +20,16 @@ export default function CandidateList(
     const [candidates, setCandidates] = useState([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-    const [selectedCandidateId, setSelectedCandidateId] = useState<number | null>(null);
 
     useEffect(() => {
         let url = `api/candidate/candidate/offer/${offerId}?status=${status}&ordering=${ordering}`;
 
         fetch(process.env.API_URL + url, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('access')}`
-            }
+            // headers: {
+            //     Authorization: `Bearer ${localStorage.getItem('access')}`
+            // }
+            credentials: "include"
+
         })
             .then((response) => response.json())
             .then((data) => {

@@ -18,13 +18,13 @@ const FavouriteButtonDelete = ({offerId}: {offerId: number}) => {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
+                    // Authorization: `Bearer ${token}`
                 },
+                credentials: "include",
             })
 
-            if (response.status == 204) {
+            if (response.status == 204 || response.status == 301) {
                 toast.success('Delete offer from favourite')
-                router.refresh();
             } else if (response.status == 400) {
                 toast.info('Error!')
             }
