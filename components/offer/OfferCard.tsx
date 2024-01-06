@@ -101,7 +101,7 @@ export default function OfferCard({offer}: any) {
     return (
         <>
             <div
-                className="border-2 border-gray-200 hover:border-black hover:border-3 rounded-2xl container mb-4 mt-4"
+                className={`border-2 border-gray-200 hover:border-black hover:border-3 rounded-2xl container mb-4 mt-4 ${!isScraped && 'bg-yellow-50'}`}
                 key={offer.title}>
                 <div className="flex justify-between items-center p-4">
                     <div className="flex items-start">
