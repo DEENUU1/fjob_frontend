@@ -85,9 +85,15 @@ type User = {
     email: string;
 }
 
+type CompanyCategory = {
+    id: number,
+    name: string
+}
+
 type Company = {
     id: number;
     name: string;
+    category: CompanyCategory | null;
     logo: string | null;
     slug: string;
     description?: string | null;

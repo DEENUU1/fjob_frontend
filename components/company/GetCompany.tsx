@@ -49,6 +49,7 @@ export default async function CompanyData() {
             {/*{data.image && (*/}
             {/*    <Image src={data?.logo} width={400} height={400} alt="logo"/>*/}
             {/*)}*/}
+            <p className="text-xl mt-2 mb-2">Company size: {data?.category.name}</p>
             <p className="text-xl mt-2 mb-2">Company size: {data?.company_size}</p>
 
             <h3 className="text-xl mt-2">Addresses:</h3>

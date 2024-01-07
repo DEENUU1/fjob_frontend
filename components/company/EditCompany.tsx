@@ -23,6 +23,7 @@ export default function EditCompanyModal({company}: {company: Company}) {
     const [youtubeUrl, setYoutubeUrl] = useState(company.youtube_url || "")
     const [websiteUrl, setWebsiteUrl] = useState(company.website_url || "")
     const [isActive, setIsActive] = useState(company.is_active || false)
+    const [category, setCategory] = useState(company.category || null)
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -50,6 +51,11 @@ export default function EditCompanyModal({company}: {company: Company}) {
         if (logo !== null && typeof logo !== "string"){
             formData.append("logo", logo);
         }
+
+        if (category !== null) {
+            formData.append("category", category);
+        }
+
         try {
             const response = await fetch(process.env.API_URL + "api/company/management/", {
                 method: "PUT",

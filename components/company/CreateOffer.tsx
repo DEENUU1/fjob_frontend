@@ -2,9 +2,9 @@
 
 import React, {useState} from "react";
 import {toast} from "react-toastify";
-import GetExperiences from "@/components/offer/Experience";
-import GetWorkType from "@/components/offer/WorkType";
-import GetEmploymentTypes from "@/components/offer/EmploymentType";
+import getExperiences from "@/components/offer/Experience";
+import getWorkType from "@/components/offer/WorkType";
+import getEmploymentTypes from "@/components/offer/EmploymentType";
 import { useRouter } from 'next/navigation';
 
 
@@ -25,9 +25,9 @@ export default function CreateJobOffer() {
     const [employmentType, setEmploymentType] = useState([])
     const [status, setStatus] = useState("")
 
-    const experiences = GetExperiences();
-    const workTypes = GetWorkType();
-    const employmentTypes = GetEmploymentTypes();
+    const experiences = getExperiences();
+    const workTypes = getWorkType();
+    const employmentTypes = getEmploymentTypes();
 
     const experienceMultiSelect = () => {
         // @ts-ignore
