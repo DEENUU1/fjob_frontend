@@ -102,7 +102,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                             <input
                                 type="text" id="first_name" autoComplete="true" required placeholder="First name"
                                 name="first_name" value={first_name} onChange={(e) => setFirstName(e.target.value)}
-                                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             />
                         </div>
                         <div className="w-full md:w-1/2 px-3">
@@ -111,7 +111,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                             <input
                                 type="text" id="first_name" autoComplete="true" required placeholder="Last name"
                                 name="last_name" value={last_name} onChange={(e) => setLastName(e.target.value)}
-                                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             />
                         </div>
                     </div>
@@ -121,7 +121,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">Email</label>
                             <input type="email" id="email" autoComplete="true" required placeholder="Email address"
                                    name="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                   className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
 
                             />
                         </div>
@@ -130,7 +130,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="phone">Phone number</label>
                             <input type="text" id="phone" autoComplete="true" required placeholder="Phone number"
                                    name="phone" value={phone} onChange={(e) => setPhone(e.target.value)}
-                                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                   className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             />
                         </div>
                     </div>
@@ -142,7 +142,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                             id="resume"
                             name="phone"
                             disabled
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                         />
                     ) : (
                         <input
@@ -151,7 +151,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                             required
                             name="phone"
                             onChange={(e) => setResume(e.target.files[0])}
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                         />
                     )}
 
@@ -165,7 +165,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="message">Message to the recruiter</label>
                     <textarea id="message" placeholder="Message" name="message" value={message}
                               onChange={(e) => setMessage(e.target.value)}
-                              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                     />
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2" type="submit">
                         Apply

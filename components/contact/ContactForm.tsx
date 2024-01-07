@@ -56,7 +56,7 @@ export default function ContactForm() {
                         <input type="checkbox" id="" className="hidden" name="botcheck"/>
                         <div className="mb-5">
                             <input type="text" placeholder="Subject" autoComplete="false" required
-                                   className="w-full px-4 py-3 border-2 placeholder:text-black  rounded-md outline-none focus:ring-4 border-black ring-neutral-100"
+                                   className="w-full px-4 py-3 rounded-md outline-none focus:ring-4 border-2 border-gray-200 hover:shadow-md ring-neutral-100"
                                    name="name"
                                    value={subject}
                                    onChange={(e) => setSubject(e.target.value)}
@@ -66,7 +66,7 @@ export default function ContactForm() {
                             <label htmlFor="email_address" className="sr-only">Email Address</label>
                             <input id="email_address" type="email" placeholder="Email Address" autoComplete="false"
                                    required
-                                   className="w-full px-4 py-3 border-2 placeholder:text-black  rounded-md outline-none focus:ring-4 border-black ring-neutral-100"
+                                   className="w-full px-4 py-3 rounded-md outline-none focus:ring-4 border-2 border-gray-200 hover:shadow-md ring-neutral-100"
                                    name="email"
                                    value={email}
                                    onChange={(e) => setEmail(e.target.value)}
@@ -75,7 +75,7 @@ export default function ContactForm() {
                         <div className="mb-3">
                         <textarea placeholder="Your Message"
                                   required
-                                  className="w-full px-4 py-3 border-2 placeholder:text-black  rounded-md outline-none focus:ring-4 border-black ring-neutral-100"
+                                  className="w-full px-4 py-3 rounded-md outline-none focus:ring-4 border-2 border-gray-200 hover:shadow-md ring-neutral-100"
                                   name="message"
                                   value={message}
                                   onChange={(e) => setMessage(e.target.value)}
