@@ -5,6 +5,7 @@ import {useState} from "react";
 import {toast} from 'react-toastify';
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 import Confetti from "@/components/Confetti";
+import Spinner from "@/components/common/Spinner";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_FILE_TYPES = ["application/pdf"];
@@ -19,7 +20,6 @@ export default function ApplyForm({offerId}: {offerId: string}) {
     const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [progress, setProgress] = useState<number>(0);
 
     const {data: user} = useRetrieveUserQuery();
     const userId = user?.id || null;
@@ -93,20 +93,6 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                 </>
             ): null}
 
-            {isLoading && (
-                <div>
-                    {/* Display loading screen with progress bar or loading information */}
-                    {progress > 0 ? (
-                        <div>
-                            <p>Loading... {progress}%</p>
-                            {/* Add your progress bar component here */}
-                        </div>
-                    ) : (
-                        <p>Loading...</p>
-                    )}
-                </div>
-            )}
-
             <div>
                 <form onSubmit={handleSubmit} className="w-full max-w-lg">
                     <div className="flex flex-wrap -mx-3 mb-6">
@@ -150,11 +136,31 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                     </div>
 
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="resume">Resume</label>
-                    <input type="file" id="resume" required name="phone"
-                           onChange={(e) => setResume(e.target.files[0])}
-                           className="appearance-none block w-full bg-gray-200 text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    {isLoading ? (
+                        <input
+                            type="file"
+                            id="resume"
+                            name="phone"
+                            disabled
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        />
+                    ) : (
+                        <input
+                            type="file"
+                            id="resume"
+                            required
+                            name="phone"
+                            onChange={(e) => setResume(e.target.files[0])}
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        />
+                    )}
 
-                    />
+                    {isLoading && (
+                        <div className="mb-2">
+                            <Spinner />
+                        </div>
+                    )}
+
 
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="message">Message to the recruiter</label>
                     <textarea id="message" placeholder="Message" name="message" value={message}
@@ -164,6 +170,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2" type="submit">
                         Apply
                     </button>
+
                 </form>
             </div>
         </>
