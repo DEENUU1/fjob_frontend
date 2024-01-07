@@ -21,13 +21,15 @@ export default function CreateJobOffer() {
     const [applyForm, setApplyForm] = useState("")
     const [skills, setSkills] = useState()
     const [experience, setExperience] = useState<string[]>([]);
-    const [workType, setWorkType] = useState([])
-    const [employmentType, setEmploymentType] = useState([])
-    const [status, setStatus] = useState("")
-
+    const [workType, setWorkType] = useState([]);
+    const [employmentType, setEmploymentType] = useState([]);
+    const [status, setStatus] = useState("");
+    const [daysUntilExpiration, setDaysUntilExpiration] = useState<number>(30);
     const experiences = getExperiences();
     const workTypes = getWorkType();
     const employmentTypes = getEmploymentTypes();
+
+    const daysUntilExpirations: number[] = [10, 20, 30, 40, 50, 60];
 
     const experienceMultiSelect = () => {
         // @ts-ignore
@@ -96,6 +98,7 @@ export default function CreateJobOffer() {
         formData.append("company_id", 2);
         // @ts-ignore
         formData.append("company", 2);
+        formData.append("days_until_expiration", daysUntilExpiration);
 
         try {
             const response = await fetch(process.env.API_URL + "api/offer/company/", {
@@ -139,15 +142,26 @@ export default function CreateJobOffer() {
 
                 <div className="grid gap-6 mb-6 md:grid-cols-2 mt-2">
                     <div className="flex items-center">
-                        <input onChange={() => setIsRemote(!isRemote)} id="link-checkbox" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+                        <input onChange={() => setIsRemote(!isRemote)} id="link-checkbox" type="checkbox"
+                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                         <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium">Is remote</label>
                     </div>
 
                     <div className="flex items-center">
-                        <input onChange={() => setIsHybrid(!isHybrid)} id="link-checkbox" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+                        <input onChange={() => setIsHybrid(!isHybrid)} id="link-checkbox" type="checkbox"
+                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                         <label htmlFor="link-checkbox" className="ms-2 text-sm font-medium">Is hybrid</label>
                     </div>
                 </div>
+
+                <label htmlFor="apply_form" className="block mb-2 font-medium">Days available</label>
+                <select
+                    className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    name="days_until_expiration" onChange={(e) => setDaysUntilExpiration(parseInt(e.target.value))}>
+                    {daysUntilExpirations.map((days) => (
+                        <option key={days} value={days}>{days} days</option>
+                    ))}
+                </select>
 
                 <label htmlFor="apply_form" className="block mb-2 font-medium">Apply form</label>
                 <strong>Leave this empty if you want to use our default form</strong>
@@ -170,13 +184,17 @@ export default function CreateJobOffer() {
                 {employmentTypeMultiSelect()}
 
                 <label htmlFor="status" className="block mb-2 font-medium">Status</label>
-                <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="status" onChange={(e) => setStatus(e.target.value)}>
+                <select
+                    className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    name="status" onChange={(e) => setStatus(e.target.value)}>
                     <option value="DRAFT">Draft</option>
                     <option value="ACTIVE">Published</option>
                 </select>
 
 
-                <button type="submit" className=" mt-2 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Create</button>
+                <button type="submit"
+                        className=" mt-2 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Create
+                </button>
             </form>
         </>
     )
