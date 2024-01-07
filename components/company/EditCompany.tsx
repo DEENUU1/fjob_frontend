@@ -3,12 +3,13 @@
 import React, {useState} from "react";
 import {toast} from "react-toastify";
 import {useRouter} from 'next/navigation';
+import getCompanyCategory from "@/components/company/CompanyCategory";
 
 
 export default function EditCompanyModal({company}: {company: Company}) {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter();
-    const token = localStorage.getItem("access")
+    // const token = localStorage.getItem("access")
 
     const [name, setName] = useState(company.name || "")
     const [logo, setLogo] = useState(company.logo || null)
@@ -24,6 +25,8 @@ export default function EditCompanyModal({company}: {company: Company}) {
     const [websiteUrl, setWebsiteUrl] = useState(company.website_url || "")
     const [isActive, setIsActive] = useState(company.is_active || false)
     const [category, setCategory] = useState(company.category || null)
+
+    const categories = getCompanyCategory();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -122,6 +125,18 @@ export default function EditCompanyModal({company}: {company: Company}) {
                                            onChange={(e) => setName(e.target.value)}
                                            className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
                                     />
+
+                                    <label htmlFor="category" className="block mb-2 font-medium">Category</label>
+                                    <select
+                                        className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
+                                        name="category"
+                                        value={category}
+                                        onChange={(e) => setCategory(e.target.value)}
+                                    >
+                                        {categories?.map((cat) => (
+                                            <option key={cat.name} value={cat.id}>{cat.name}</option>
+                                        ))}
+                                    </select>
 
                                     <label htmlFor="description" className="block mb-2 font-medium">Description</label>
                                     <textarea placeholder="description" autoComplete="false"
