@@ -19,25 +19,26 @@ export default function Page() {
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="">
+            <div>
                 <h1 className="text-center font-bold text-3xl mb-10">Job offers list</h1>
 
-                <OfferFilters
-                    search={search}
-                    isRemote={isRemote}
-                    isHybrid={isHybrid}
-                    ordering={ordering}
-                    experience={experience}
-                    workType={workType}
-                    employmentType={employmentType}
-                    setSearch={setSearch}
-                    setIsRemote={setIsRemote}
-                    setIsHybrid={setIsHybrid}
-                    setOrdering={setOrdering}
-                    setExperience={setExperience}
-                    setWorkType={setWorkType}
-                    setEmploymentType={setEmploymentType}
-                />
+
+                {/*<OfferFilters*/}
+                {/*    search={search}*/}
+                {/*    isRemote={isRemote}*/}
+                {/*    isHybrid={isHybrid}*/}
+                {/*    ordering={ordering}*/}
+                {/*    experience={experience}*/}
+                {/*    workType={workType}*/}
+                {/*    employmentType={employmentType}*/}
+                {/*    setSearch={setSearch}*/}
+                {/*    setIsRemote={setIsRemote}*/}
+                {/*    setIsHybrid={setIsHybrid}*/}
+                {/*    setOrdering={setOrdering}*/}
+                {/*    setExperience={setExperience}*/}
+                {/*    setWorkType={setWorkType}*/}
+                {/*    setEmploymentType={setEmploymentType}*/}
+                {/*/>*/}
 
                 <OfferList
                     isRemote={isRemote}
@@ -50,11 +51,11 @@ export default function Page() {
                     employmentType={employmentType}
                 />
 
-                <OfferPagination
-                    offers={offerList}
-                    page={page}
-                    setPage={setPage}
-                />
+                {/*<OfferPagination*/}
+                {/*    offers={offerList}*/}
+                {/*    page={page}*/}
+                {/*    setPage={setPage}*/}
+                {/*/>*/}
             </div>
         </main>
     );

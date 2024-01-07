@@ -65,7 +65,6 @@ export default function OfferList(
     return (
         <div>
             <div className="mt-20">
-
                 {offers.map((offer: any) => (
                     <OfferCard key={offer.title} offer={offer}/>
                 ))}

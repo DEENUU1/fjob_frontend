@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge"
 
 
 async function getCompanies() {
@@ -36,6 +37,9 @@ export default async function Companies() {
 
                                     <div className="p-5">
                                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 whitespace-normal line-clamp-2">{company.name}</h5>
+                                        {company.category && (
+                                            <Badge>{company.category.name}</Badge>
+                                        )}
                                     </div>
                                 </Link>
                             </div>
