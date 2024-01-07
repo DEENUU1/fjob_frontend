@@ -16,7 +16,7 @@ export default function BuyButton() {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <Button className="bg-green-600">Buy</Button>
+                <Button className="bg-green-600 hover:bg-green-700">Buy</Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
