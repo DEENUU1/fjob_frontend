@@ -11,9 +11,11 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_FILE_TYPES = ["application/pdf"];
 
 export default function ApplyForm({offerId}: {offerId: string}) {
-    const [first_name, setFirstName] = useState<string>("");
-    const [last_name, setLastName] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
+    const {data: user} = useRetrieveUserQuery()
+
+    const [first_name, setFirstName] = useState<string | undefined>(user?.first_name);
+    const [last_name, setLastName] = useState<string | undefined>(user?.last_name);
+    const [email, setEmail] = useState<string | undefined>(user?.email);
     const [phone, setPhone] = useState<string>("");
     const [resume, setResume] = useState<string>("");
     const [message, setMessage] = useState<string>("");
@@ -21,7 +23,6 @@ export default function ApplyForm({offerId}: {offerId: string}) {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const {data: user} = useRetrieveUserQuery();
     const userId = user?.id || null;
 
 
