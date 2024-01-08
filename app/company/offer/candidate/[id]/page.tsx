@@ -22,11 +22,11 @@ export default function Page({params}: {params: PageParams}) {
         <main className="mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8">
             <div>
                 <div>
-                    <CandidateStat offerId={offerId}/>
+                    <CandidateChartTimeline offerId={offerId}/>
                 </div>
 
                 <div>
-                    <CandidateChartTimeline offerId={offerId}/>
+                    <CandidateStat offerId={offerId}/>
                 </div>
 
                 <CandidateFilter
