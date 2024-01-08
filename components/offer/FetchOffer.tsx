@@ -3,6 +3,7 @@ import FavouriteButton from "@/components/offer/Favourite";
 import ReportModal from "@/components/offer/Report";
 import {getDetails} from "@/components/offer/OfferCard";
 import {detailBadge} from "@/components/offer/OfferCard";
+import RateOffer from "@/components/offer/RateOffer";
 
 export async function getOffer(slug: string) {
     const response = await fetch(process.env.API_URL + `/api/offer/offer/${slug}`, {
@@ -45,6 +46,8 @@ export default async function OfferDetails({slug}: {slug: string}) {
                 <div className="flex items-center justify-between">
                     <div>
                         <h2 className="text-black text-3xl font-bold">{offer.title}</h2>
+                        <RateOffer offerId={offer.id} offerSlug={offer.slug}/>
+
                         <span className="text-gray-500 text-sm mb-5">{offer.created_at}</span>
 
                         <div className="flex space-x-5">
@@ -53,7 +56,6 @@ export default async function OfferDetails({slug}: {slug: string}) {
                         </div>
 
                     </div>
-
 
                     <div>
                         {isScrapedOffer && (
