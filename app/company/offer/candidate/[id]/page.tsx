@@ -4,7 +4,7 @@ import CandidateList from "@/components/company/CandidateList";
 import {useState} from "react";
 import CandidateFilter from "@/components/company/CandidateFilter";
 import CandidateStat from "@/components/company/CandidateStat";
-
+import CandidateChartTimeline from "@/components/company/CandiateChart";
 
 interface PageParams {
     id: number;
@@ -23,6 +23,10 @@ export default function Page({params}: {params: PageParams}) {
             <div>
                 <div>
                     <CandidateStat offerId={offerId}/>
+                </div>
+
+                <div>
+                    <CandidateChartTimeline/>
                 </div>
 
                 <CandidateFilter
