@@ -33,7 +33,7 @@ export default function CandidateList(
         })
             .then((response) => response.json())
             .then((data) => {
-                setCandidates(data);
+                setCandidates(data.results);
                 setLoading(false);
             })
             .catch((error) => {
@@ -50,7 +50,6 @@ export default function CandidateList(
             </main>
         );
     }
-
     return (
         <>
             <div>

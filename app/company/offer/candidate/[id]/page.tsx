@@ -3,6 +3,7 @@
 import CandidateList from "@/components/company/CandidateList";
 import {useState} from "react";
 import CandidateFilter from "@/components/company/CandidateFilter";
+import CandidateStat from "@/components/company/CandidateStat";
 
 
 interface PageParams {
@@ -19,12 +20,17 @@ export default function Page({params}: {params: PageParams}) {
         <>
         <main className="mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8">
             <div>
+                <div>
+                    <CandidateStat offerId={offerId}/>
+                </div>
+
                 <CandidateFilter
                     ordering={ordering}
                     status={status}
                     setOrdering={setOrdering}
                     setStatus={setStatus}
                 />
+
                 <div>
                     <CandidateList
                         offerId={offerId}
