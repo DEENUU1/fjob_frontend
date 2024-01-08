@@ -26,7 +26,7 @@ export default function Page({params}: {params: PageParams}) {
                 </div>
 
                 <div>
-                    <CandidateChartTimeline/>
+                    <CandidateChartTimeline offerId={offerId}/>
                 </div>
 
                 <CandidateFilter
