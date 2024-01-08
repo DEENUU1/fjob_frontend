@@ -113,7 +113,7 @@ export default function CandidateList(
                                         <UpdateStatus currentStatus={can.status} candidateId={can.id}/>
                                     </td>
                                     <td className="px-6 py-4 space-x-2">
-                                        <CandidateDetailsDialog message={can.message}/>
+                                        <CandidateDetailsDialog message={can.message} futureRecruitment={can.future_recruitment}/>
                                     </td>
                                 </tr>
                             ))

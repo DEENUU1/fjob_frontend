@@ -133,4 +133,5 @@ type UserAppliedOffer = {
     status: string;
     job_offer: OfferHelper;
     message?: string | null;
+    future_recruitment: boolean;
 }
