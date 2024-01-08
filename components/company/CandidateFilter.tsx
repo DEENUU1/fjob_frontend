@@ -5,13 +5,17 @@ export default function CandidateFilter(
     {
         ordering,
         status,
+        futureRecruitment,
         setOrdering,
         setStatus,
+        setFutureRecruitment,
     }:{
         ordering: string,
         status: string,
+        futureRecruitment: string,
         setOrdering: Dispatch<SetStateAction<string>>,
         setStatus: Dispatch<SetStateAction<string>>,
+        setFutureRecruitment: Dispatch<SetStateAction<string>>,
     }){
 
     const orderingTypes = new Map();
@@ -58,6 +62,11 @@ export default function CandidateFilter(
                         </option>
                     ))}
                 </select>
+
+                <label htmlFor="future-recruitment" className="text-sm font-medium text-gray-600 lg:w-24 lg:flex-shrink-0">
+                    Future recruitment
+                </label>
+                <input type="checkbox" id="future-recruitment" checked={futureRecruitment === "true"} onChange={(e) => setFutureRecruitment(e.target.checked ? "true" : "")}/>
             </div>
         </>
     );

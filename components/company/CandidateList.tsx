@@ -9,10 +9,12 @@ import CandidateDetailsDialog from "@/components/company/CandidateDetails";
 export default function CandidateList(
     {
         offerId,
+        futureRecruitment,
         ordering,
         status
     }: {
         offerId: number,
+        futureRecruitment: string,
         ordering: string,
         status: string,
     }){
@@ -22,7 +24,7 @@ export default function CandidateList(
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        let url = `api/candidate/candidate/offer/${offerId}?status=${status}&ordering=${ordering}`;
+        let url = `api/candidate/candidate/offer/${offerId}?status=${status}&ordering=${ordering}&future_recruitment=${futureRecruitment}`;
 
         fetch(process.env.API_URL + url, {
             // headers: {
@@ -41,7 +43,7 @@ export default function CandidateList(
                 setLoading(false);
             })
 
-    }, [offerId, status, ordering]);
+    }, [offerId, status, ordering, futureRecruitment]);
 
     if (loading || error || !candidates) {
         return (

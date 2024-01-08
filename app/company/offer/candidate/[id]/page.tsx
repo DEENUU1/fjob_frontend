@@ -15,6 +15,7 @@ export default function Page({params}: {params: PageParams}) {
     const offerId = params.id;
     const [ordering, setOrdering] = useState<string>("-created_at");
     const [status, setStatus] = useState<string>("")
+    const [futureRecruitment, setFutureRecruitment] = useState<string>("");
 
     return (
         <>
@@ -27,13 +28,16 @@ export default function Page({params}: {params: PageParams}) {
                 <CandidateFilter
                     ordering={ordering}
                     status={status}
+                    futureRecruitment={futureRecruitment}
                     setOrdering={setOrdering}
                     setStatus={setStatus}
+                    setFutureRecruitment={setFutureRecruitment}
                 />
 
                 <div>
                     <CandidateList
                         offerId={offerId}
+                        futureRecruitment={futureRecruitment}
                         ordering={ordering}
                         status={status}
                     />
