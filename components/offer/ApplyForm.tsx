@@ -6,6 +6,7 @@ import {toast} from 'react-toastify';
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 import Confetti from "@/components/Confetti";
 import Spinner from "@/components/common/Spinner";
+import { Checkbox } from "@/components/ui/checkbox"
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_FILE_TYPES = ["application/pdf"];
@@ -22,10 +23,9 @@ export default function ApplyForm({offerId}: {offerId: string}) {
     const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
     const [futureRecruitment, setFutureRecruitment] = useState<boolean>(false);
 
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>();
 
     const userId = user?.id || null;
-
 
     const validateFile = (file: File) => {
         const allowedTypes = ALLOWED_FILE_TYPES;
@@ -121,7 +121,8 @@ export default function ApplyForm({offerId}: {offerId: string}) {
 
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">Email</label>
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                   htmlFor="email">Email</label>
                             <input type="email" id="email" autoComplete="true" required placeholder="Email address"
                                    name="email" value={email} onChange={(e) => setEmail(e.target.value)}
                                    className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -130,7 +131,8 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                         </div>
 
                         <div className="w-full md:w-1/2 px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="phone">Phone number</label>
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                   htmlFor="phone">Phone number</label>
                             <input type="text" id="phone" autoComplete="true" required placeholder="Phone number"
                                    name="phone" value={phone} onChange={(e) => setPhone(e.target.value)}
                                    className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -138,7 +140,8 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                         </div>
                     </div>
 
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="resume">Resume</label>
+                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                           htmlFor="resume">Resume</label>
                     {isLoading ? (
                         <input
                             type="file"
@@ -160,20 +163,46 @@ export default function ApplyForm({offerId}: {offerId: string}) {
 
                     {isLoading && (
                         <div className="mb-2">
-                            <Spinner />
+                            <Spinner/>
                         </div>
                     )}
 
 
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="message">Message to the recruiter</label>
+                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                           htmlFor="message">Message to the recruiter</label>
                     <textarea id="message" placeholder="Message" name="message" value={message}
                               onChange={(e) => setMessage(e.target.value)}
                               className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                     />
 
+                    <div className="items-top flex space-x-2 mt-2 mb-2">
+                        <Checkbox id="terms" required={true}/>
+                        <div className="terms">
+                            <label
+                                htmlFor="futureRecruitment"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Accept terms and conditions
+                            </label>
+                            <p className="text-sm text-muted-foreground">
+                                You agree to our Terms of Service and Privacy Policy.
+                            </p>
+                        </div>
+                    </div>
 
-
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2" type="submit">
+                    <div className="items-top flex space-x-2">
+                        <input type="checkbox" id="future-recruitment"  onChange={(e) => setFutureRecruitment(e.target.checked)}/>
+                        <div className="terms">
+                            <label
+                                htmlFor="future-recruitment"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                I consent to the processing of my personal data for future recruitment purposes.
+                            </label>
+                        </div>
+                    </div>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+                            type="submit">
                         Apply
                     </button>
 
