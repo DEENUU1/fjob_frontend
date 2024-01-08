@@ -20,6 +20,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
     const [resume, setResume] = useState<string>("");
     const [message, setMessage] = useState<string>("");
     const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
+    const [futureRecruitment, setFutureRecruitment] = useState<boolean>(false);
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -60,6 +61,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
         formData.append("message", message);
         formData.append("cv", resume);
         formData.append("job_offer", offerId);
+        formData.append("future_recruitment", futureRecruitment);
 
         if (userId) {
             formData.append("user", userId);
@@ -168,6 +170,9 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                               onChange={(e) => setMessage(e.target.value)}
                               className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                     />
+
+
+
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2" type="submit">
                         Apply
                     </button>
