@@ -82,7 +82,11 @@ export default async function OfferList() {
                                         <strong>{offer.days_until_expiration_str}</strong>
                                     </td>
                                     <td className="px-6 py-4 space-x-2">
-                                        <strong>{offer?.avg_rate} / 5</strong>
+                                        <Link className="text-blue-500 hover:underline cursor-pointer" href={`/company/offer/stats/${offer.slug}`}>
+                                            <strong>
+                                                    {offer?.avg_rate} / 5
+                                            </strong>
+                                        </Link>
                                     </td>
                                     <td className="px-6 py-4 space-x-2">
                                         <EditOfferModal offer={offer}/>
