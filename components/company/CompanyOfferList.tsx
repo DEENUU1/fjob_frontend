@@ -6,12 +6,12 @@ import Link from "next/link";
 
 
 async function getCompanyOfferList(){
-    const token = localStorage.getItem("access");
+    // const token = localStorage.getItem("access");
 
     const response = await fetch( process.env.API_URL + "api/offer/company", {
            headers: {
-               Authorization: `Bearer ${token}`,
-               // accept: 'application/json',
+               // Authorization: `Bearer ${token}`,
+               accept: 'application/json',
            },
            credentials: "include"
     })
@@ -49,6 +49,9 @@ export default async function OfferList() {
                                 Status
                             </th>
                             <th scope="col" className="px-6 py-3">
+                                Available
+                            </th>
+                            <th scope="col" className="px-6 py-3">
                                 Actions
                             </th>
                         </tr>
@@ -75,6 +78,9 @@ export default async function OfferList() {
                                 </td>
                                 <td className="px-6 py-4 font-bold">
                                     {offer.status}
+                                </td>
+                                <td className="px-6 py-4 space-x-2">
+                                    <strong>{offer.days_until_expiration_str}</strong>
                                 </td>
                                 <td className="px-6 py-4 space-x-2">
                                     <EditOfferModal offer={offer}/>
