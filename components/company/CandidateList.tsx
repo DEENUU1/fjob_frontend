@@ -82,6 +82,9 @@ export default function CandidateList(
                                 Status
                             </th>
                             <th scope="col" className="px-6 py-3">
+                                Future recruitment
+                            </th>
+                            <th scope="col" className="px-6 py-3">
                                 Details
                             </th>
                         </tr>
@@ -111,6 +114,9 @@ export default function CandidateList(
                                     </td>
                                     <td className="px-6 py-4 space-x-2">
                                         <UpdateStatus currentStatus={can.status} candidateId={can.id}/>
+                                    </td>
+                                    <td className="px-6 py-4 space-x-2">
+                                        {can.future_recruitment ? "Yes" : "No"}
                                     </td>
                                     <td className="px-6 py-4 space-x-2">
                                         <CandidateDetailsDialog message={can.message} futureRecruitment={can.future_recruitment}/>
