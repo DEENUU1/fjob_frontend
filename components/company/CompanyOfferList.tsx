@@ -6,13 +6,7 @@ import Link from "next/link";
 
 
 async function getCompanyOfferList(){
-    // const token = localStorage.getItem("access");
-
     const response = await fetch( process.env.API_URL + "api/offer/company", {
-           headers: {
-               // Authorization: `Bearer ${token}`,
-               accept: 'application/json',
-           },
            credentials: "include"
     })
 
@@ -73,7 +67,7 @@ export default async function OfferList() {
                                     {offer.apply_form !== null ? (
                                         <span>N/A</span>
                                     ): (
-                                        <Link href={`/company/offer/candidate/${offer.id}`} className="text-blue-500 hover:underline cursor-pointer">Candidates</Link>
+                                        <Link href={`/company/offer/candidate/${offer.id}`} className="text-blue-500 hover:underline cursor-pointer">Candidates ({offer?.candidate_count})</Link>
                                     )}
                                 </td>
                                 <td className="px-6 py-4 font-bold">
