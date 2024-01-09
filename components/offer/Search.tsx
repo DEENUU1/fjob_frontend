@@ -23,10 +23,7 @@ export function Search() {
     }
 
     return (
-        <div className="relative flex flex-1 flex-shrink-0">
-            <label htmlFor="search" className="sr-only">
-                Search
-            </label>
+        <>
             <input
                 className="w-full border-2 border-gray-700 bg-gray-50 rounded-2xl font-medium focus:ring-blue-400 p-2"
                 placeholder="Search..."
@@ -35,7 +32,7 @@ export function Search() {
                 }}
                 defaultValue={searchParams.get('query')?.toString()}
             />
-        </div>
+        </>
     );
 }
 
@@ -55,24 +52,24 @@ export function Remote(){
     }
 
     return (
-        <div>
-            <label htmlFor="search" className="sr-only">
-                Is Remote
+        <>
+            <label className="font-medium p-2" htmlFor="is_remote">
+                Is remote:
             </label>
             <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                id="is_remote"
                 type="checkbox"
                 onChange={(e) => {
                     handleIsRemote(e.target.checked);
                 }}
                 defaultValue={searchParams.get('is_remote')?.toString()}
             />
-        </div>
+        </>
     )
 }
 
 
-export function Hybrid(){
+export function Hybrid() {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
@@ -88,19 +85,19 @@ export function Hybrid(){
     }
 
     return (
-        <div>
-            <label htmlFor="search" className="sr-only">
+        <>
+            <label className="font-medium p-2" htmlFor="is_hybrid">
                 Is hybrid
             </label>
             <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                id="is_hybrid"
                 type="checkbox"
                 onChange={(e) => {
                     handleIsRemote(e.target.checked);
                 }}
                 defaultValue={searchParams.get('is_hybrid')?.toString()}
             />
-        </div>
+        </>
     )
 }
 
@@ -128,9 +125,9 @@ export function Sort(){
     }
 
     return (
-        <div>
-            <label htmlFor="search" className="sr-only">
-                Is hybrid
+        <>
+            <label className="font-medium p-2" htmlFor="ordering">
+                Sort by:
             </label>
 
             <select
@@ -145,12 +142,12 @@ export function Sort(){
                     </option>
                 ))}
             </select>
-        </div>
+        </>
     )
 }
 
 
-export function WorkType(){
+export function WorkType() {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
@@ -168,14 +165,14 @@ export function WorkType(){
     }
 
     return (
-        <div>
-            <label htmlFor="search" className="sr-only">
+        <>
+            <label htmlFor="work_type" className="font-medium p-2">
                 Work Type
             </label>
 
             <select
                 className="w-full bg-gray-50 font-medium p-2"
-                id="ordering"
+                id="work_type"
                 onChange={(e) => handleWorkType(e.target.value)}
                 defaultValue={searchParams.get('work_type')?.toString()}
             >
@@ -184,7 +181,7 @@ export function WorkType(){
                     <option key={workType.name} value={workType.id}>{workType.name}</option>
                 ))}
             </select>
-        </div>
+        </>
     )
 }
 
@@ -207,14 +204,14 @@ export function Experience(){
     }
 
     return (
-        <div>
-            <label htmlFor="search" className="sr-only">
+        <>
+            <label htmlFor="experience" className="font-medium p-2">
                 Work Type
             </label>
 
             <select
                 className="w-full bg-gray-50 font-medium p-2"
-                id="ordering"
+                id="experience"
                 onChange={(e) => handleExperience(e.target.value)}
                 defaultValue={searchParams.get('experience')?.toString()}
             >
@@ -223,7 +220,7 @@ export function Experience(){
                     <option key={emperienceType.name} value={emperienceType.id}>{emperienceType.name}</option>
                 ))}
             </select>
-        </div>
+        </>
     )
 }
 
@@ -246,14 +243,14 @@ export function Employment(){
     }
 
     return (
-        <div>
-            <label htmlFor="search" className="sr-only">
+        <>
+            <label htmlFor="employment" className="font-medium p-2">
                 Employment Type
             </label>
 
             <select
                 className="w-full bg-gray-50 font-medium p-2"
-                id="ordering"
+                id="employment"
                 onChange={(e) => handleEmployment(e.target.value)}
                 defaultValue={searchParams.get('employment_type')?.toString()}
             >
@@ -262,6 +259,6 @@ export function Employment(){
                     <option key={emperienceType.name} value={emperienceType.id}>{emperienceType.name}</option>
                 ))}
             </select>
-        </div>
+        </>
     )
 }

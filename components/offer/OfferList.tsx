@@ -1,7 +1,4 @@
-
-// import React, {useEffect, useState} from "react";
 import OfferCard from "@/components/offer/OfferCard";
-// import Spinner from "@/components/common/Spinner";
 
 
 async function getOfferList(query: string, isRemote: string, isHybrid: string, ordering: string, workType: string, experienceType: string, employmentType: string){
