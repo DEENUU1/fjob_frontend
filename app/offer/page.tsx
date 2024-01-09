@@ -1,20 +1,15 @@
-// 'use client'
-
-// import React, {Suspense, useState} from "react";
 import OfferList from "@/components/offer/OfferList";
-// import OfferFilters from "@/components/offer/OfferFilters";
-// import OfferPagination from "@/components/offer/OfferPagination";
-// import offerList from "@/components/offer/OfferList";
-import {Search, Remote, Hybrid, Sort, WorkType, Experience} from "@/components/offer/Search";
+import {Search, Remote, Hybrid, Sort, WorkType, Experience, Employment} from "@/components/offer/Search";
 
 
-export default async function Page({searchParams}: {searchParams?: {query?: string; is_remote: string; is_hybrid: string, ordering: string, work_type: string, experience: string}}) {
+export default async function Page({searchParams}: {searchParams?: {query?: string; is_remote: string; is_hybrid: string, ordering: string, work_type: string, experience: string, employment_type: string}}) {
     const query = searchParams?.query || '';
     const isRemote = searchParams?.is_remote || '';
     const isHybrid = searchParams?.is_hybrid || '';
     const ordering = searchParams?.ordering || '';
     const workType = searchParams?.work_type || '';
     const experience = searchParams?.experience || '';
+    const employment = searchParams?.employment_type || '';
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -27,6 +22,7 @@ export default async function Page({searchParams}: {searchParams?: {query?: stri
                 <Sort/>
                 <WorkType/>
                 <Experience/>
+                <Employment/>
 
                 <OfferList
                     query={query}
@@ -35,6 +31,7 @@ export default async function Page({searchParams}: {searchParams?: {query?: stri
                     ordering={ordering}
                     workType={workType}
                     experienceType={experience}
+                    employmentType={employment}
                 />
 
 

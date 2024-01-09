@@ -216,7 +216,46 @@ export function Experience(){
                 className="w-full bg-gray-50 font-medium p-2"
                 id="ordering"
                 onChange={(e) => handleExperience(e.target.value)}
-                defaultValue={searchParams.get('work_type')?.toString()}
+                defaultValue={searchParams.get('experience')?.toString()}
+            >
+                <option value="">All</option>
+                {options && options.length > 0 && options.map((emperienceType: any) => (
+                    <option key={emperienceType.name} value={emperienceType.id}>{emperienceType.name}</option>
+                ))}
+            </select>
+        </div>
+    )
+}
+
+
+export function Employment(){
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const { replace } = useRouter();
+    const options = getEmploymentTypes();
+
+    function handleEmployment(employment: string) {
+        const params = new URLSearchParams(searchParams);
+        if (employment) {
+            params.set('employment_type', employment);
+        }
+        else {
+            params.delete('employment_type');
+        }
+        replace(`${pathname}?${params.toString()}`);
+    }
+
+    return (
+        <div>
+            <label htmlFor="search" className="sr-only">
+                Employment Type
+            </label>
+
+            <select
+                className="w-full bg-gray-50 font-medium p-2"
+                id="ordering"
+                onChange={(e) => handleEmployment(e.target.value)}
+                defaultValue={searchParams.get('employment_type')?.toString()}
             >
                 <option value="">All</option>
                 {options && options.length > 0 && options.map((emperienceType: any) => (
