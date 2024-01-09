@@ -1,5 +1,7 @@
 import OfferList from "@/components/offer/OfferList";
 import {Search, Remote, Hybrid, Sort, WorkType, Experience, Employment} from "@/components/offer/Search";
+import {Suspense} from "react";
+import Spinner from "@/components/common/Spinner";
 
 
 export default async function Page(
@@ -31,35 +33,39 @@ export default async function Page(
             <div>
                 <h1 className="text-center font-bold text-3xl mb-10">Job offers list</h1>
 
-                <div className="lg:flex lg:space-x-4 lg:items-center lg:mb-4">
-                    <div className="lg:w-2/4 mb-4 lg:mb-0">
-                        <Search/>
+                <Suspense fallback={<Spinner/>}>
+                    <div className="lg:flex lg:space-x-4 lg:items-center lg:mb-4">
+                        <div className="lg:w-2/4 mb-4 lg:mb-0">
+                            <Search/>
+                        </div>
+                        <div className="lg:w-2/4 mb-4 lg:mb-0">
+                            <Sort/>
+                        </div>
+                        <div className="lg:w-1/4 mb-4">
+                            <Remote/>
+                        </div>
+                        <div className="lg:w-1/4 mb-4">
+                            <Hybrid/>
+                        </div>
                     </div>
-                    <div className="lg:w-2/4 mb-4 lg:mb-0">
-                        <Sort/>
+                    <div className="lg:flex lg:space-x-4 lg:items-center">
+                        <WorkType/>
+                        <Experience/>
+                        <Employment/>
                     </div>
-                    <div className="lg:w-1/4 mb-4">
-                        <Remote/>
-                    </div>
-                    <div className="lg:w-1/4 mb-4">
-                        <Hybrid/>
-                    </div>
-                </div>
-                <div className="lg:flex lg:space-x-4 lg:items-center">
-                    <WorkType/>
-                    <Experience/>
-                    <Employment/>
-                </div>
+                </Suspense>
 
-                <OfferList
-                    query={query}
-                    isRemote={isRemote}
-                    isHybrid={isHybrid}
-                    ordering={ordering}
-                    workType={workType}
-                    experienceType={experience}
-                    employmentType={employment}
-                />
+                <Suspense fallback={<Spinner/>}>
+                    <OfferList
+                        query={query}
+                        isRemote={isRemote}
+                        isHybrid={isHybrid}
+                        ordering={ordering}
+                        workType={workType}
+                        experienceType={experience}
+                        employmentType={employment}
+                    />
+                </Suspense>
             </div>
         </main>
     );
