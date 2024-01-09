@@ -1,6 +1,7 @@
 'use client';
 
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import React from "react";
 
 
 export function Search() {
@@ -96,6 +97,51 @@ export function Hybrid(){
                 }}
                 defaultValue={searchParams.get('is_hybrid')?.toString()}
             />
+        </div>
+    )
+}
+
+
+export function Sort(){
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const { replace } = useRouter();
+
+    const orderingTypes = new Map();
+    orderingTypes.set("Newest", "-created_at");
+    orderingTypes.set("Oldest", "created_at");
+    orderingTypes.set("Lowest salary", "salary__salary_from");
+    orderingTypes.set("Highest salary", "-salary__salary_from");
+
+
+    function handleSort(ordering: string) {
+        const params = new URLSearchParams(searchParams);
+        if (ordering) {
+            params.set('ordering', ordering);
+        } else {
+            params.delete('ordering');
+        }
+        replace(`${pathname}?${params.toString()}`);
+    }
+
+    return (
+        <div>
+            <label htmlFor="search" className="sr-only">
+                Is hybrid
+            </label>
+
+            <select
+                className="w-full bg-gray-50 font-medium p-2"
+                id="ordering"
+                onChange={(e) => handleSort(e.target.value)}
+                defaultValue={searchParams.get('ordering')?.toString()}
+            >
+                {Array.from(orderingTypes.keys()).map((key) => (
+                    <option key={key} value={orderingTypes.get(key)}>
+                        {key}
+                    </option>
+                ))}
+            </select>
         </div>
     )
 }
