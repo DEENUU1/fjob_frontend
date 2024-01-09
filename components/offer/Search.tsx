@@ -187,3 +187,42 @@ export function WorkType(){
         </div>
     )
 }
+
+
+export function Experience(){
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const { replace } = useRouter();
+    const options = getExperiences();
+
+    function handleExperience(experience: string) {
+        const params = new URLSearchParams(searchParams);
+        if (experience) {
+            params.set('experience', experience);
+        }
+        else {
+            params.delete('experience');
+        }
+        replace(`${pathname}?${params.toString()}`);
+    }
+
+    return (
+        <div>
+            <label htmlFor="search" className="sr-only">
+                Work Type
+            </label>
+
+            <select
+                className="w-full bg-gray-50 font-medium p-2"
+                id="ordering"
+                onChange={(e) => handleExperience(e.target.value)}
+                defaultValue={searchParams.get('work_type')?.toString()}
+            >
+                <option value="">All</option>
+                {options && options.length > 0 && options.map((emperienceType: any) => (
+                    <option key={emperienceType.name} value={emperienceType.id}>{emperienceType.name}</option>
+                ))}
+            </select>
+        </div>
+    )
+}
