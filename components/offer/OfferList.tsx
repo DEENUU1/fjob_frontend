@@ -1,71 +1,23 @@
-import React, {useEffect, useState} from "react";
+
+// import React, {useEffect, useState} from "react";
 import OfferCard from "@/components/offer/OfferCard";
-import Spinner from "@/components/common/Spinner";
+// import Spinner from "@/components/common/Spinner";
 
-export default function OfferList(
-    {
-       isRemote,
-       isHybrid,
-       ordering,
-       search,
-       page,
-       experience,
-       workType,
-       employmentType,
-   }: {
-        isRemote: string,
-        isHybrid: string,
-        ordering: string,
-        search: string,
-        page: number,
-        experience: string,
-        workType: string,
-        employmentType: string,
-    }
-   ) {
-    const [offers, setOffers] = useState<Offer[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        let url = `api/offer/offer?is_remote=${isRemote}&is_hybrid=${isHybrid}&ordering=${ordering}&search=${search}&p=${page}`;
+async function getOfferList(query: string, isRemote: string){
+    const response = await fetch(process.env.API_URL + `api/offer/offer/?is_remote=${isRemote}&search=${query}`)
+    return response.json();
+}
 
-        if (experience !== null && experience !== "All") {
-            url += `&experience=${experience}`;
-        }
 
-        if (workType !== null && workType !== "All") {
-            url += `&work_type=${workType}`;
-        }
+export default async function OfferList({query, isRemote}: {query: string, isRemote: string}) {
+    const data = await getOfferList(query, isRemote);
 
-        if (employmentType !== null && employmentType !== "All") {
-            url += `&employment_type=${employmentType}`;
-        }
-
-        fetch(process.env.API_URL + url)
-            .then((response) => response.json())
-            .then((data) => {
-                setOffers(data.results);
-                setLoading(false);
-            })
-            .catch((error) => {
-                setError(error);
-                setLoading(false);
-            });
-    }, [isRemote, isHybrid, ordering, search, page, experience, workType, employmentType]);
-
-    if (loading || error || !offers) {
-        return (
-            <main className="flex min-h-screen flex-col items-center justify-between p-24">
-                <Spinner/>;
-            </main>
-        );
-    }
-
+    console.log(data);
     return (
         <div>
             <div className="mt-20">
-                {offers.map((offer: any) => (
+                {data.results.map((offer: any) => (
                     <OfferCard key={offer.title} offer={offer}/>
                 ))}
             </div>
