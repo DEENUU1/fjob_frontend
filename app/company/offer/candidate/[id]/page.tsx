@@ -5,6 +5,8 @@ import {useState} from "react";
 import CandidateFilter from "@/components/company/CandidateFilter";
 import CandidateStat from "@/components/company/CandidateStat";
 import CandidateChartTimeline from "@/components/company/CandiateChart";
+import Spinner from "@/components/common/Spinner";
+import {Suspense} from "react";
 
 interface PageParams {
     id: number;
@@ -39,12 +41,14 @@ export default function Page({params}: {params: PageParams}) {
                 />
 
                 <div>
-                    <CandidateList
-                        offerId={offerId}
-                        futureRecruitment={futureRecruitment}
-                        ordering={ordering}
-                        status={status}
-                    />
+                    <Suspense fallback={<Spinner/>}>
+                        <CandidateList
+                            offerId={offerId}
+                            futureRecruitment={futureRecruitment}
+                            ordering={ordering}
+                            status={status}
+                        />
+                    </Suspense>
                 </div>
             </div>
         </main>
