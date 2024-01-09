@@ -23,7 +23,7 @@ export default async function Page(
     const query = searchParams?.query || '';
     const isRemote = searchParams?.is_remote || '';
     const isHybrid = searchParams?.is_hybrid || '';
-    const ordering = searchParams?.ordering || '-created_at';
+    const ordering = searchParams?.ordering || '';
     const workType = searchParams?.work_type || '';
     const experience = searchParams?.experience || '';
     const employment = searchParams?.employment_type || '';
