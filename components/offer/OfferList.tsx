@@ -14,7 +14,12 @@ async function getOfferList(query: string, isRemote: string, isHybrid: string, o
         url += `&employment_type=${employmentType}`
     }
 
-    const response = await fetch(url)
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText} ${url}`);
+    }
+
     return response.json();
 }
 
