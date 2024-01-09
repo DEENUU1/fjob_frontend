@@ -4,14 +4,19 @@ import OfferCard from "@/components/offer/OfferCard";
 // import Spinner from "@/components/common/Spinner";
 
 
-async function getOfferList(query: string, isRemote: string, isHybrid: string, ordering: string){
-    const response = await fetch(process.env.API_URL + `api/offer/offer/?is_remote=${isRemote}&search=${query}&is_hybrid=${isHybrid}&ordering=${ordering}`)
+async function getOfferList(query: string, isRemote: string, isHybrid: string, ordering: string, workType: string){
+    let url = process.env.API_URL + `api/offer/offer/?is_remote=${isRemote}&search=${query}&is_hybrid=${isHybrid}&ordering=${ordering}`
+    if (workType !== ""){
+        url += `&work_type=${workType}`
+    }
+
+    const response = await fetch(url)
     return response.json();
 }
 
 
-export default async function OfferList({query, isRemote, isHybrid, ordering}: {query: string, isRemote: string, isHybrid: string, ordering: string}) {
-    const data = await getOfferList(query, isRemote, isHybrid, ordering);
+export default async function OfferList({query, isRemote, isHybrid, ordering, workType}: {query: string, isRemote: string, isHybrid: string, ordering: string, workType: string}) {
+    const data = await getOfferList(query, isRemote, isHybrid, ordering, workType);
 
     return (
         <div>

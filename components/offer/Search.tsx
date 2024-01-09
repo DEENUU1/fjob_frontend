@@ -2,6 +2,9 @@
 
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import React from "react";
+import getExperiences from "@/components/offer/Experience";
+import getEmploymentTypes from "@/components/offer/EmploymentType";
+import getWorkType from "@/components/offer/WorkType";
 
 
 export function Search() {
@@ -140,6 +143,45 @@ export function Sort(){
                     <option key={key} value={orderingTypes.get(key)}>
                         {key}
                     </option>
+                ))}
+            </select>
+        </div>
+    )
+}
+
+
+export function WorkType(){
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const { replace } = useRouter();
+    const options = getWorkType();
+
+    function handleWorkType(workType: string) {
+        const params = new URLSearchParams(searchParams);
+        if (workType) {
+            params.set('work_type', workType);
+        }
+        else {
+            params.delete('work_type');
+        }
+        replace(`${pathname}?${params.toString()}`);
+    }
+
+    return (
+        <div>
+            <label htmlFor="search" className="sr-only">
+                Work Type
+            </label>
+
+            <select
+                className="w-full bg-gray-50 font-medium p-2"
+                id="ordering"
+                onChange={(e) => handleWorkType(e.target.value)}
+                defaultValue={searchParams.get('work_type')?.toString()}
+            >
+                <option value="">All</option>
+                {options && options.length > 0 && options.map((workType: any) => (
+                    <option key={workType.name} value={workType.id}>{workType.name}</option>
                 ))}
             </select>
         </div>
