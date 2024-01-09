@@ -66,3 +66,36 @@ export function Remote(){
         </div>
     )
 }
+
+
+export function Hybrid(){
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const { replace } = useRouter();
+
+    function handleIsRemote(is_remote: boolean) {
+        const params = new URLSearchParams(searchParams);
+        if (is_remote) {
+            params.set('is_hybrid', 'true');
+        } else {
+            params.delete('is_hybrid');
+        }
+        replace(`${pathname}?${params.toString()}`);
+    }
+
+    return (
+        <div>
+            <label htmlFor="search" className="sr-only">
+                Is hybrid
+            </label>
+            <input
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                type="checkbox"
+                onChange={(e) => {
+                    handleIsRemote(e.target.checked);
+                }}
+                defaultValue={searchParams.get('is_hybrid')?.toString()}
+            />
+        </div>
+    )
+}

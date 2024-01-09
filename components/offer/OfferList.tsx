@@ -4,16 +4,15 @@ import OfferCard from "@/components/offer/OfferCard";
 // import Spinner from "@/components/common/Spinner";
 
 
-async function getOfferList(query: string, isRemote: string){
-    const response = await fetch(process.env.API_URL + `api/offer/offer/?is_remote=${isRemote}&search=${query}`)
+async function getOfferList(query: string, isRemote: string, isHybrid: string){
+    const response = await fetch(process.env.API_URL + `api/offer/offer/?is_remote=${isRemote}&search=${query}&is_hybrid=${isHybrid}`)
     return response.json();
 }
 
 
-export default async function OfferList({query, isRemote}: {query: string, isRemote: string}) {
-    const data = await getOfferList(query, isRemote);
+export default async function OfferList({query, isRemote, isHybrid}: {query: string, isRemote: string, isHybrid: string}) {
+    const data = await getOfferList(query, isRemote, isHybrid);
 
-    console.log(data);
     return (
         <div>
             <div className="mt-20">

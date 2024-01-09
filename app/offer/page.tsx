@@ -5,12 +5,13 @@ import OfferList from "@/components/offer/OfferList";
 // import OfferFilters from "@/components/offer/OfferFilters";
 // import OfferPagination from "@/components/offer/OfferPagination";
 // import offerList from "@/components/offer/OfferList";
-import {Search, Remote} from "@/components/offer/Search";
+import {Search, Remote, Hybrid} from "@/components/offer/Search";
 
 
-export default async function Page({searchParams}: {searchParams?: {query?: string; is_remote: string}}) {
+export default async function Page({searchParams}: {searchParams?: {query?: string; is_remote: string; is_hybrid: string}}) {
     const query = searchParams?.query || '';
     const isRemote = searchParams?.is_remote || '';
+    const isHybrid = searchParams?.is_hybrid || '';
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -19,8 +20,9 @@ export default async function Page({searchParams}: {searchParams?: {query?: stri
 
                 <Search/>
                 <Remote/>
+                <Hybrid/>
 
-                <OfferList query={query} isRemote={isRemote}/>
+                <OfferList query={query} isRemote={isRemote} isHybrid={isHybrid}/>
 
 
 
