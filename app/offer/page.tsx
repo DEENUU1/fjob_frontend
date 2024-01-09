@@ -2,7 +2,22 @@ import OfferList from "@/components/offer/OfferList";
 import {Search, Remote, Hybrid, Sort, WorkType, Experience, Employment} from "@/components/offer/Search";
 
 
-export default async function Page({searchParams}: {searchParams?: {query?: string; is_remote: string; is_hybrid: string, ordering: string, work_type: string, experience: string, employment_type: string}}) {
+export default async function Page(
+    {
+        searchParams
+    }:{
+        searchParams?:
+            {
+                query?: string;
+                is_remote: string;
+                is_hybrid: string;
+                ordering: string;
+                work_type: string;
+                experience: string;
+                employment_type: string
+            }
+    })
+    {
     const query = searchParams?.query || '';
     const isRemote = searchParams?.is_remote || '';
     const isHybrid = searchParams?.is_hybrid || '';
@@ -45,14 +60,7 @@ export default async function Page({searchParams}: {searchParams?: {query?: stri
                     experienceType={experience}
                     employmentType={employment}
                 />
-
-
-                    {/*<OfferPagination*/}
-                    {/*    offers={offerList}*/}
-                    {/*    page={page}*/}
-                    {/*    setPage={setPage}*/}
-                    {/*/>*/}
-                </div>
+            </div>
         </main>
-);
+    );
 }
