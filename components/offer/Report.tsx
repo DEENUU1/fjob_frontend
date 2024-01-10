@@ -75,6 +75,7 @@ const ReportModal = ({offerId}: {offerId: number}) => {
                                     id="description"
                                     type="text"
                                     value={description}
+                                    placeholder="Tell us what is wrong with this offer"
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
 
