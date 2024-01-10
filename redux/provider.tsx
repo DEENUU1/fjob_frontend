@@ -2,11 +2,16 @@
 
 import { store } from './store';
 import { Provider } from 'react-redux';
+import {NextUIProvider} from '@nextui-org/react'
 
 interface Props {
 	children: React.ReactNode;
 }
 
 export default function CustomProvider({ children }: Props) {
-	return <Provider store={store}>{children}</Provider>;
+	return (
+		<NextUIProvider>
+			<Provider store={store}>{children}</Provider>
+		</NextUIProvider>
+	)
 }

@@ -2,17 +2,19 @@
 
 import {useState} from "react";
 import {toast} from "react-toastify";
-import Confetti from "@/components/Confetti";
 import ContactInfo from "@/components/contact/ContactInfo";
+import {Button} from "@nextui-org/react";
 
 export default function ContactForm() {
     const [email, setEmail] = useState<string>("");
     const [subject, setSubject] = useState<string>("");
     const [message, setMessage] = useState<string>("");
-    const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+
+        setIsLoading(true);
 
         const formData = new FormData();
         formData.append("email", email);
@@ -30,27 +32,21 @@ export default function ContactForm() {
 
             if (response.ok) {
                 toast.success("Form submitted successfully");
-                setIsFormSubmitted(true);
             } else {
                 toast.error("Form submission failed");
             }
         } catch (error) {
             toast.error("Form submission failed");
+        } finally {
+            setIsLoading(false)
         }
     };
+
     return (
         <div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 grid md:grid-cols-2 lg:grid-cols-2 gap-y-8 md:gap-x-8 md:gap-y-8 lg:gap-x-8 lg:gap-y-16">
-                {/* Display confetti component after success form send */}
-                {isFormSubmitted ? (
-                    <>
-                        <Confetti />
-                    </>
-                ) : null}
-
                 {/* ContactInfo component with short text, email, phone number etc */}
                 <ContactInfo/>
-
                 <div>
                     <form onSubmit={handleSubmit}>
                         <input type="checkbox" id="" className="hidden" name="botcheck"/>
@@ -82,10 +78,10 @@ export default function ContactForm() {
                         >
                         </textarea>
                         </div>
-                        <button type="submit"
-                                className="w-full py-4 font-semibold text-white transition-colors bg-neutral-900 rounded-md hover:bg-black focus:outline-none focus:ring-offset-2 focus:ring focus:ring-neutral-200 px-7 ">
-                            Send Message
-                        </button>
+                        <Button type="submit" color="primary" isLoading={isLoading}>
+                            {isLoading ? 'Loading' : 'Send'}
+                        </Button>
+
                     </form>
                 </div>
             </div>
