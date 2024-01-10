@@ -4,10 +4,13 @@ import React, {useState} from "react";
 import {toast} from "react-toastify";
 import {useRouter} from 'next/navigation';
 import getCompanyCategory from "@/components/company/CompanyCategory";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import {Input} from "@nextui-org/react";
+import {Select, SelectItem} from "@nextui-org/react";
+import {Textarea} from "@nextui-org/react";
+import {Switch} from "@nextui-org/react";
 
-
-export default function EditCompanyModal({company}: {company: Company}) {
-    const [showModal, setShowModal] = useState(false);
+export default function EditCompanyModal({company}: { company: Company }) {
     const router = useRouter();
 
     const [name, setName] = useState(company.name || "")
@@ -24,11 +27,14 @@ export default function EditCompanyModal({company}: {company: Company}) {
     const [websiteUrl, setWebsiteUrl] = useState(company.website_url || "")
     const [isActive, setIsActive] = useState(company.is_active || false)
     const [category, setCategory] = useState(company.category || null)
-
     const categories = getCompanyCategory();
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+
+        setIsLoading(true)
 
         const formData = new FormData();
         // @ts-ignore
@@ -50,7 +56,7 @@ export default function EditCompanyModal({company}: {company: Company}) {
         // @ts-ignore
         formData.append("is_active", isActive);
 
-        if (logo !== null && typeof logo !== "string"){
+        if (logo !== null && typeof logo !== "string") {
             formData.append("logo", logo);
         }
 
@@ -77,6 +83,8 @@ export default function EditCompanyModal({company}: {company: Company}) {
             }
         } catch (error) {
             toast.error("Company update failed")
+        } finally {
+            setIsLoading(false);
         }
 
     }
@@ -84,67 +92,25 @@ export default function EditCompanyModal({company}: {company: Company}) {
     // @ts-ignore
     return (
         <>
-            <button
-                className="border-2 border-black bg-gray-200 text-black font-bold py-1 px-4 mb-2 hover:bg-gray-400 ease-linear transition-all duration-150"
-                type="button"
-                onClick={() => setShowModal(true)}
-            >
-                <span>Edit</span>
-            </button>
 
-            {showModal ? (
-                <>
-                    <div
-                        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-                    >
-                        <div className="bg-gray-300 relative w-auto my-6 mx-auto max-w-3xl">
+            <Button onPress={onOpen} className="mb-2">Update</Button>
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalHeader className="flex flex-col gap-1">Update company</ModalHeader>
+                            <form onSubmit={handleSubmit}>
+                                <ModalBody>
+                                    <Input type="text" value={name} label="Name" onChange={(e) => setName(e.target.value)}/>
 
-                            <div
-                                className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                                <h3 className="text-3xl font-semibold">
-                                    Edit
-                                </h3>
-                                <button
-                                    className="p-1 ml-auto  border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                                    onClick={() => setShowModal(false)}
-                                >
-                            <span className=" text-black  h-6 w-6 text-2xl block outline-none focus:outline-none">
-                              ×
-                            </span>
-                                </button>
-                            </div>
+                                    <Select label="Category" onChange={(e) => setCategory(e.target.value)}>
 
-                            <div className="relative p-6 flex-auto">
-                                <form onSubmit={handleSubmit}>
-
-
-                                    <label htmlFor="title" className="block mb-2 font-medium">Name</label>
-                                    <input type="text" placeholder="title" autoComplete="false"
-                                           name="title"
-                                           value={name}
-                                           onChange={(e) => setName(e.target.value)}
-                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
-                                    />
-
-                                    <label htmlFor="category" className="block mb-2 font-medium">Category</label>
-                                    <select
-                                        className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
-                                        name="category"
-                                        value={category}
-                                        onChange={(e) => setCategory(e.target.value)}
-                                    >
                                         {categories?.map((cat) => (
-                                            <option key={cat.name} value={cat.id}>{cat.name}</option>
+                                            <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
                                         ))}
-                                    </select>
+                                    </Select>
 
-                                    <label htmlFor="description" className="block mb-2 font-medium">Description</label>
-                                    <textarea placeholder="description" autoComplete="false"
-                                           name="description"
-                                           value={description}
-                                           onChange={(e) => setDescription(e.target.value)}
-                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
-                                    />
+                                    <Textarea label="Description" value={description} onChange={(e) => setDescription(e.target.value)}/>
 
                                     <label className="block mb-2 font-medium" htmlFor="logo">Logo</label>
                                     <input
@@ -155,89 +121,49 @@ export default function EditCompanyModal({company}: {company: Company}) {
                                     />
 
 
-                                    <label htmlFor="company_size" className="block mb-2 font-medium">Company Size</label>
-                                    <input type="number" placeholder="company size" autoComplete="false"
-                                           name="company_size"
-                                           value={companySize}
-                                           onChange={(e) => setCompanySize(e.target.value)}
-                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
-                                    />
+                                    <Input type="number" label="Company size" value={companySize}
+                                           onChange={(e) => setCompanySize(e.target.value)}/>
 
-                                    <label htmlFor="linkedin" className="block mb-2 font-medium">LinkedIn</label>
-                                    <input type="url" placeholder="linkedin.com" autoComplete="false"
-                                           name="linkedin"
-                                           value={linkedinUrl}
-                                           onChange={(e) => setLinkedinUrl(e.target.value)}
-                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
-                                    />
+                                    <Input type="url" name="linkedin" value={linkedinUrl} label="Linked in"
+                                           onChange={(e) => setLinkedinUrl(e.target.value)}/>
 
-                                    <label htmlFor="facebook" className="block mb-2 font-medium">Facebook</label>
-                                    <input type="url" placeholder="facebook.com" autoComplete="false"
-                                           name="facebook"
-                                           value={facebookUrl}
-                                           onChange={(e) => setFacebookUrl(e.target.value)}
-                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
-                                    />
+                                    <Input type="url" value={facebookUrl} label="Facebook"
+                                           onChange={(e) => setFacebookUrl(e.target.value)}/>
 
-                                    <label htmlFor="twitter" className="block mb-2 font-medium">Twitter</label>
-                                    <input type="url" placeholder="twitter.com" autoComplete="false"
-                                           name="twitter"
-                                           value={twitterUrl}
-                                           onChange={(e) => setTwitterUrl(e.target.value)}
-                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
-                                    />
+                                    <Input type="url" value={twitterUrl} label="Twitter"
+                                           onChange={(e) => setTwitterUrl(e.target.value)}/>
 
-                                    <label htmlFor="instagram" className="block mb-2 font-medium">Instagram</label>
-                                    <input type="url" placeholder="instagram.com" autoComplete="false"
-                                           name="instagram"
-                                           value={instagramUrl}
-                                           onChange={(e) => setInstagramUrl(e.target.value)}
-                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
-                                    />
+                                    <Input type="url" value={instagramUrl} label="Instagram"
+                                           onChange={(e) => setInstagramUrl(e.target.value)}/>
 
-                                    <label htmlFor="youtube" className="block mb-2 font-medium">Youtube</label>
-                                    <input type="url" placeholder="youtube.com" autoComplete="false"
-                                           name="youtube"
-                                           value={youtubeUrl}
-                                           onChange={(e) => setYoutubeUrl(e.target.value)}
-                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
-                                    />
+                                    <Input type="url" value={youtubeUrl} label="Youtube"
+                                           onChange={(e) => setYoutubeUrl(e.target.value)}/>
 
-                                    <label htmlFor="website" className="block mb-2 font-medium">Website</label>
-                                    <input type="url" placeholder="website.com" autoComplete="false"
-                                           name="website"
-                                           value={websiteUrl}
-                                           onChange={(e) => setWebsiteUrl(e.target.value)}
-                                           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
-                                    />
+                                    <Input type="url" label="Website" value={websiteUrl}
+                                           onChange={(e) => setWebsiteUrl(e.target.value)}/>
 
-                                    <input className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                           type="checkbox"
-                                           name="is_active"
-                                           value={isActive}
-                                           onChange={(e) => setIsActive(e.target.checked)}
-                                    />
-                                    <label htmlFor="website" className="ms-2 text-sm font-medium">Is active</label>
 
-                                    <div>
-                                        <button type="submit"
-                                                className=" mt-2 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Update
-                                        </button>
-                                        <button
-                                            className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                            type="button"
-                                            onClick={() => setShowModal(false)}
-                                        >
-                                            Close
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </>
-            ) : null
-            }
+                                    {isActive ? (
+                                        <Switch defaultSelected color="success" onChange={(e) => setIsActive(e.target.checked)}></Switch>
+
+                                    ): (
+                                        <Switch color="success" onChange={(e) => setIsActive(e.target.checked)}></Switch>
+                                    )}
+
+
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="danger" variant="light" onPress={onClose}>
+                                        Close
+                                    </Button>
+                                    <Button isLoading={isLoading} type="submit" color="warning">{isLoading ? 'Loading...' : 'Update'}</Button>
+                                </ModalFooter>
+                            </form>
+
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
 
 
         </>
