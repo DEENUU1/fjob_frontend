@@ -6,6 +6,7 @@ import getExperiences from "@/components/offer/Experience";
 import getEmploymentTypes from "@/components/offer/EmploymentType";
 import getWorkType from "@/components/offer/WorkType";
 import {Checkbox} from "@nextui-org/react";
+import {Input} from "@nextui-org/react";
 
 export function Search() {
     const searchParams = useSearchParams();
@@ -24,9 +25,11 @@ export function Search() {
 
     return (
         <>
-            <input
-                className="w-full border-2 border-gray-700 bg-gray-50 rounded-2xl font-medium focus:ring-blue-400 p-2"
-                placeholder="Search..."
+            <Input
+                // className="w-full border-2 border-gray-700 bg-gray-50 rounded-2xl font-medium focus:ring-blue-400 p-2"
+                // placeholder="Search..."
+                label="Search"
+                type="text"
                 onChange={(e) => {
                     handleSearch(e.target.value);
                 }}
