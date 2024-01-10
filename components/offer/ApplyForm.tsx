@@ -6,8 +6,8 @@ import {toast} from 'react-toastify';
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 import Confetti from "@/components/Confetti";
 import Spinner from "@/components/common/Spinner";
-import { Checkbox } from "@/components/ui/checkbox"
 import {Button} from "@nextui-org/react";
+import {Checkbox} from "@nextui-org/react";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_FILE_TYPES = ["application/pdf"];
@@ -199,7 +199,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                     </div>
 
                     <div className="items-top flex space-x-2 mb-2">
-                        <input type="checkbox" id="future-recruitment"  onChange={(e) => setFutureRecruitment(e.target.checked)}/>
+                        <Checkbox type="checkbox" id="future-recruitment"  onChange={(e) => setFutureRecruitment(e.target.checked)}/>
                         <div className="terms">
                             <label
                                 htmlFor="future-recruitment"
