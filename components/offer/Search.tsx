@@ -7,6 +7,7 @@ import getEmploymentTypes from "@/components/offer/EmploymentType";
 import getWorkType from "@/components/offer/WorkType";
 import {Checkbox} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
+import {Select, SelectItem} from "@nextui-org/react";
 
 export function Search() {
     const searchParams = useSearchParams();
@@ -127,22 +128,17 @@ export function Sort(){
 
     return (
         <>
-            <label className="font-medium p-2" htmlFor="ordering">
-                Sort by:
-            </label>
-
-            <select
-                className="w-full bg-gray-50 font-medium p-2"
+            <Select
+                label="Order by"
                 id="ordering"
                 onChange={(e) => handleSort(e.target.value)}
-                defaultValue={searchParams.get('ordering')?.toString()}
             >
                 {Array.from(orderingTypes.keys()).map((key) => (
-                    <option key={key} value={orderingTypes.get(key)}>
+                    <SelectItem key={orderingTypes.get(key)} value={orderingTypes.get(key)}>
                         {key}
-                    </option>
+                    </SelectItem>
                 ))}
-            </select>
+            </Select>
         </>
     )
 }
@@ -167,21 +163,16 @@ export function WorkType() {
 
     return (
         <>
-            <label htmlFor="work_type" className="font-medium p-2">
-                Work Type
-            </label>
-
-            <select
-                className="w-full bg-gray-50 font-medium p-2"
+            <Select
+                label="Work type"
                 id="work_type"
                 onChange={(e) => handleWorkType(e.target.value)}
-                defaultValue={searchParams.get('work_type')?.toString()}
             >
-                <option value="">All</option>
+                <SelectItem key="" value="">All</SelectItem>
                 {options && options.length > 0 && options.map((workType: any) => (
-                    <option key={workType.name} value={workType.id}>{workType.name}</option>
+                    <SelectItem key={workType.id} value={workType.id}>{workType.name}</SelectItem>
                 ))}
-            </select>
+            </Select>
         </>
     )
 }
@@ -206,21 +197,16 @@ export function Experience(){
 
     return (
         <>
-            <label htmlFor="experience" className="font-medium p-2">
-                Work Type
-            </label>
-
-            <select
-                className="w-full bg-gray-50 font-medium p-2"
+            <Select
+                label="Experience level"
                 id="experience"
                 onChange={(e) => handleExperience(e.target.value)}
-                defaultValue={searchParams.get('experience')?.toString()}
             >
-                <option value="">All</option>
+                <SelectItem key="" value="">All</SelectItem>
                 {options && options.length > 0 && options.map((emperienceType: any) => (
-                    <option key={emperienceType.name} value={emperienceType.id}>{emperienceType.name}</option>
+                    <SelectItem key={emperienceType.id} value={emperienceType.id}>{emperienceType.name}</SelectItem>
                 ))}
-            </select>
+            </Select>
         </>
     )
 }
@@ -245,21 +231,16 @@ export function Employment(){
 
     return (
         <>
-            <label htmlFor="employment" className="font-medium p-2">
-                Employment Type
-            </label>
-
-            <select
-                className="w-full bg-gray-50 font-medium p-2"
+            <Select
+                label="Employment type"
                 id="employment"
                 onChange={(e) => handleEmployment(e.target.value)}
-                defaultValue={searchParams.get('employment_type')?.toString()}
             >
-                <option value="">All</option>
+                <SelectItem key="" value="">All</SelectItem>
                 {options && options.length > 0 && options.map((emperienceType: any) => (
-                    <option key={emperienceType.name} value={emperienceType.id}>{emperienceType.name}</option>
+                    <SelectItem key={emperienceType.id} value={emperienceType.id}>{emperienceType.name}</SelectItem>
                 ))}
-            </select>
+            </Select>
         </>
     )
 }
