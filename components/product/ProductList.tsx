@@ -1,5 +1,7 @@
 import Link from "next/link";
-import BuyButton from "./GetProductButton";
+import React from "react";
+import {Button} from "@nextui-org/react";
+
 
 async function getProducts() {
     const response = await fetch(process.env.API_URL + "/api/payment/product/", {
@@ -28,7 +30,9 @@ export default async function Products(){
                                         <h3 className="mb-2 text-4xl font-bold tracking-tight">{product.price_euro}€</h3>
                                     )}
 
-                                    <BuyButton/>
+                                    <Button isDisabled color="success">
+                                        Buy
+                                    </Button>
                                 </div>
                             </div>
 
