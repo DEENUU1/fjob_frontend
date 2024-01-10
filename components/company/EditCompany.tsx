@@ -38,7 +38,7 @@ export default function EditCompanyModal({company}: { company: Company }) {
 
         const formData = new FormData();
         // @ts-ignore
-        formData.append("company_id", 2);
+        formData.append("company_id", company?.id);
         formData.append("name", name);
         // @ts-ignore
         formData.append("company_size", companySize);
@@ -62,7 +62,7 @@ export default function EditCompanyModal({company}: { company: Company }) {
 
         if (category !== null) {
             // @ts-ignore
-            formData.append("category", category?.id);
+            formData.append("category", category);
         }
 
         try {
@@ -70,7 +70,6 @@ export default function EditCompanyModal({company}: { company: Company }) {
                 method: "PUT",
                 headers: {
                     accept: "application/json",
-                    // Authorization: `Bearer ${token}`
                 },
                 credentials: "include",
                 body: formData,
