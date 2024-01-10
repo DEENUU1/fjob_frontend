@@ -5,7 +5,7 @@ import React from "react";
 import getExperiences from "@/components/offer/Experience";
 import getEmploymentTypes from "@/components/offer/EmploymentType";
 import getWorkType from "@/components/offer/WorkType";
-
+import {Checkbox} from "@nextui-org/react";
 
 export function Search() {
     const searchParams = useSearchParams();
@@ -56,9 +56,8 @@ export function Remote(){
             <label className="font-medium p-2" htmlFor="is_remote">
                 Is remote:
             </label>
-            <input
+            <Checkbox
                 id="is_remote"
-                type="checkbox"
                 onChange={(e) => {
                     handleIsRemote(e.target.checked);
                 }}
@@ -89,9 +88,8 @@ export function Hybrid() {
             <label className="font-medium p-2" htmlFor="is_hybrid">
                 Is hybrid
             </label>
-            <input
+            <Checkbox
                 id="is_hybrid"
-                type="checkbox"
                 onChange={(e) => {
                     handleIsRemote(e.target.checked);
                 }}
