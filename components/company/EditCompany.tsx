@@ -9,7 +9,6 @@ import getCompanyCategory from "@/components/company/CompanyCategory";
 export default function EditCompanyModal({company}: {company: Company}) {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter();
-    // const token = localStorage.getItem("access")
 
     const [name, setName] = useState(company.name || "")
     const [logo, setLogo] = useState(company.logo || null)
@@ -56,7 +55,8 @@ export default function EditCompanyModal({company}: {company: Company}) {
         }
 
         if (category !== null) {
-            formData.append("category", category);
+            // @ts-ignore
+            formData.append("category", category?.id);
         }
 
         try {

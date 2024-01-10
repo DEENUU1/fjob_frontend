@@ -5,22 +5,25 @@ import {toast} from 'react-toastify';
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 import {useAppSelector} from "@/redux/hooks";
 import {IoFlagOutline, IoFlagSharp} from "react-icons/io5";
+import {Button} from "@nextui-org/react";
+
 
 const ReportModal = ({offerId}: {offerId: number}) => {
     const {isLoading, isAuthenticated} = useAppSelector(state => state.auth);
     const [description, setDescription] = useState('')
     const {data: user} = useRetrieveUserQuery()
     const [showModal, setShowModal] = useState(false);
-    const token = localStorage.getItem('access')
-
     const [isHover, setIsHover] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     const onMouseEnter = () => setIsHover(true);
     const onMouseLeave = () => setIsHover(false);
 
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        setShowModal(false);
+
+        setLoading(true);
 
         try {
 
@@ -33,10 +36,9 @@ const ReportModal = ({offerId}: {offerId: number}) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // 'Authorization': `Bearer ${token}`
                 },
                 credentials: "include",
-                body: JSON.stringify({"offer": offerId, "user": user.id, "description": description})
+                body: JSON.stringify({"offer": offerId, "user": user?.id, "description": description})
             })
 
             if (response.ok) {
@@ -46,7 +48,9 @@ const ReportModal = ({offerId}: {offerId: number}) => {
             }
         } catch (error) {
             toast.error("Error!")
-            console.log(error);
+        } finally {
+            setShowModal(false);
+            setLoading(false);
         }
 
     }
@@ -60,7 +64,6 @@ const ReportModal = ({offerId}: {offerId: number}) => {
                     <IoFlagSharp/>
                 ) : (
                     <IoFlagOutline/>
-
                 )}
             </button>
 
@@ -109,13 +112,14 @@ const ReportModal = ({offerId}: {offerId: number}) => {
                                         >
                                             Close
                                         </button>
-                                        <button
-                                            className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        <Button
+                                            color="success"
                                             type="submit"
-                                            onClick={() => (false)}
+                                            onClick={() => false}
+                                            isLoading={loading}
                                         >
-                                            Send
-                                        </button>
+                                            {isLoading ? 'Loading' : 'Send'}
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
