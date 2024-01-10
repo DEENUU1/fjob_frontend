@@ -7,6 +7,7 @@ import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 import Confetti from "@/components/Confetti";
 import Spinner from "@/components/common/Spinner";
 import { Checkbox } from "@/components/ui/checkbox"
+import {Button} from "@nextui-org/react";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_FILE_TYPES = ["application/pdf"];
@@ -22,8 +23,8 @@ export default function ApplyForm({offerId}: {offerId: string}) {
     const [message, setMessage] = useState<string>("");
     const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
     const [futureRecruitment, setFutureRecruitment] = useState<boolean>(false);
-
-    const [isLoading, setIsLoading] = useState<boolean>();
+    const [isLoadingFile, setIsLoadingFile] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const userId = user?.id || null;
 
@@ -51,19 +52,25 @@ export default function ApplyForm({offerId}: {offerId: string}) {
             return;
         }
 
+        setIsLoadingFile(true);
         setIsLoading(true);
 
         const formData = new FormData();
+        // @ts-ignore
         formData.append("first_name", first_name);
+        // @ts-ignore
         formData.append("last_name", last_name);
+        // @ts-ignore
         formData.append("email", email);
         formData.append("phone", phone);
         formData.append("message", message);
         formData.append("cv", resume);
         formData.append("job_offer", offerId);
+        // @ts-ignore
         formData.append("future_recruitment", futureRecruitment);
 
         if (userId) {
+            // @ts-ignore
             formData.append("user", userId);
         }
 
@@ -85,6 +92,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
         } catch (error) {
             toast.error("Failed to sent your application");
         } finally {
+            setIsLoadingFile(false);
             setIsLoading(false);
         }
     };
@@ -142,7 +150,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
 
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                            htmlFor="resume">Resume</label>
-                    {isLoading ? (
+                    {isLoadingFile ? (
                         <input
                             type="file"
                             id="resume"
@@ -161,7 +169,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                         />
                     )}
 
-                    {isLoading && (
+                    {isLoadingFile && (
                         <div className="mb-2">
                             <Spinner/>
                         </div>
@@ -190,7 +198,7 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                         </div>
                     </div>
 
-                    <div className="items-top flex space-x-2">
+                    <div className="items-top flex space-x-2 mb-2">
                         <input type="checkbox" id="future-recruitment"  onChange={(e) => setFutureRecruitment(e.target.checked)}/>
                         <div className="terms">
                             <label
@@ -201,10 +209,9 @@ export default function ApplyForm({offerId}: {offerId: string}) {
                             </label>
                         </div>
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
-                            type="submit">
-                        Apply
-                    </button>
+                    <Button color="success" type="submit" isLoading={isLoading}>
+                        {isLoading ? 'Loading' : 'Send'}
+                    </Button>
 
                 </form>
             </div>
