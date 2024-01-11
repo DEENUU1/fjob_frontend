@@ -4,6 +4,8 @@ import {useState} from "react";
 import {toast} from "react-toastify";
 import ContactInfo from "@/components/contact/ContactInfo";
 import {Button} from "@nextui-org/react";
+import {Input, Textarea} from "@nextui-org/react";
+
 
 export default function ContactForm() {
     const [email, setEmail] = useState<string>("");
@@ -49,34 +51,16 @@ export default function ContactForm() {
                 <ContactInfo/>
                 <div>
                     <form onSubmit={handleSubmit}>
-                        <input type="checkbox" id="" className="hidden" name="botcheck"/>
                         <div className="mb-5">
-                            <input type="text" placeholder="Subject" autoComplete="false" required
-                                   className="w-full px-4 py-3 rounded-md outline-none focus:ring-4 border-2 border-gray-200 hover:shadow-md ring-neutral-100"
-                                   name="name"
-                                   value={subject}
-                                   onChange={(e) => setSubject(e.target.value)}
-                            />
+                            <Input type="text" isRequired={true}  label="Name" value={subject}
+                                   onChange={(e) => setSubject(e.target.value)}/>
                         </div>
                         <div className="mb-5">
-                            <label htmlFor="email_address" className="sr-only">Email Address</label>
-                            <input id="email_address" type="email" placeholder="Email Address" autoComplete="false"
-                                   required
-                                   className="w-full px-4 py-3 rounded-md outline-none focus:ring-4 border-2 border-gray-200 hover:shadow-md ring-neutral-100"
-                                   name="email"
-                                   value={email}
-                                   onChange={(e) => setEmail(e.target.value)}
-                            />
+                            <Input type="email" isRequired={true} label="Email" value={email}
+                                   onChange={(e) => setEmail(e.target.value)}/>
                         </div>
                         <div className="mb-3">
-                        <textarea placeholder="Your Message"
-                                  required
-                                  className="w-full px-4 py-3 rounded-md outline-none focus:ring-4 border-2 border-gray-200 hover:shadow-md ring-neutral-100"
-                                  name="message"
-                                  value={message}
-                                  onChange={(e) => setMessage(e.target.value)}
-                        >
-                        </textarea>
+                            <Textarea isRequired={true} label="Message" value={message} onChange={(e) => setMessage(e.target.value)}></Textarea>
                         </div>
                         <Button type="submit" color="primary" isLoading={isLoading}>
                             {isLoading ? 'Loading' : 'Send'}
