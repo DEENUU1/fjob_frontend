@@ -23,6 +23,21 @@
   </p>
 </div>
 
+## !Info!
+<strong>
+The project has undergone significant changes in terms of code architecture. 
+Initially, all application logic resided in views. 
+Currently, thanks to the use of Repository Pattern and Service Layer, 
+views have been significantly improved. 
+Not all views use this architecture, 
+I left some of them unchanged because they use abstract classes from DRF, 
+so there is practically no business logic in them.
+</strong>
+<hr>
+<strong>
+The application is no longer available in the demo version, I don't have money to maintain it with this architecture :(
+</strong>
+
 ## System Architecture
 
 Fjob consists of 3 repositories:
@@ -37,29 +52,32 @@ Fjob consists of 3 repositories:
 
 ## Features
 
+<strong>!NEW! I started refactoring the current application and moved a large part of the code initially saved in views to the service layer using the repository pattern.
+Some views have remained unchanged due to, for example, their simplicity related to the use of Django </strong>
+
 1. <strong>JWT and OAuth Google</strong> Integration:
-    - Utilizes JSON Web Tokens (JWT) in conjunction with OAuth Google for secure authentication and authorization processes.
+   - Utilizes JSON Web Tokens (JWT) in conjunction with OAuth Google for secure authentication and authorization processes.
 2. <strong>Web Scraping</strong> and API-driven Database Storage:
-    - Implements web scraping techniques to extract job offers from various websites.
-    - Processes and transmits the gathered data via API for storage in the database.
+   - Implements web scraping techniques to extract job offers from various websites.
+   - Processes and transmits the gathered data via API for storage in the database.
 3. Error Reporting and Favorites Functionality:
-    - Incorporates a robust error reporting mechanism.
-    - Enables users to save job offers to favorites for convenient retrieval.
+   - Incorporates a robust error reporting mechanism.
+   - Enables users to save job offers to favorites for convenient retrieval.
 4. <strong>Advanced Filtering, Sorting, Pagination, and Search Capabilities</strong>:
-    - Provides sophisticated filtering, sorting, and pagination options for efficient data exploration.
-    - Facilitates advanced job search functionalities.
+   - Provides sophisticated filtering, sorting, and pagination options for efficient data exploration.
+   - Facilitates advanced job search functionalities.
 5. <strong>Stripe Integration</strong> for Business Listings Purchase:
-    - Integrates with Stripe payment gateway, allowing businesses to purchase listings seamlessly.
+   - Integrates with Stripe payment gateway, allowing businesses to purchase listings seamlessly.
 6. User and Company Account Management:
-    - Enables the creation of both regular user accounts and company accounts.
+   - Enables the creation of both regular user accounts and company accounts.
 7. <strong>Django Signals</strong> for Automated Services:
-    - Utilizes Django Signals for the automation of various services, including updating available job offers, sending email
-      notifications post-payment, and handling errors in job offers.
-    - Instantiates Company objects following the creation of a company account.
+   - Utilizes Django Signals for the automation of various services, including updating available job offers, sending email
+     notifications post-payment, and handling errors in job offers.
+   - Instantiates Company objects following the creation of a company account.
 8. <strong>Custom Commands and Permissions</strong>:
-    - Implements custom commands and permissions for enhanced control and flexibility.
+   - Implements custom commands and permissions for enhanced control and flexibility.
 9. Default Data Upload and Localization:
-    - Includes functionality for uploading default countries, cities, and regions (currently focused on Poland).
+   - Includes functionality for uploading default countries, cities, and regions (currently focused on Poland).
 10. <strong>NextJS</strong> and Typescript for Frontend:
     - Develops the frontend application using NextJS and Typescript for a robust and type-safe user interface.
 11. <strong>CI/CD</strong> with GitHub Actions:
@@ -80,41 +98,46 @@ Fjob consists of 3 repositories:
     - Implements AWS EventBridge to automatically trigger each web scraping function.
 17. Sentry Integration for Error Monitoring:
     - Integrates with the Sentry platform to monitor and analyze errors in the system.
-
+18. I wrote over <strong>120 tests</strong>, both unit and integration
 
 ## Technologies:
-
-#### Backend
-
 - Python
-    - Django
-    - Django Rest Framework
+    - Django / Django Rest Framework
+    - Selenium
     - Celery
-    - Docker
-    - Docker Compose
     - Pytest
+    - Requests
+    - Beautiful Soup 4
+- React 
+  - Next.JS
+  - Typescript
+- AWS 
+  - EC2
+  - S3 Bucket
+  - Elastic IP
+  - Route 53
+  - Lambda
+  - EventBridge
+  - CodeBuild
+  - Amplify
+- Google Cloud SQL (postgreSQL)
+- Docker
+- Docker Compose
 - Redis
 - CI/CD
-- AWS EC2
-- AWS S3 Bucket
-- AWS Elastic IP
-- AWS Route 53
 - Certbot
 - NGINX
-- Google Cloud SQL (postgre)
 - SQLite
 - Stripe
 
+## Backend - Endpoints
 <img src="assets/api_1.png" alt="endpoints_1"/>
 <img src="assets/api_2.png" alt="endpoints_2"/>
 <img src="assets/api_3.png" alt="endpoints_3"/>
 
 
-#### Frontend
-
-- Nextjs
-- Typescript
-- AWS Amplify
+## Frontend
+I'm not a frontend developer, but I think it looks pretty good
 
 <img src="assets/frontend_1.png" alt="frontend_1"/>
 <img src="assets/frontend_2.png" alt="frontend_2"/>
@@ -137,20 +160,6 @@ Fjob consists of 3 repositories:
 <img src="assets/dashboard_4.png" alt="frontend_12"/>
 <img src="assets/frontend_14.png" alt="frontend_14"/>
 <img src="assets/frontend_15.png" alt="frontend_15"/>
-
-
-
-#### Scrapers
-
-- Python
-    - Selenium
-    - Requests
-    - Beautiful Soup 4
-- AWS Lambda
-- AWS EventBridge
-- AWS CodeBuild
-
-
 
 ## Local environment installation
 
