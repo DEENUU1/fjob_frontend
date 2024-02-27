@@ -6,7 +6,6 @@ import {useAppSelector} from "@/redux/hooks";
 import {useState} from "react";
 import {IoHeartOutline} from "react-icons/io5";
 import {IoHeartSharp} from "react-icons/io5";
-import Cookies from 'js-cookie';
 
 // @ts-ignore
 const FavouriteButton = ({offerId}) => {
@@ -17,7 +16,6 @@ const FavouriteButton = ({offerId}) => {
   const onMouseEnter = () => setIsHover(true);
   const onMouseLeave = () => setIsHover(false);
 
-  const token = Cookies.get("access");
   const handlePostFavourite = async () => {
     try {
 
@@ -30,10 +28,8 @@ const FavouriteButton = ({offerId}) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-          // Authorization: `Bearer ${token}`
         },
-        // credentials: "include",
+        credentials: "include",
         body: JSON.stringify({offer: offerId, user: user?.id})
       })
 

@@ -168,7 +168,7 @@ export function WorkType() {
         onChange={(e) => handleWorkType(e.target.value)}
       >
         <SelectItem key="" value="">All</SelectItem>
-        {options && options.length > 0 && options.map((workType: any) => (
+        {options && options.length > 0 && options.map((workType: WorkType) => (
           <SelectItem key={workType.id} value={workType.id}>{workType.name}</SelectItem>
         ))}
       </Select>
@@ -201,8 +201,8 @@ export function Experience() {
         onChange={(e) => handleExperience(e.target.value)}
       >
         <SelectItem key="" value="">All</SelectItem>
-        {options && options.length > 0 && options.map((emperienceType: any) => (
-          <SelectItem key={emperienceType.id} value={emperienceType.id}>{emperienceType.name}</SelectItem>
+        {options && options.length > 0 && options.map((experience: Experience) => (
+          <SelectItem key={experience.id} value={experience.id}>{experience.name}</SelectItem>
         ))}
       </Select>
     </>
@@ -234,8 +234,8 @@ export function Employment() {
         onChange={(e) => handleEmployment(e.target.value)}
       >
         <SelectItem key="" value="">All</SelectItem>
-        {options && options.length > 0 && options.map((emperienceType: any) => (
-          <SelectItem key={emperienceType.id} value={emperienceType.id}>{emperienceType.name}</SelectItem>
+        {options && options.length > 0 && options.map((employmentType: EmploymentType) => (
+          <SelectItem key={employmentType.id} value={employmentType.id}>{employmentType.name}</SelectItem>
         ))}
       </Select>
     </>

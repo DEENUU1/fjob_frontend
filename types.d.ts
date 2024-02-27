@@ -135,3 +135,8 @@ type UserAppliedOffer = {
   message?: string | null;
   future_recruitment: boolean;
 }
+
+type TimelineData = {
+  created_at__date: string;
+  num_candidates: number
+}

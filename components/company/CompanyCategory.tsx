@@ -5,7 +5,7 @@ import {useEffect, useState,} from "react";
 
 export default function getCompanyCategory() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [categories, setCategories] = useState<CompanyCategory | null>();
+  const [categories, setCategories] = useState<CompanyCategory[]>([]);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {

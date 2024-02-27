@@ -50,11 +50,20 @@ export default function CreateJobOffer() {
     );
   };
 
+
+  const handleSetWorkType = (e: any) => {
+    setWorkType(e.target.value);
+  }
+
+  const handleSetEmploymentType = (e: any) => {
+    setEmploymentType(e.target.value);
+  }
+
   const workTypeMultiSelect = () => {
-    // @ts-ignore
+
     return (
       <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required multiple name="experience[]" onChange={(e) => setWorkType(e.target.value)}>
+              required multiple name="experience[]" onChange={(e) => handleSetWorkType(e)}>
         {workTypes && workTypes.map((workType: any) => (
           <option key={workType.id} value={workType.id}>{workType.name}</option>
         ))}
@@ -66,7 +75,7 @@ export default function CreateJobOffer() {
     // @ts-ignore
     return (
       <select className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required multiple name="experience[]" onChange={(e) => setEmploymentType(e.target.value)}>
+              required multiple name="experience[]" onChange={(e) => handleSetEmploymentType(e)}>
         {employmentTypes && employmentTypes.map((employmentType: any) => (
           <option key={employmentType.id} value={employmentType.id}>{employmentType.name}</option>
         ))}
@@ -124,6 +133,11 @@ export default function CreateJobOffer() {
 
   }
 
+  const handleSetDaysUntilExpiration = (e: any) => {
+    // @ts-ignore
+    setDaysUntilExpiration(parseInt(e.target.value));
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -159,7 +173,7 @@ export default function CreateJobOffer() {
         <label htmlFor="apply_form" className="block mb-2 font-medium">Days available</label>
         <select
           className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          name="days_until_expiration" onChange={(e) => setDaysUntilExpiration(parseInt(e.target.value))}>
+          name="days_until_expiration" onChange={(e) => handleSetDaysUntilExpiration(e)}>
           {daysUntilExpirations.map((days) => (
             <option key={days} value={days}>{days} days</option>
           ))}

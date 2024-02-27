@@ -3,12 +3,9 @@
 import Link from "next/link";
 
 async function getCompany() {
-  const token = localStorage.getItem("access")
-
   const response = await fetch(process.env.API_URL + "api/company/company", {
     headers: {
       accept: "application/json",
-      // Authorization: `Bearer ${token}`
     },
     credentials: "include"
   })

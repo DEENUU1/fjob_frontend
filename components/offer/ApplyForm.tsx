@@ -48,6 +48,7 @@ export default function ApplyForm({offerId}: { offerId: string }) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
+    // @ts-ignore
     if (!validateFile(resume)) {
       return;
     }
@@ -96,6 +97,11 @@ export default function ApplyForm({offerId}: { offerId: string }) {
       setIsLoading(false);
     }
   };
+
+  const handleFileChange = (e: any) => {
+    setResume(e.target.files[0]);
+  }
+
   return (
     <>
       {isFormSubmitted ? (
@@ -164,7 +170,7 @@ export default function ApplyForm({offerId}: { offerId: string }) {
               id="resume"
               required
               name="phone"
-              onChange={(e) => setResume(e.target.files[0])}
+              onChange={(e) => handleFileChange(e)}
               className="appearance-none block w-full border-2 border-gray-200 hover:shadow-md  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             />
           )}

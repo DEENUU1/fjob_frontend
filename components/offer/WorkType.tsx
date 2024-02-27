@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 
 export default function getWorkType() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [employmentTypes, setEmploymentTypes] = useState<WorkerType[] | null>();
+  const [employmentTypes, setEmploymentTypes] = useState<WorkerType[]>([]);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     fetch(process.env.API_URL + "api/offer/work")

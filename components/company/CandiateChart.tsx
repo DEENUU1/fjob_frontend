@@ -39,7 +39,7 @@ export const options = {
 
 function getCandidates(offerId: number) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [data, setData] = useState();
+  const [data, setData] = useState<TimelineData[]>();
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
