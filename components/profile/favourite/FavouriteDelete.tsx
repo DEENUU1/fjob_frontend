@@ -5,7 +5,7 @@ import {RiDeleteBin5Line, RiDeleteBin6Fill} from "react-icons/ri";
 import {useState} from "react";
 
 const FavouriteButtonDelete = ({offerId, updateOnDelete}: { offerId: number, updateOnDelete: () => void }) => {
-  const [isHover, setIsHover] = useState(false);
+  const [isHover, setIsHover] = useState<boolean>(false);
   const onMouseEnter = () => setIsHover(true);
   const onMouseLeave = () => setIsHover(false);
 
@@ -19,7 +19,7 @@ const FavouriteButtonDelete = ({offerId, updateOnDelete}: { offerId: number, upd
         credentials: "include",
       })
 
-      if (response.status == 204 || response.status == 301) {
+      if (response.status === 204 || response.status === 301) {
         toast.success('Delete offer from favourite');
         updateOnDelete();
       } else if (response.status == 400) {
@@ -32,15 +32,16 @@ const FavouriteButtonDelete = ({offerId, updateOnDelete}: { offerId: number, upd
   }
 
   return (
-    <button className="cursor-pointer ml-auto text-xl" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
-            type="button" onClick={handleDeleteFavourite}>
-      {isHover ? (
-        <RiDeleteBin6Fill/>
-      ) : (
-        <RiDeleteBin5Line/>
-      )}
+    <button
+      className="cursor-pointer ml-auto text-xl"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      type="button"
+      onClick={handleDeleteFavourite}
+    >
+      {isHover ? <RiDeleteBin6Fill/> : <RiDeleteBin5Line/>}
     </button>
-  )
+  );
 }
 
 export default FavouriteButtonDelete;

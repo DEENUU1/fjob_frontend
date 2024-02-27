@@ -51,7 +51,6 @@ const FavouriteButton = ({offerId}) => {
         <IoHeartSharp/>
       ) : (
         <IoHeartOutline/>
-
       )}
     </button>
   )

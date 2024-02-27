@@ -13,7 +13,7 @@ async function getAppliedOffers() {
 }
 
 
-function AppliedCard({data}: any) {
+export function AppliedCard({data}: any) {
   return (
     <>
       <div>
@@ -43,8 +43,10 @@ export default async function AppliedOffers() {
         <p>You did not apply on any offer</p>
       ) : (
         offerData.map((offer: UserAppliedOffer) => (
-          <div key={offer.id}
-               className="border-2 border-black border-opacity-50 rounded-xl mb-2 p-5 hover:shadow-md transition duration-300">
+          <div
+            key={offer.id}
+           className="border-2 border-black border-opacity-50 rounded-xl mb-2 p-5 hover:shadow-md transition duration-300"
+          >
             <AppliedCard data={offer}/>
           </div>
         ))

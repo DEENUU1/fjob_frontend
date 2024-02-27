@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {toast} from "react-toastify";
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 
@@ -9,6 +9,13 @@ export default function EditUser() {
   const {data: user, isLoading, isFetching} = useRetrieveUserQuery();
   const [firstName, setFirstName] = useState(user?.first_name || "");
   const [lastName, setLastName] = useState(user?.last_name || "");
+
+
+  useEffect(() => {
+    setFirstName(user?.first_name || "");
+    setLastName(user?.last_name || "");
+  }, [user]);
+
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
