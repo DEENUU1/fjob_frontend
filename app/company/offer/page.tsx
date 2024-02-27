@@ -12,7 +12,6 @@ export default async function Page() {
   return (
     <>
       <main className="mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8">
-
         <div>
           <div>
             <Suspense fallback={<Spinner/>}>

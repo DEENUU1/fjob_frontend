@@ -16,7 +16,6 @@ export async function generateMetadata({params}: { params: PageParams }) {
     "title": "FJob | " + data.name,
     "description": data.description,
   }
-
 }
 
 export default function Page({params}: { params: PageParams }) {

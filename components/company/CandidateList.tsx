@@ -27,9 +27,6 @@ export default function CandidateList(
     let url = `api/candidate/candidate/offer/${offerId}?status=${status}&ordering=${ordering}&future_recruitment=${futureRecruitment}`;
 
     fetch(process.env.API_URL + url, {
-      // headers: {
-      //     Authorization: `Bearer ${localStorage.getItem('access')}`
-      // }
       credentials: "include"
 
     })

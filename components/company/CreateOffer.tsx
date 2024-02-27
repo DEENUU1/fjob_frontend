@@ -8,11 +8,8 @@ import getEmploymentTypes from "@/components/offer/EmploymentType";
 import {useRouter} from 'next/navigation';
 
 
-// @ts-ignore
 export default function CreateJobOffer() {
   const router = useRouter();
-
-  // const token = localStorage.getItem("access")
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [addresses, setAddresses] = useState(1)

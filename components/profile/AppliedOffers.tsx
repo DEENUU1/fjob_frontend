@@ -5,12 +5,7 @@ import Link from "next/link";
 import {Badge} from "@/components/ui/badge"
 
 async function getAppliedOffers() {
-  const token = localStorage.getItem("access");
-
   const response = await fetch(process.env.API_URL + "api/candidate/candidate/user/", {
-    // headers: {
-    //     Authorization: `Bearer ${token}`
-    // }
     credentials: "include",
   });
 
@@ -52,7 +47,6 @@ export default async function AppliedOffers() {
                className="border-2 border-black border-opacity-50 rounded-xl mb-2 p-5 hover:shadow-md transition duration-300">
             <AppliedCard data={offer}/>
           </div>
-
         ))
       )}
     </div>

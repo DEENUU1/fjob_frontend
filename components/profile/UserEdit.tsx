@@ -7,7 +7,6 @@ import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
 
 export default function EditUser() {
   const {data: user, isLoading, isFetching} = useRetrieveUserQuery();
-  const token = localStorage.getItem('access');
   const [firstName, setFirstName] = useState(user?.first_name || "");
   const [lastName, setLastName] = useState(user?.last_name || "");
 
@@ -23,7 +22,6 @@ export default function EditUser() {
         method: "PATCH",
         headers: {
           accept: "application/json",
-          // Authorization: `Bearer ${token}`,
         },
         credentials: "include",
         body: formData,
