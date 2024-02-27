@@ -6,7 +6,6 @@ async function getCompany() {
   const response = await fetch(process.env.API_URL + "api/company/company", {
     headers: {
       accept: "application/json",
-      // Authorization: `Bearer ${token}`
     },
     credentials: "include",
   })
@@ -46,9 +45,6 @@ export default async function CompanyData() {
       <h2 className="text-4xl">{data?.name}</h2>
 
 
-      {/*{data.image && (*/}
-      {/*    <Image src={data?.logo} width={400} height={400} alt="logo"/>*/}
-      {/*)}*/}
       <p className="text-xl mt-2 mb-2">Company size: {data?.category.name}</p>
       <p className="text-xl mt-2 mb-2">Company size: {data?.company_size}</p>
 

@@ -4,7 +4,7 @@ import {toast} from 'react-toastify';
 import {RiDeleteBin5Line, RiDeleteBin6Fill} from "react-icons/ri";
 import {useState} from "react";
 
-const FavouriteButtonDelete = ({offerId}: { offerId: number }) => {
+const FavouriteButtonDelete = ({offerId, updateOnDelete}: { offerId: number, updateOnDelete: () => void }) => {
   const [isHover, setIsHover] = useState(false);
   const onMouseEnter = () => setIsHover(true);
   const onMouseLeave = () => setIsHover(false);
@@ -20,7 +20,8 @@ const FavouriteButtonDelete = ({offerId}: { offerId: number }) => {
       })
 
       if (response.status == 204 || response.status == 301) {
-        toast.success('Delete offer from favourite')
+        toast.success('Delete offer from favourite');
+        updateOnDelete();
       } else if (response.status == 400) {
         toast.info('Error!')
       }

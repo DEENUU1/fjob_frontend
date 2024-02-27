@@ -49,7 +49,7 @@ export default async function CompanyDetails({companySlug}: { companySlug: strin
           ) : (
             <h2 className="text-4xl">{data?.name}</h2>
           )}
-          <p className="text-xl mt-2 mb-2">Company category: {data?.category.name}</p>
+          <p className="text-xl mt-2 mb-2">Company category: {data?.category?.name}</p>
           <p className="text-xl mt-2 mb-2">Company size: {data?.company_size}</p>
 
           {data.address ? (

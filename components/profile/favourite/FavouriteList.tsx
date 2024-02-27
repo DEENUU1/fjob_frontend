@@ -1,25 +1,8 @@
-'use client'
-
 import FavouriteButtonDelete from "./FavouriteDelete";
 import Link from "next/link";
 
 
-export async function getFavourites() {
-  const response = await fetch(process.env.API_URL + "api/favourite", {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    credentials: "include"
-  });
-
-  return response.json();
-}
-
-
-export default async function Favourites() {
-  const favourites = await getFavourites();
-
+export default function Favourites({favourites, updateOnDelete}: {favourites: any, updateOnDelete: () => void}) {
   return (
     <div className="flex flex-col">
       {favourites.length === 0 ? (
@@ -33,7 +16,7 @@ export default async function Favourites() {
                 <h2 className="text-xl">{favourite.offer.title}</h2>
               </Link>
             </div>
-            <FavouriteButtonDelete offerId={favourite.id}/>
+            <FavouriteButtonDelete offerId={favourite.id} updateOnDelete={updateOnDelete}/>
           </div>
         ))
       )}

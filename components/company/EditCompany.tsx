@@ -92,6 +92,14 @@ export default function EditCompanyModal({company}: { company: Company }) {
     setLogo(e.target.files[0])
   }
 
+  const handleSetCategory = (e: any) => {
+    setCategory(e.target.value)
+  }
+
+  const handleSetCompanySize = (e: any) => {
+    setCompanySize(e.target.value)
+  }
+
   // @ts-ignore
   return (
     <>
@@ -106,9 +114,9 @@ export default function EditCompanyModal({company}: { company: Company }) {
                 <ModalBody>
                   <Input type="text" value={name} label="Name" onChange={(e) => setName(e.target.value)}/>
 
-                  <Select label="Category" onChange={(e) => setCategory(e.target.value)}>
+                  <Select label="Category" onChange={(e) => handleSetCategory(e)}>
 
-                    {categories.map((cat) => (
+                    {categories && categories.length > 0 && categories.map((cat) => (
                       <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
                     ))}
                   </Select>
@@ -125,7 +133,7 @@ export default function EditCompanyModal({company}: { company: Company }) {
 
 
                   <Input type="number" label="Company size" value={companySize.toString()}
-                         onChange={(e) => setCompanySize(e.target.value)}/>
+                         onChange={(e) => handleSetCompanySize(e)}/>
 
                   <Input type="url" name="linkedin" value={linkedinUrl} label="Linked in"
                          onChange={(e) => setLinkedinUrl(e.target.value)}/>
