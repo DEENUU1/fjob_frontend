@@ -1,31 +1,31 @@
 'use client'
 
-import { redirect } from 'next/navigation';
+import {redirect} from 'next/navigation';
 import Spinner from '@/components/common/Spinner';
 import {useRetrieveUserQuery} from "@/redux/features/authApiSlice";
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 
 
 interface Props {
-    children: React.ReactNode
+  children: React.ReactNode
 
 }
 
 export default function CompanyOnly({children}: Props) {
-    const { data: user, isLoading, isFetching } = useRetrieveUserQuery();
+  const {data: user, isLoading, isFetching} = useRetrieveUserQuery();
 
-    if (isLoading || isFetching) {
-        return (
-            <div className='flex justify-center my-8'>
-                <Spinner />
-            </div>
-        );
-    }
+  if (isLoading || isFetching) {
+    return (
+      <div className='flex justify-center my-8'>
+        <Spinner/>
+      </div>
+    );
+  }
 
-    if (!(user?.account_type === "COMPANY")) {
-        toast.error("You are not authorized to access this page")
-        redirect("/");
-    }
+  if (!(user?.account_type === "COMPANY")) {
+    toast.error("You are not authorized to access this page")
+    redirect("/");
+  }
 
-    return <>{children}</>;
+  return <>{children}</>;
 }

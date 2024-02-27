@@ -4,24 +4,24 @@ import {Metadata} from "next";
 import Products from "@/components/product/ProductList";
 
 export const metadata: Metadata = {
-    title: 'FJob | Products',
+  title: 'FJob | Products',
 }
 
 function Page() {
 
 
-    return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div>
-                <h1 className="text-center font-bold text-3xl mb-10">Products</h1>
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div>
+        <h1 className="text-center font-bold text-3xl mb-10">Products</h1>
 
-                <Suspense fallback={<Spinner/>}>
-                    <Products/>
-                </Suspense>
+        <Suspense fallback={<Spinner/>}>
+          <Products/>
+        </Suspense>
 
-            </div>
-        </main>
-    );
+      </div>
+    </main>
+  );
 }
 
 export default Page;

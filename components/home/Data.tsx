@@ -18,17 +18,17 @@ const benefitOne = {
     {
       title: "Less search",
       desc: "FJob collects job offer from many different job boards to save your time and focus on your expectations",
-      icon: <FaceSmileIcon />,
+      icon: <FaceSmileIcon/>,
     },
     {
       title: "Only new once",
       desc: "FJob constantly collects new data to provide the most up-to-date data possible",
-      icon: <ChartBarSquareIcon />,
+      icon: <ChartBarSquareIcon/>,
     },
     {
       title: "Easy and transparent",
       desc: "We try to provide as much information as possible about each job offer, we also allow you to filter offer through advanced forms that will help you find your dream job",
-      icon: <CursorArrowRaysIcon />,
+      icon: <CursorArrowRaysIcon/>,
     },
   ],
 };
@@ -41,17 +41,17 @@ const benefitTwo = {
     {
       title: "Low prices",
       desc: "Only with us you can post your first ad for free, and subsequent ads have a very competitive price compared to other sites",
-      icon: <DevicePhoneMobileIcon />,
+      icon: <DevicePhoneMobileIcon/>,
     },
     {
       title: "Additional promotion",
       desc: "If you post an offer on our website, it will be promoted, making it stand out from other job offer",
-      icon: <AdjustmentsHorizontalIcon />,
+      icon: <AdjustmentsHorizontalIcon/>,
     },
     {
       title: "Clarity",
       desc: "We know that the recruitment process is not simple, so we provide many interesting functionalities that will make the recruitment process much simpler. You can post ads using our form or provide a link to your own form.",
-      icon: <SunIcon />,
+      icon: <SunIcon/>,
     },
   ],
 };

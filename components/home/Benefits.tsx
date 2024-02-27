@@ -3,7 +3,7 @@ import React from "react";
 import Container from "./Container";
 
 const Benefits = (props: any) => {
-  const { data } = props;
+  const {data} = props;
   return (
     <>
       <Container className="flex flex-wrap mb-20 lg:gap-10 lg:flex-nowrap ">
@@ -30,7 +30,8 @@ const Benefits = (props: any) => {
           }`}>
           <div>
             <div className="flex flex-col w-full mt-4">
-              <h3 className="max-w-2xl mt-3 text-3xl font-bold leading-snug tracking-tight text-black lg:leading-tight lg:text-4xl">
+              <h3
+                className="max-w-2xl mt-3 text-3xl font-bold leading-snug tracking-tight text-black lg:leading-tight lg:text-4xl">
                 {data.title}
               </h3>
 
